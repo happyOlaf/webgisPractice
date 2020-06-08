@@ -479,8 +479,9 @@
 
 
     var curCty = "美国";
+    var popup = new mapboxgl.Popup({ closeOnClick: false });
     map.on('click', 'states-layer', function(e) {
-        new mapboxgl.Popup()
+        popup
             .setLngLat(e.lngLat)
             .setHTML(e.features[0].properties.name)
             .addTo(map);
@@ -504,6 +505,10 @@
     DrawEcharts4(curCty);
     $("#select").change(function(){
         curCty=$(this).val();
+        popup
+            .setLngLat(ctycoods[curCty])
+            .setHTML(curCty)
+            .addTo(map);
         map.flyTo({
                 zoom:3,
                 center: ctycoods[curCty],

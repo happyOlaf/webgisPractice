@@ -29,7 +29,8 @@
  	#map { position: absolute; top: 0; bottom: 0; width: 1520px; }
  	.mapboxgl-popup {
 		max-width: 400px;
-		font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+		min-width: 100px;
+		font: 18px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 		background: #FF8C00;
 	}
 	.flex-center {
@@ -226,41 +227,41 @@
  		<div id="map"></div>
  		<div class="form-inline row" style="position: absolute;margin-top: 20px;">
 		     	  <label class="form-inline"style="margin-left: 15px;color: black">请选择您想要查询的省份</label>  
-      <select class="form-control" id="select" style="width: 120px;margin-left: 15px">
+             <select class="form-control" id="select" style="width: 120px;margin-left: 15px">
       	        <option>湖北</option>
                 <option>北京</option>
-      			<option>天津	</option>
-      			<option>河北	</option>
-      			<option>山西	</option>
+      			<option>天津</option>
+      			<option>河北</option>
+      			<option>山西</option>
       			<option>内蒙古</option>
-      			<option>辽宁	</option>
-      			<option>吉林	</option>
+      			<option>辽宁</option>
+      			<option>吉林</option>
       			<option>黑龙江</option>
-      			<option>安徽	</option>
-      			<option>福建	</option>
-      			<option>江西	</option>
-      			<option>山东	</option>
-      			<option>河南	</option>
-      			<option>湖南	</option>
-      			<option>广东	</option>
-      			<option>广西	</option>
-      			<option>海南	</option>
-      			<option>重庆	</option>
-      			<option>四川	</option>
-      			<option>贵州	</option>
-      			<option>云南	</option>
-      			<option>陕西	</option>
-      			<option>甘肃	</option>
-      			<option>青海	</option>
-      			<option>宁夏	</option>
-      			<option>江苏	</option>
-      			<option>新疆	</option>
-      			<option>上海	</option>
-      			<option>浙江	</option>
-      			<option>西藏	</option>
+      			<option>安徽</option>
+      			<option>福建</option>
+      			<option>江西</option>
+      			<option>山东</option>
+      			<option>河南</option>
+      			<option>湖南</option>
+      			<option>广东</option>
+      			<option>广西</option>
+      			<option>海南</option>
+      			<option>重庆</option>
+      			<option>四川</option>
+      			<option>贵州</option>
+      			<option>云南</option>
+      			<option>陕西</option>
+      			<option>甘肃</option>
+      			<option>青海</option>
+      			<option>宁夏</option>
+      			<option>江苏</option>
+      			<option>新疆</option>
+      			<option>上海</option>
+      			<option>浙江</option>
+      			<option>西藏</option>
       			<option>台湾</option>
-      			<option>香港	</option>
-      			<option>澳门	</option>
+      			<option>香港</option>
+      			<option>澳门</option>
       </select>
     	</div>
        <div id="left" class="sidebar flex-center left collapsed" style="">
@@ -321,6 +322,7 @@
                 'fill-outline-color': 'rgba(0,250,154, 1)'
             }
         });
+
         map.on('mouseenter', 'states-layer', function() {
             map.getCanvas().style.cursor = 'pointer';
         });
@@ -331,14 +333,14 @@
         });
     });
 
-
     var curProv = "湖北";
     DrawEcharts1(curProv);
     DrawEcharts2(curProv);
     DrawEcharts3(curProv);
     DrawEcharts4(curProv);
+    var popup = new mapboxgl.Popup({ closeOnClick: false });
     map.on('click', 'states-layer', function(e) {
-        new mapboxgl.Popup()
+        popup
             .setLngLat(e.lngLat)
             .setHTML(e.features[0].properties.name)
             .addTo(map);
@@ -354,8 +356,13 @@
 	    DrawEcharts4(curProv);
     });
 
+    
     $("#select").change(function(){
         curProv=$(this).val();
+        popup
+            .setLngLat({"lng":getProCoods(curProv)[0],"lat":getProCoods(curProv)[1]})
+            .setHTML(curProv)
+            .addTo(map);
         map.flyTo({
                 zoom:4,
                 center: getProCoods(curProv),
