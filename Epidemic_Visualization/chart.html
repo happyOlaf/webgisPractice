@@ -30,6 +30,7 @@
  	.mapboxgl-popup {
 		max-width: 400px;
 		font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+		background: #FF8C00;
 	}
 	.flex-center {
             position: absolute;
@@ -215,7 +216,7 @@
 		                </ul>
 
 		            </div>
-		        </nav>
+		</nav>
 <!-- /. NAV SIDE  -->
 <div id="page-wrapper" style="min-height: 680px;overflow: hidden;">
     <div class="header"> 
@@ -224,718 +225,10 @@
  	<div id="page-inner"style="padding: 0px;margin: 0;min-height: 680px;overflow: hidden;">
  		<div id="map"></div>
  		<div class="form-inline row" style="position: absolute;margin-top: 20px;">
-		    <label class="form-inline"style="margin-left: 15px;color: black;font-size: 18px;">请选择您想要查询的国家</label>  
-		    <select class="form-control" id="select" style="width: 150px;margin-left: 15px">
-	            <option>美国</option>
-	            <option>阿尔巴尼亚</option>
-	            <option>阿尔及利亚</option>
-	            <option>阿富汗</option>
-	            <option>阿根廷</option>
-	            <option>阿联酋</option>
-	            <option>阿曼</option>
-	            <option>阿塞拜疆</option>
-	            <option>埃及</option>
-	            <option>埃塞俄比亚</option>
-	            <option>爱尔兰</option>
-	            <option>爱沙尼亚</option>
-	            <option>安道尔</option>
-	            <option>安哥拉</option>
-	            <option>安提瓜和巴布达</option>
-	            <option>奥地利</option>
-	            <option>澳大利亚</option>
-	            <option>巴巴多斯</option>
-	            <option>巴布亚新几内亚</option>
-	            <option>巴哈马</option>
-	            <option>巴基斯坦</option>
-	            <option>巴拉圭</option>
-	            <option>巴勒斯坦</option>
-	            <option>巴林</option>
-	            <option>巴拿马</option>
-	            <option>巴西</option>
-	            <option>白俄罗斯</option>
-	            <option>保加利亚</option>
-	            <option>贝宁</option>
-	            <option>比利时</option>
-	            <option>冰岛</option>
-	            <option>波黑</option>
-	            <option>波兰</option>
-	            <option>玻利维亚</option>
-	            <option>伯利兹</option>
-	            <option>博茨瓦纳</option>
-	            <option>不丹</option>
-	            <option>布基纳法索</option>
-	            <option>布隆迪</option>
-	            <option>赤道几内亚</option>
-	            <option>丹麦</option>
-	            <option>德国</option>
-	            <option>东帝汶</option>
-	            <option>多哥</option>
-	            <option>多米尼加</option>
-	            <option>多米尼克</option>
-	            <option>俄罗斯</option>
-	            <option>厄瓜多尔</option>
-	            <option>厄立特里亚</option>
-	            <option>法国</option>
-	            <option>梵蒂冈</option>
-	            <option>菲律宾</option>
-	            <option>斐济</option>
-	            <option>芬兰</option>
-	            <option>佛得角</option>
-	            <option>冈比亚</option>
-	            <option>刚果（布）</option>
-	            <option>刚果（金）</option>
-	            <option>哥伦比亚</option>
-	            <option>哥斯达黎加</option>
-	            <option>格林纳达</option>
-	            <option>格鲁吉亚</option>
-	            <option>古巴</option>
-	            <option>圭亚那</option>
-	            <option>哈萨克斯坦</option>
-	            <option>海地</option>
-	            <option>韩国</option>
-	            <option>荷兰</option>
-	            <option>黑山</option>
-	            <option>洪都拉斯</option>
-	            <option>吉布提</option>
-	            <option>吉尔吉斯斯坦</option>
-	            <option>几内亚</option>
-	            <option>几内亚比绍</option>
-	            <option>加拿大</option>
-	            <option>加纳</option>
-	            <option>加蓬</option>
-	            <option>柬埔寨</option>
-	            <option>捷克共和国</option>
-	            <option>津巴布韦</option>
-	            <option>喀麦隆</option>
-	            <option>卡塔尔</option>
-	            <option>科摩罗</option>
-	            <option>科特迪瓦</option>
-	            <option>科威特</option>
-	            <option>克罗地亚</option>
-	            <option>肯尼亚</option>
-	            <option>拉脱维亚</option>
-	            <option>老挝</option>
-	            <option>黎巴嫩</option>
-	            <option>立陶宛</option>
-	            <option>利比里亚</option>
-	            <option>利比亚</option>
-	            <option>列支敦士登公国</option>
-	            <option>卢森堡</option>
-	            <option>卢旺达</option>
-	            <option>罗马尼亚</option>
-	            <option>马达加斯加</option>
-	            <option>马尔代夫</option>
-	            <option>马耳他</option>
-	            <option>马拉维</option>
-	            <option>马来西亚</option>
-	            <option>马里</option>
-	            <option>马其顿</option>
-	            <option>毛里求斯</option>
-	            <option>毛里塔尼亚</option>
-	            <option>美国</option>
-	            <option>蒙古</option>
-	            <option>孟加拉</option>
-	            <option>秘鲁</option>
-	            <option>缅甸</option>
-	            <option>摩尔多瓦</option>
-	            <option>摩洛哥</option>
-	            <option>摩纳哥</option>
-	            <option>莫桑比克</option>
-	            <option>墨西哥</option>
-	            <option>纳米比亚</option>
-	            <option>南非</option>
-	            <option>尼泊尔</option>
-	            <option>尼加拉瓜</option>
-	            <option>尼日尔</option>
-	            <option>尼日利亚</option>
-	            <option>挪威</option>
-	            <option>葡萄牙</option>
-	            <option>日本本土</option>
-	            <option>瑞典</option>
-	            <option>瑞士</option>
-	            <option>萨尔瓦多</option>
-	            <option>塞尔维亚</option>
-	            <option>塞拉利昂</option>
-	            <option>塞内加尔</option>
-	            <option>塞浦路斯</option>
-	            <option>塞舌尔</option>
-	            <option>沙特阿拉伯</option>
-	            <option>圣基茨和尼维斯</option>
-	            <option>圣卢西亚</option>
-	            <option>圣马力诺</option>
-	            <option>圣文森特和格林纳丁斯</option>
-	            <option>斯里兰卡</option>
-	            <option>斯洛伐克</option>
-	            <option>斯洛文尼亚</option>
-	            <option>斯威士兰</option>
-	            <option>苏丹</option>
-	            <option>苏里南</option>
-	            <option>索马里</option>
-	            <option>塔吉克斯坦</option>
-	            <option>泰国</option>
-	            <option>坦桑尼亚</option>
-	            <option>特立尼达和多巴哥</option>
-	            <option>突尼斯</option>
-	            <option>土耳其</option>
-	            <option>危地马拉</option>
-	            <option>委内瑞拉</option>
-	            <option>文莱</option>
-	            <option>乌干达</option>
-	            <option>乌克兰</option>
-	            <option>乌拉圭</option>
-	            <option>乌兹别克斯坦</option>
-	            <option>西班牙</option>
-	            <option>希腊</option>
-	            <option>新加坡</option>
-	            <option>新西兰</option>
-	            <option>匈牙利</option>
-	            <option>叙利亚</option>
-	            <option>牙买加</option>
-	            <option>亚美尼亚</option>
-	            <option>也门</option>
-	            <option>伊拉克</option>
-	            <option>伊朗</option>
-	            <option>以色列</option>
-	            <option>意大利</option>
-	            <option>印度</option>
-	            <option>印度尼西亚</option>
-	            <option>英国</option>
-	            <option>约旦</option>
-	            <option>越南</option>
-	            <option>赞比亚</option>
-	            <option>乍得</option>
-	            <option>智利</option>
-	            <option>中非</option>
-	      	</select>
-    	</div>
-       <div id="left" class="sidebar flex-center left collapsed" style="">
-        <div class="sidebar-content rounded-rect flex-center">
-            <div id="leftArrow" class="sidbear-toggle rounded-rect left" onclick="toggleSidebar('left')">
-                &raquo;
-            </div>
-            <div id="leftcharts1">
-            </div>
-            <div id="leftcharts2">
-            </div>
-        </div>
-      </div>
-    	<div id="right" class="sidebar flex-center right collapsed">
-       	 <div class="sidebar-content rounded-rect flex-center">
-            <div class="sidbear-toggle rounded-rect right"
-                onclick="toggleSidebar('right')">
-                &laquo;
-            </div>
-            <div id="rightcharts1">
-            </div>
-            <div id="rightcharts2">
-            </div>
-        </div>
-    </div>
- 	</div>
-<script type="text/javascript">
-</script>
-
-<script type="text/javascript">
-	mapboxgl.accessToken = 'pk.eyJ1IjoidmFjdXRpY2UiLCJhIjoiY2p1cjRjdTRtMGQzcTQzbzh5b3N6MHZociJ9.F-S59qE0_6QW3XdgxZk14Q';
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v9',
-        center: [-100.04, 38.907],
-        zoom: 2
-    });
-    mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.0/mapbox-gl-rtl-text.js');
-        map.addControl(new MapboxLanguage({
-            defaultLanguage: 'zh'
-    }));
-
-     map.on('load', function() {
-        // Add a source for the state polygons.
-        map.addSource('states', {
-            'type': 'geojson',
-            'data': worldZHjsondata,
-        });
-
-        // Add a layer showing the state polygons.
-        map.addLayer({
-            'id': 'states-layer',
-            'type': 'fill',
-            'source': 'states',
-            'paint': {
-                'fill-color': 'rgba(200, 100, 240, 0)',
-                'fill-outline-color': 'rgba(200, 100, 240, 1)'
-            }
-        });
-        map.on('mouseenter', 'states-layer', function() {
-            map.getCanvas().style.cursor = 'pointer';
-        });
-
-        // Change it back to a pointer when it leaves.
-        map.on('mouseleave', 'states-layer', function() {
-            map.getCanvas().style.cursor = '';
-        });
-    });
-
-
-    var curCty = "美国";
-    map.on('click', 'states-layer', function(e) {
-        new mapboxgl.Popup()
-            .setLngLat(e.lngLat)
-            .setHTML(e.features[0].properties.name)
-            .addTo(map);
-        if (ctycoods[e.features[0].properties.name]) {
-            curCty = e.features[0].properties.name;
-            map.flyTo({
-                zoom:2,
-                center: ctycoods[curCty],
-                //essential: true // this animation is considered essential with respect to prefers-reduced-motion
-            });
-            DrawEcharts1(curCty);
-		    DrawEcharts2(curCty);
-		    DrawEcharts3(curCty);
-		    DrawEcharts4(curCty);
-        }
-    });
-
-    DrawEcharts1(curCty);
-    DrawEcharts2(curCty);
-    DrawEcharts3(curCty);
-    DrawEcharts4(curCty);
-    $("#select").change(function(){
-        curCty=$(this).val();
-        map.flyTo({
-                zoom:2,
-                center: ctycoods[curCty],
-                //essential: true // this animation is considered essential with respect to prefers-reduced-motion
-        });
-        DrawEcharts1(curCty);
-	    DrawEcharts2(curCty);
-	    DrawEcharts3(curCty);
-	    DrawEcharts4(curCty);
-    })
-
-    function toggleSidebar(id) {
-        var elem = document.getElementById(id);
-        var classes = elem.className.split(' ');
-        var collapsed = classes.indexOf('collapsed') !== -1;
-
-        var padding = {};
-
-        if (collapsed) {
-            // Remove the 'collapsed' class from the class list of the element, this sets it back to the expanded state.
-            classes.splice(classes.indexOf('collapsed'), 1);
-            padding[id] = 300; // In px, matches the width of the sidebars set in .sidebar CSS class
-        } else {
-            padding[id] = 0;
-            // Add the 'collapsed' class to the class list of the element
-            classes.push('collapsed');
-        }
-
-        // Update the class list on the element
-        elem.className = classes.join(' ');
-    }
-
-    function DrawEcharts1(val){
-        	var myChart = echarts.init(document.getElementById('leftcharts1'));
-	        myChart.showLoading();
-	            $.get('https://api.inews.qq.com/newsqa/v1/automation/foreign/daily/list?country=' + val, function (data) {
-	                myChart.hideLoading();
-                    var city = typeof data=='string'?JSON.parse(data):data;
-                    var dates = city.data.map(function(m_data){
-                        return m_data.date;
-                    })
-                    var confirms = city.data.map(function(m_data){
-                        return m_data.confirm;
-                    })
-                    var confirms_add = city.data.map(function(m_data){
-                        return m_data.confirm_add;
-                    })
-	                    option = {
-	                        tooltip: {
-	                            trigger: 'axis',
-	                            axisPointer: {
-	                                type: 'shadow',
-	                                label: {
-	                                    show: true
-	                                }
-	                            }
-	                        },
-	                        toolbox: {
-	                            show: true,
-	                            feature: {
-	                            },
-	                            right:'4%'
-	                        },
-	                        calculable: true,
-	                        legend: {
-	                            data: ['累计确诊数', '新增确诊数'],
-	                            itemGap: 5
-	                        },
-	                        grid: {
-	                            top: '12%',
-	                            left: '1%',
-	                            right: '1%',
-	                            bottom: '18%',
-	                            containLabel: true
-	                        },
-	                        xAxis: [
-	                            {
-	                                type: 'category',
-	                                data: dates
-	                            }
-	                        ],
-	                        yAxis: [
-	                            {
-	                                type: 'value',
-	                                name: '人数',
-	                            },
-	                            {
-	                                type: 'value',
-	                                name: '人数',
-	                            }
-	                        ],
-
-	                        dataZoom: [
-	                            {
-	                                show: true,
-	                                start: 0,
-	                                end: 100
-	                            },
-	                            {
-	                                type: 'inside',
-	                                start: 50,
-	                                end: 100
-	                            },
-	                            /*{
-	                                show: true,
-	                                yAxisIndex: 0,
-	                                filterMode: 'empty',
-	                                width: 30,
-	                                height: '80%',
-	                                showDataShadow: false,
-	                                left: '93%'
-	                            }*/
-	                        ],
-	                        series: [
-	                            {
-	                                name: '累计确诊数',
-	                                type: 'line',
-	                                data: confirms,
-	                            },
-	                            {
-	                                name: '新增确诊数',
-	                                type: 'bar',
-	                                yAxisIndex:1,
-	                                data: confirms_add,
-	                                itemStyle:{
-	                                    normal:{
-	                                        color:'#FF8C00'
-	                                    }
-	                                }
-	                            }
-	                        ]
-	                    };
-
-	                   myChart.setOption(option);
-	            });
-    }
-     function DrawEcharts2(val){
-        // 基于准备好的dom，初始化echarts实例
-            var myChart2 = echarts.init(document.getElementById('leftcharts2'));
-            // 指定图表的配置项和数据
-            myChart2.showLoading();
-                $.get('https://api.inews.qq.com/newsqa/v1/automation/foreign/daily/list?country=' + val, function (data) {
-                    myChart2.hideLoading();
-                    var province = typeof data=='string'?JSON.parse(data):data;
-                    var dates = province.data.map(function(m_data){
-                        return m_data.date;
-                    })
-                    var Heals = province.data.map(function(m_data){
-                        return m_data.heal;
-                    })
-                        option = {
-                            tooltip: {
-                                trigger: 'axis',
-                                axisPointer: {
-                                    type: 'shadow',
-                                    label: {
-                                        show: true
-                                    }
-                                }
-                            },
-                            toolbox: {
-                                show: true,
-                                feature: {
-                                },
-                                right:'4%'
-                            },
-                            calculable: true,
-                            legend: {
-                                data: ['累计治愈数'],
-                                itemGap: 5
-                            },
-                            grid: {
-                                top: '12%',
-                                left: '1%',
-                                right: '10%',
-                                containLabel: true
-                            },
-                            xAxis: [
-                                {
-                                    type: 'category',
-                                    data: dates
-                                }
-                            ],
-                            yAxis: [
-                                {
-                                    type: 'value',
-                                    name: '人数',
-                                },
-                            ],
-
-                            dataZoom: [
-                                {
-                                    show: true,
-                                    start: 0,
-                                    end: 100
-                                },
-                                {
-                                    type: 'inside',
-                                    start: 50,
-                                    end: 100
-                                },
-                                /*{
-                                    show: true,
-                                    yAxisIndex: 0,
-                                    filterMode: 'empty',
-                                    width: 30,
-                                    height: '80%',
-                                    showDataShadow: false,
-                                    left: '93%'
-                                }*/
-                            ],
-                            series: [
-                                {
-                                    name: '累计治愈数',
-                                    type: 'line',
-                                    data: Heals,
-                                    itemStyle:{
-                                        normal:{
-                                            color:'#66CD00'
-                                        }
-                                    }
-                                },
-                            ]
-                        };
-
-                       myChart2.setOption(option);
-                });
-     }
-
-     function DrawEcharts3(val){
-        // 基于准备好的dom，初始化echarts实例
-            var myChart3 = echarts.init(document.getElementById('rightcharts1'));
-            // 指定图表的配置项和数据
-            myChart3.showLoading();
-                $.get('https://api.inews.qq.com/newsqa/v1/automation/foreign/daily/list?country=' + val, function (data) {
-                    myChart3.hideLoading();
-                    var province = typeof data=='string'?JSON.parse(data):data;
-                    var dates = province.data.map(function(m_data){
-                        return m_data.date;
-                    })
-                    var deads = province.data.map(function(m_data){
-                        return m_data.dead;
-                    })
-                        option = {
-                            tooltip: {
-                                trigger: 'axis',
-                                axisPointer: {
-                                    type: 'shadow',
-                                    label: {
-                                        show: true
-                                    }
-                                }
-                            },
-                            toolbox: {
-                                show: true,
-                                feature: {
-                                    restore: {show: true},
-                                    saveAsImage: {show: true}
-                                },
-                                right:'4%'
-                            },
-                            calculable: true,
-                            legend: {
-                                data: ['累计死亡数'],
-                                itemGap: 5
-                            },
-                            grid: {
-                                top: '12%',
-                                left: '1%',
-                                right: '10%',
-                                containLabel: true
-                            },
-                            xAxis: [
-                                {
-                                    type: 'category',
-                                    data: dates
-                                }
-                            ],
-                            yAxis: [
-                                {
-                                    type: 'value',
-                                    name: '人数',
-                                },
-                            ],
-
-                            dataZoom: [
-                                {
-                                    show: true,
-                                    start: 0,
-                                    end: 100
-                                },
-                                {
-                                    type: 'inside',
-                                    start: 50,
-                                    end: 100
-                                },
-                            ],
-                            series: [
-                                {
-                                    name: '累计死亡数',
-                                    type: 'line',
-                                    data: deads,
-                                    itemStyle:{
-                                        normal:{
-                                            color:'#303030'
-                                        }
-                                    }
-                                },
-                            ]
-                        };
-
-                       myChart3.setOption(option);
-                });
-     }
-
-     function DrawEcharts4(val){
-        // 基于准备好的dom，初始化echarts实例
-            var myChart4 = echarts.init(document.getElementById('rightcharts2'));
-            // 指定图表的配置项和数据
-            myChart4.showLoading();
-                $.get('https://api.inews.qq.com/newsqa/v1/automation/foreign/daily/list?country=' + val, function (data) {
-                    myChart4.hideLoading();
-                    var province = typeof data=='string'?JSON.parse(data):data;
-                    var dates = province.data.map(function(m_data){
-                        return m_data.date;
-                    })
-                    var Heal_rate = province.data.map(function(m_data){
-                        return (m_data.heal/m_data.confirm).toFixed(4);;
-                    })
-                    var Dead_rate = province.data.map(function(m_data){
-                        return (m_data.dead/m_data.confirm).toFixed(4);;
-                    })
-                        option = {
-                            tooltip: {
-                                trigger: 'axis',
-                                axisPointer: {
-                                    type: 'shadow',
-                                    label: {
-                                        show: true
-                                    }
-                                }
-                            },
-                            toolbox: {
-                                show: true,
-                                feature: {
-                                    restore: {show: true},
-                                    saveAsImage: {show: true}
-                                },
-                                right:'4%'
-                            },
-                            calculable: true,
-                            legend: {
-                                data: ['治愈率', '死亡率'],
-                                itemGap: 5
-                            },
-                            grid: {
-                                top: '12%',
-                                left: '1%',
-                                right: '10%',
-                                containLabel: true
-                            },
-                            xAxis: [
-                                {
-                                    type: 'category',
-                                    data: dates
-                                }
-                            ],
-                            yAxis: [
-                                {
-                                    type: 'value',
-                                    name: '比率',
-                                },
-                                {
-                                    type: 'value',
-                                    name: '比率',
-                                }
-                            ],
-
-                            dataZoom: [
-                                {
-                                    show: true,
-                                    start: 0,
-                                    end: 100
-                                },
-                                {
-                                    type: 'inside',
-                                    start: 50,
-                                    end: 100
-                                },
-                                /*{
-                                    show: true,
-                                    yAxisIndex: 0,
-                                    filterMode: 'empty',
-                                    width: 30,
-                                    height: '80%',
-                                    showDataShadow: false,
-                                    left: '93%'
-                                }*/
-                            ],
-                            series: [
-                                {
-                                    name: '治愈率',
-                                    type: 'line',
-                                    data: Heal_rate,
-                                    itemStyle:{
-                                        normal:{
-                                            color:'#00FA9A'
-                                        }
-                                    }
-                                },
-                                {
-                                    name: '死亡率',
-                                    type: 'line',
-                                    data: Dead_rate,
-                                    itemStyle:{
-                                        normal:{
-                                            color:'#191970'
-                                        }
-                                    }
-                                }
-                            ]
-                        };
-                       myChart4.setOption(option);
-                });
-     }
-</script>
-
-
-
-<!--  	<div class="form-inline row" >
- 	  <label class="form-inline"style="margin-left: 15px;color: black">请选择您想要查询的省份</label>  
+		     	  <label class="form-inline"style="margin-left: 15px;color: black">请选择您想要查询的省份</label>  
       <select class="form-control" id="select" style="width: 120px;margin-left: 15px">
-      	     	<option>湖北	</option>
-            	<option>北京	</option>
+      	        <option>湖北</option>
+                <option>北京</option>
       			<option>天津	</option>
       			<option>河北	</option>
       			<option>山西	</option>
@@ -969,501 +262,582 @@
       			<option>香港	</option>
       			<option>澳门	</option>
       </select>
- 	</div> -->
- <!--  <div class="row">                       
-     <div class="col-md-6 col-sm-12 col-xs-12">                     
-        <div class="card">
-          <div class="card-header"></div>
-            <div class="card-body">
-               <div id="echarts1" style="width: 600px;height:450px;padding-top:20px;;margin: 0 auto"></div>
-            </div> 
-       </div>           
-     </div>
-     <div class="col-md-6 col-sm-12 col-xs-12">                     
-        <div class="card">
-          <div class="card-header"></div>
-            <div class="card-body" style="align-self: center;">
-               <div id="echarts2" style="width: 600px;height:450px;padding-top:20px;margin: 0 auto"></div>
-            </div> 
-       </div>           
-     </div>
-  </div>
+    	</div>
+       <div id="left" class="sidebar flex-center left collapsed" style="">
+        <div class="sidebar-content rounded-rect flex-center">
+            <div id="leftArrow" class="sidbear-toggle rounded-rect left" onclick="toggleSidebar('left')">
+                &raquo;
+            </div>
+            <div id="leftcharts1">
+            </div>
+            <div id="leftcharts2">
+            </div>
+        </div>
+      </div>
+    	<div id="right" class="sidebar flex-center right collapsed">
+       	 <div class="sidebar-content rounded-rect flex-center">
+            <div class="sidbear-toggle rounded-rect right"
+                onclick="toggleSidebar('right')">
+                &laquo;
+            </div>
+            <div id="rightcharts1">
+            </div>
+            <div id="rightcharts2">
+            </div>
+        </div>
+    </div>
+ 	</div>
 
- <div class="row">                       
-     <div class="col-md-6 col-sm-12 col-xs-12">                     
-        <div class="card">
-          <div class="card-header"></div>
-            <div class="card-body">
-               <div id="echarts3" style="width: 600px;height:450px;padding-top:20px;;margin: 0 auto"></div>
-            </div> 
-       </div>           
-     </div>
-     <div class="col-md-6 col-sm-12 col-xs-12">                     
-        <div class="card">
-          <div class="card-header"></div>
-            <div class="card-body" style="align-self: center;">
-               <div id="echarts4" style="width: 600px;height:450px;padding-top:20px;margin: 0 auto"></div>
-            </div> 
-       </div>           
-     </div>
-  </div> -->
-
-<!--      <script type="text/javascript">  
-        var val = '湖北';
-        DrawEcharts1(val);
-        DrawEcharts2(val);
-        DrawEcharts3(val);
-        DrawEcharts4(val);
-        $("#select").change(function(){
-        val=$(this).val();
-        DrawEcharts1(val);
-        DrawEcharts2(val);
-        DrawEcharts3(val);
-        DrawEcharts4(val);
+<script type="text/javascript">
+	console.log(chinaJsondata.features[1].properties.name);
+	console.log(chinaJsondata.features[1].properties.cp);
+	console.log(worldZHjsondata);
+	mapboxgl.accessToken = 'pk.eyJ1IjoiaGFwcHlvbGFmIiwiYSI6ImNrYjZlNDJpdjFkdzkyb2xlMmpicHBwaWIifQ.08Ff3Wvg7vKNTq4QOLhqIQ';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        center: [108.195397, 35.86166],
+        zoom:3.5,
     });
-        // 指定图表的配置项和数据
-        function DrawEcharts1(val){
-        	var myChart = echarts.init(document.getElementById('echarts1'));
-	        myChart.showLoading();
-	            $.get('https://api.inews.qq.com/newsqa/v1/query/pubished/daily/list?province=' + val, function (data) {
-	                myChart.hideLoading();
-	                var province = typeof data=='string'?JSON.parse(data):data;
-                  console.log(province);
-	                var dates = province.data.map(function(m_data){
-	                    return m_data.date;
-	                })
-	                var confirms = province.data.map(function(m_data){
-	                    return m_data.confirm;
-	                })
-	                var confirms_add = province.data.map(function(m_data){
-	                    return m_data.newConfirm;
-	                })
-	                    option = {
-	                        tooltip: {
-	                            trigger: 'axis',
-	                            axisPointer: {
-	                                type: 'shadow',
-	                                label: {
-	                                    show: true
-	                                }
-	                            }
-	                        },
-	                        toolbox: {
-	                            show: true,
-	                            feature: {
-	                                restore: {show: true},
-	                                saveAsImage: {show: true}
-	                            },
-	                            right:'4%'
-	                        },
-	                        calculable: true,
-	                        legend: {
-	                            data: ['累计确诊数', '新增确诊数'],
-	                            itemGap: 5
-	                        },
-	                        grid: {
-	                            top: '12%',
-	                            left: '1%',
-	                            right: '10%',
-	                            containLabel: true
-	                        },
-	                        xAxis: [
-	                            {
-	                                type: 'category',
-	                                data: dates
-	                            }
-	                        ],
-	                        yAxis: [
-	                            {
-	                                type: 'value',
-	                                name: '人数',
-	                            },
-	                            {
-	                                type: 'value',
-	                                name: '人数',
-	                            }
-	                        ],
+    mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.0/mapbox-gl-rtl-text.js');
+        map.addControl(new MapboxLanguage({
+            defaultLanguage: 'zh'
+    }));
 
-	                        dataZoom: [
-	                            {
-	                                show: true,
-	                                start: 0,
-	                                end: 100
-	                            },
-	                            {
-	                                type: 'inside',
-	                                start: 50,
-	                                end: 100
-	                            },
-	                            /*{
-	                                show: true,
-	                                yAxisIndex: 0,
-	                                filterMode: 'empty',
-	                                width: 30,
-	                                height: '80%',
-	                                showDataShadow: false,
-	                                left: '93%'
-	                            }*/
-	                        ],
-	                        series: [
-	                            {
-	                                name: '累计确诊数',
-	                                type: 'line',
-	                                data: confirms,
-	                            },
-	                            {
-	                                name: '新增确诊数',
-	                                type: 'bar',
-	                                yAxisIndex:1,
-	                                data: confirms_add,
-	                                itemStyle:{
-	                                    normal:{
-	                                        color:'#FF8C00'
-	                                    }
-	                                }
-	                            }
-	                        ]
-	                    };
+     map.on('load', function() {
+        // Add a source for the state polygons.
+        map.addSource('states', {
+            'type': 'geojson',
+            'data': chinaJsondata,
+        });
 
-	                   myChart.setOption(option);
-	            });
-      }
-       function DrawEcharts2(val){
-        // 基于准备好的dom，初始化echarts实例
-	        var myChart2 = echarts.init(document.getElementById('echarts2'));
-	        // 指定图表的配置项和数据
-	        myChart2.showLoading();
-	            $.get('https://api.inews.qq.com/newsqa/v1/query/pubished/daily/list?province='+ val, function (data) {
-	                myChart2.hideLoading();
-	                var province = typeof data=='string'?JSON.parse(data):data;
-	                var dates = province.data.map(function(m_data){
-	                    return m_data.date;
-	                })
-	                var Heals = province.data.map(function(m_data){
-	                    return m_data.heal;
-	                })
-	                var Heals_add = province.data.map(function(m_data){
-	                    return m_data.newHeal;
-	                })
-	                    option = {
-	                        tooltip: {
-	                            trigger: 'axis',
-	                            axisPointer: {
-	                                type: 'shadow',
-	                                label: {
-	                                    show: true
-	                                }
-	                            }
-	                        },
-	                        toolbox: {
-	                            show: true,
-	                            feature: {
-	                                restore: {show: true},
-	                                saveAsImage: {show: true}
-	                            },
-	                            right:'4%'
-	                        },
-	                        calculable: true,
-	                        legend: {
-	                            data: ['累计治愈数', '新增治愈数'],
-	                            itemGap: 5
-	                        },
-	                        grid: {
-	                            top: '12%',
-	                            left: '1%',
-	                            right: '10%',
-	                            containLabel: true
-	                        },
-	                        xAxis: [
-	                            {
-	                                type: 'category',
-	                                data: dates
-	                            }
-	                        ],
-	                        yAxis: [
-	                            {
-	                                type: 'value',
-	                                name: '人数',
-	                            },
-	                            {
-	                                type: 'value',
-	                                name: '人数',
-	                            }
-	                        ],
+        // Add a layer showing the state polygons.
+        map.addLayer({
+            'id': 'states-layer',
+            'type': 'fill',
+            'source': 'states',
+            'paint': {
+                'fill-color': 'rgba(200, 100, 240, 0)',
+                'fill-outline-color': 'rgba(0,250,154, 1)'
+            }
+        });
+        map.on('mouseenter', 'states-layer', function() {
+            map.getCanvas().style.cursor = 'pointer';
+        });
 
-	                        dataZoom: [
-	                            {
-	                                show: true,
-	                                start: 0,
-	                                end: 100
-	                            },
-	                            {
-	                                type: 'inside',
-	                                start: 50,
-	                                end: 100
-	                            },
-	                            /*{
-	                                show: true,
-	                                yAxisIndex: 0,
-	                                filterMode: 'empty',
-	                                width: 30,
-	                                height: '80%',
-	                                showDataShadow: false,
-	                                left: '93%'
-	                            }*/
-	                        ],
-	                        series: [
-	                            {
-	                                name: '累计治愈数',
-	                                type: 'line',
-	                                data: Heals,
-	                                itemStyle:{
-	                                    normal:{
-	                                        color:'#66CD00'
-	                                    }
-	                                }
-	                            },
-	                            {
-	                                name: '新增治愈数',
-	                                type: 'bar',
-	                                yAxisIndex:1,
-	                                data: Heals_add,
-	                                itemStyle:{
-	                                    normal:{
-	                                        color:'#54FF9F'
-	                                    }
-	                                }
-	                            }
-	                        ]
-	                    };
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'states-layer', function() {
+            map.getCanvas().style.cursor = '';
+        });
+    });
 
-	                   myChart2.setOption(option);
-	            });
-     }
-     
-      function DrawEcharts3(val){
-        // 基于准备好的dom，初始化echarts实例
-	        var myChart3 = echarts.init(document.getElementById('echarts3'));
-	        // 指定图表的配置项和数据
-	        myChart3.showLoading();
-	            $.get('https://api.inews.qq.com/newsqa/v1/query/pubished/daily/list?province='+ val, function (data) {
-	                myChart3.hideLoading();
-	                var province = typeof data=='string'?JSON.parse(data):data;
-	                var dates = province.data.map(function(m_data){
-	                    return m_data.date;
-	                })
-	                var deads = province.data.map(function(m_data){
-	                    return m_data.dead;
-	                })
-	                var deads_add = province.data.map(function(m_data){
-	                    return m_data.newDead;
-	                })
-	                    option = {
-	                        tooltip: {
-	                            trigger: 'axis',
-	                            axisPointer: {
-	                                type: 'shadow',
-	                                label: {
-	                                    show: true
-	                                }
-	                            }
-	                        },
-	                        toolbox: {
-	                            show: true,
-	                            feature: {
-	                                restore: {show: true},
-	                                saveAsImage: {show: true}
-	                            },
-	                            right:'4%'
-	                        },
-	                        calculable: true,
-	                        legend: {
-	                            data: ['累计死亡数', '新增死亡数'],
-	                            itemGap: 5
-	                        },
-	                        grid: {
-	                            top: '12%',
-	                            left: '1%',
-	                            right: '10%',
-	                            containLabel: true
-	                        },
-	                        xAxis: [
-	                            {
-	                                type: 'category',
-	                                data: dates
-	                            }
-	                        ],
-	                        yAxis: [
-	                            {
-	                                type: 'value',
-	                                name: '人数',
-	                            },
-	                            {
-	                                type: 'value',
-	                                name: '人数',
-	                            }
-	                        ],
 
-	                        dataZoom: [
-	                            {
-	                                show: true,
-	                                start: 0,
-	                                end: 100
-	                            },
-	                            {
-	                                type: 'inside',
-	                                start: 50,
-	                                end: 100
-	                            },
-	                            /*{
-	                                show: true,
-	                                yAxisIndex: 0,
-	                                filterMode: 'empty',
-	                                width: 30,
-	                                height: '80%',
-	                                showDataShadow: false,
-	                                left: '93%'
-	                            }*/
-	                        ],
-	                        series: [
-	                            {
-	                                name: '累计死亡数',
-	                                type: 'line',
-	                                data: deads,
-	                                itemStyle:{
-	                                    normal:{
-	                                        color:'#303030'
-	                                    }
-	                                }
-	                            },
-	                            {
-	                                name: '新增死亡数',
-	                                type: 'bar',
-	                                yAxisIndex:1,
-	                                data: deads_add,
-	                                itemStyle:{
-	                                    normal:{
-	                                        color:'#8B3E2F'
-	                                    }
-	                                }
-	                            }
-	                        ]
-	                    };
+    var curProv = "湖北";
+    DrawEcharts1(curProv);
+    DrawEcharts2(curProv);
+    DrawEcharts3(curProv);
+    DrawEcharts4(curProv);
+    map.on('click', 'states-layer', function(e) {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(e.features[0].properties.name)
+            .addTo(map);
+        curProv = e.features[0].properties.name;
+        map.flyTo({
+            zoom:4,
+            center: getProCoods(curProv),
+            //essential: true // this animation is considered essential with respect to prefers-reduced-motion
+        });
+        DrawEcharts1(curProv);
+	    DrawEcharts2(curProv);
+	    DrawEcharts3(curProv);
+	    DrawEcharts4(curProv);
+    });
 
-	                   myChart3.setOption(option);
-	            });
-     }
-     function DrawEcharts4(val){
-        // 基于准备好的dom，初始化echarts实例
-	        var myChart4 = echarts.init(document.getElementById('echarts4'));
-	        // 指定图表的配置项和数据
-	        myChart4.showLoading();
-	            $.get('https://api.inews.qq.com/newsqa/v1/query/pubished/daily/list?province='+ val, function (data) {
-	                myChart4.hideLoading();
-	                var province = typeof data=='string'?JSON.parse(data):data;
-	                var dates = province.data.map(function(m_data){
-	                    return m_data.date;
-	                })
-	                var Heal_rate = province.data.map(function(m_data){
-	                    return (m_data.heal/m_data.confirm).toFixed(4);;
-	                })
-	                var Dead_rate = province.data.map(function(m_data){
-	                    return (m_data.dead/m_data.confirm).toFixed(4);;
-	                })
-	                    option = {
-	                        tooltip: {
-	                            trigger: 'axis',
-	                            axisPointer: {
-	                                type: 'shadow',
-	                                label: {
-	                                    show: true
-	                                }
-	                            }
-	                        },
-	                        toolbox: {
-	                            show: true,
-	                            feature: {
-	                                restore: {show: true},
-	                                saveAsImage: {show: true}
-	                            },
-	                            right:'4%'
-	                        },
-	                        calculable: true,
-	                        legend: {
-	                            data: ['治愈率', '死亡率'],
-	                            itemGap: 5
-	                        },
-	                        grid: {
-	                            top: '12%',
-	                            left: '1%',
-	                            right: '10%',
-	                            containLabel: true
-	                        },
-	                        xAxis: [
-	                            {
-	                                type: 'category',
-	                                data: dates
-	                            }
-	                        ],
-	                        yAxis: [
-	                            {
-	                                type: 'value',
-	                                name: '比率',
-	                            },
-	                            {
-	                                type: 'value',
-	                                name: '比率',
-	                            }
-	                        ],
+    $("#select").change(function(){
+        curProv=$(this).val();
+        map.flyTo({
+                zoom:4,
+                center: getProCoods(curProv),
+                //essential: true // this animation is considered essential with respect to prefers-reduced-motion
+        });
+        DrawEcharts1(curProv);
+	    DrawEcharts2(curProv);
+	    DrawEcharts3(curProv);
+	    DrawEcharts4(curProv);
+    })
 
-	                        dataZoom: [
-	                            {
-	                                show: true,
-	                                start: 0,
-	                                end: 100
-	                            },
-	                            {
-	                                type: 'inside',
-	                                start: 50,
-	                                end: 100
-	                            },
-	                            /*{
-	                                show: true,
-	                                yAxisIndex: 0,
-	                                filterMode: 'empty',
-	                                width: 30,
-	                                height: '80%',
-	                                showDataShadow: false,
-	                                left: '93%'
-	                            }*/
-	                        ],
-	                        series: [
-	                            {
-	                                name: '治愈率',
-	                                type: 'line',
-	                                data: Heal_rate,
-	                                itemStyle:{
-	                                    normal:{
-	                                        color:'#00FA9A'
-	                                    }
-	                                }
-	                            },
-	                            {
-	                                name: '死亡率',
-	                                type: 'line',
-	                                data: Dead_rate,
-	                                itemStyle:{
-	                                    normal:{
-	                                        color:'#191970'
-	                                    }
-	                                }
-	                            }
-	                        ]
-	                    };
-	                   myChart4.setOption(option);
-	            });
+    function getProCoods(curProv){
+    	for(var i = 0; i < 34; i++){
+    		if(chinaJsondata.features[i].properties.name == curProv){
+    			return chinaJsondata.features[i].properties.cp;
+    			console.log(chinaJsondata.features[i].properties.cp);
+    		}
+    	}
+    }
+    function toggleSidebar(id) {
+        var elem = document.getElementById(id);
+        var classes = elem.className.split(' ');
+        var collapsed = classes.indexOf('collapsed') !== -1;
+
+        var padding = {};
+
+        if (collapsed) {
+            // Remove the 'collapsed' class from the class list of the element, this sets it back to the expanded state.
+            classes.splice(classes.indexOf('collapsed'), 1);
+            padding[id] = 300; // In px, matches the width of the sidebars set in .sidebar CSS class
+        } else {
+            padding[id] = 0;
+            // Add the 'collapsed' class to the class list of the element
+            classes.push('collapsed');
         }
-   </script> -->
+
+        // Update the class list on the element
+        elem.className = classes.join(' ');
+    }
+
+    // 指定图表的配置项和数据
+    function DrawEcharts1(val){
+    	var myChart = echarts.init(document.getElementById('leftcharts1'));
+        myChart.showLoading();
+            $.get('https://api.inews.qq.com/newsqa/v1/query/pubished/daily/list?province=' + val, function (data) {
+                myChart.hideLoading();
+                var province = typeof data=='string'?JSON.parse(data):data;
+                var dates = province.data.map(function(m_data){
+                    return m_data.date;
+                })
+                var confirms = province.data.map(function(m_data){
+                    return m_data.confirm;
+                })
+                var confirms_add = province.data.map(function(m_data){
+                    return m_data.newConfirm;
+                })
+                    option = {
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'shadow',
+                                label: {
+                                    show: true
+                                }
+                            }
+                        },
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                restore: {show: true},
+                                saveAsImage: {show: true}
+                            },
+                            right:'4%'
+                        },
+                        calculable: true,
+                        legend: {
+                            data: ['累计确诊数', '新增确诊数'],
+                            itemGap: 5
+                        },
+                        grid: {
+                            top: '12%',
+                            left: '1%',
+                            right: '10%',
+                            containLabel: true
+                        },
+                        xAxis: [
+                            {
+                                type: 'category',
+                                data: dates
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'value',
+                                name: '人数',
+                            },
+                            {
+                                type: 'value',
+                                name: '人数',
+                            }
+                        ],
+
+                        dataZoom: [
+                            {
+                                show: true,
+                                start: 0,
+                                end: 100
+                            },
+                            {
+                                type: 'inside',
+                                start: 50,
+                                end: 100
+                            },
+                            /*{
+                                show: true,
+                                yAxisIndex: 0,
+                                filterMode: 'empty',
+                                width: 30,
+                                height: '80%',
+                                showDataShadow: false,
+                                left: '93%'
+                            }*/
+                        ],
+                        series: [
+                            {
+                                name: '累计确诊数',
+                                type: 'line',
+                                data: confirms,
+                            },
+                            {
+                                name: '新增确诊数',
+                                type: 'bar',
+                                yAxisIndex:1,
+                                data: confirms_add,
+                                itemStyle:{
+                                    normal:{
+                                        color:'#FF8C00'
+                                    }
+                                }
+                            }
+                        ]
+                    };
+
+                   myChart.setOption(option);
+            });
+  }
+   function DrawEcharts2(val){
+    // 基于准备好的dom，初始化echarts实例
+        var myChart2 = echarts.init(document.getElementById('leftcharts2'));
+        // 指定图表的配置项和数据
+        myChart2.showLoading();
+            $.get('https://api.inews.qq.com/newsqa/v1/query/pubished/daily/list?province='+ val, function (data) {
+                myChart2.hideLoading();
+                var province = typeof data=='string'?JSON.parse(data):data;
+                var dates = province.data.map(function(m_data){
+                    return m_data.date;
+                })
+                var Heals = province.data.map(function(m_data){
+                    return m_data.heal;
+                })
+                var Heals_add = province.data.map(function(m_data){
+                    return m_data.newHeal;
+                })
+                    option = {
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'shadow',
+                                label: {
+                                    show: true
+                                }
+                            }
+                        },
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                restore: {show: true},
+                                saveAsImage: {show: true}
+                            },
+                            right:'4%'
+                        },
+                        calculable: true,
+                        legend: {
+                            data: ['累计治愈数', '新增治愈数'],
+                            itemGap: 5
+                        },
+                        grid: {
+                            top: '12%',
+                            left: '1%',
+                            right: '10%',
+                            containLabel: true
+                        },
+                        xAxis: [
+                            {
+                                type: 'category',
+                                data: dates
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'value',
+                                name: '人数',
+                            },
+                            {
+                                type: 'value',
+                                name: '人数',
+                            }
+                        ],
+
+                        dataZoom: [
+                            {
+                                show: true,
+                                start: 0,
+                                end: 100
+                            },
+                            {
+                                type: 'inside',
+                                start: 50,
+                                end: 100
+                            },
+                            /*{
+                                show: true,
+                                yAxisIndex: 0,
+                                filterMode: 'empty',
+                                width: 30,
+                                height: '80%',
+                                showDataShadow: false,
+                                left: '93%'
+                            }*/
+                        ],
+                        series: [
+                            {
+                                name: '累计治愈数',
+                                type: 'line',
+                                data: Heals,
+                                itemStyle:{
+                                    normal:{
+                                        color:'#66CD00'
+                                    }
+                                }
+                            },
+                            {
+                                name: '新增治愈数',
+                                type: 'bar',
+                                yAxisIndex:1,
+                                data: Heals_add,
+                                itemStyle:{
+                                    normal:{
+                                        color:'#54FF9F'
+                                    }
+                                }
+                            }
+                        ]
+                    };
+
+                   myChart2.setOption(option);
+            });
+ }
+ 
+  function DrawEcharts3(val){
+    // 基于准备好的dom，初始化echarts实例
+        var myChart3 = echarts.init(document.getElementById('rightcharts1'));
+        // 指定图表的配置项和数据
+        myChart3.showLoading();
+            $.get('https://api.inews.qq.com/newsqa/v1/query/pubished/daily/list?province='+ val, function (data) {
+                myChart3.hideLoading();
+                var province = typeof data=='string'?JSON.parse(data):data;
+                var dates = province.data.map(function(m_data){
+                    return m_data.date;
+                })
+                var deads = province.data.map(function(m_data){
+                    return m_data.dead;
+                })
+                var deads_add = province.data.map(function(m_data){
+                    return m_data.newDead;
+                })
+                    option = {
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'shadow',
+                                label: {
+                                    show: true
+                                }
+                            }
+                        },
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                restore: {show: true},
+                                saveAsImage: {show: true}
+                            },
+                            right:'4%'
+                        },
+                        calculable: true,
+                        legend: {
+                            data: ['累计死亡数', '新增死亡数'],
+                            itemGap: 5
+                        },
+                        grid: {
+                            top: '12%',
+                            left: '1%',
+                            right: '10%',
+                            containLabel: true
+                        },
+                        xAxis: [
+                            {
+                                type: 'category',
+                                data: dates
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'value',
+                                name: '人数',
+                            },
+                            {
+                                type: 'value',
+                                name: '人数',
+                            }
+                        ],
+
+                        dataZoom: [
+                            {
+                                show: true,
+                                start: 0,
+                                end: 100
+                            },
+                            {
+                                type: 'inside',
+                                start: 50,
+                                end: 100
+                            },
+                            /*{
+                                show: true,
+                                yAxisIndex: 0,
+                                filterMode: 'empty',
+                                width: 30,
+                                height: '80%',
+                                showDataShadow: false,
+                                left: '93%'
+                            }*/
+                        ],
+                        series: [
+                            {
+                                name: '累计死亡数',
+                                type: 'line',
+                                data: deads,
+                                itemStyle:{
+                                    normal:{
+                                        color:'#303030'
+                                    }
+                                }
+                            },
+                            {
+                                name: '新增死亡数',
+                                type: 'bar',
+                                yAxisIndex:1,
+                                data: deads_add,
+                                itemStyle:{
+                                    normal:{
+                                        color:'#8B3E2F'
+                                    }
+                                }
+                            }
+                        ]
+                    };
+
+                   myChart3.setOption(option);
+            });
+ }
+ function DrawEcharts4(val){
+    // 基于准备好的dom，初始化echarts实例
+        var myChart4 = echarts.init(document.getElementById('rightcharts2'));
+        // 指定图表的配置项和数据
+        myChart4.showLoading();
+            $.get('https://api.inews.qq.com/newsqa/v1/query/pubished/daily/list?province='+ val, function (data) {
+                myChart4.hideLoading();
+                var province = typeof data=='string'?JSON.parse(data):data;
+                var dates = province.data.map(function(m_data){
+                    return m_data.date;
+                })
+                var Heal_rate = province.data.map(function(m_data){
+                    return (m_data.heal/m_data.confirm).toFixed(4);;
+                })
+                var Dead_rate = province.data.map(function(m_data){
+                    return (m_data.dead/m_data.confirm).toFixed(4);;
+                })
+                    option = {
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'shadow',
+                                label: {
+                                    show: true
+                                }
+                            }
+                        },
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                restore: {show: true},
+                                saveAsImage: {show: true}
+                            },
+                            right:'4%'
+                        },
+                        calculable: true,
+                        legend: {
+                            data: ['治愈率', '死亡率'],
+                            itemGap: 5
+                        },
+                        grid: {
+                            top: '12%',
+                            left: '1%',
+                            right: '10%',
+                            containLabel: true
+                        },
+                        xAxis: [
+                            {
+                                type: 'category',
+                                data: dates
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'value',
+                                name: '比率',
+                            },
+                            {
+                                type: 'value',
+                                name: '比率',
+                            }
+                        ],
+
+                        dataZoom: [
+                            {
+                                show: true,
+                                start: 0,
+                                end: 100
+                            },
+                            {
+                                type: 'inside',
+                                start: 50,
+                                end: 100
+                            },
+                            /*{
+                                show: true,
+                                yAxisIndex: 0,
+                                filterMode: 'empty',
+                                width: 30,
+                                height: '80%',
+                                showDataShadow: false,
+                                left: '93%'
+                            }*/
+                        ],
+                        series: [
+                            {
+                                name: '治愈率',
+                                type: 'line',
+                                data: Heal_rate,
+                                itemStyle:{
+                                    normal:{
+                                        color:'#00FA9A'
+                                    }
+                                }
+                            },
+                            {
+                                name: '死亡率',
+                                type: 'line',
+                                data: Dead_rate,
+                                itemStyle:{
+                                    normal:{
+                                        color:'#191970'
+                                    }
+                                }
+                            }
+                        ]
+                    };
+                   myChart4.setOption(option);
+            });
+    }
+</script>
 
 </div>
 <!-- /. PAGE INNER  -->
