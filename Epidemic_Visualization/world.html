@@ -1,0 +1,1215 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>疫情可视化</title> 
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection" />
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">
+    <script src="assets/js/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/jquery-3.4.1.js"></script>
+    <script src="assets/js/echarts.min.js"></script>
+    <script src="assets/js/china.js"></script>
+	<script src="assets/js/worldZH.js"></script>
+    <script src="assets/js/china-contour.js"></script>	
+	<script src="assets/js/hubei.js"></script>	
+	<script src="assets/js/USA.js"></script>	
+	
+	
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand waves-effect waves-dark" href="index.html"><i class="large material-icons">track_changes</i> <strong>全民战疫</strong></a>
+				
+		<div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
+            </div>
+        </nav>
+		
+	   <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                	<li>
+                		<a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>疫情地图<span class="fa arrow"></span></a>
+                		<ul class="nav nav-second-level collapse in">
+                			<li>
+                				<a href="index.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>中国疫情地图</a>
+                			</li>
+                			<li>
+                				<a href="hubei_map.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>湖北疫情地图</a>
+                			</li>
+                			<li>
+                				<a href="world.html" class="active-menu waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>世界疫情地图</a>
+                			</li>
+                			<li>
+                				<a href="US_map.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>美国疫情地图</a>
+                			</li>             			
+                		</ul>
+                	</li>
+                	<li>
+                		<a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>趋势分析<span class="fa arrow"></span></a>
+                		<ul class="nav nav-second-level">
+                			<li>
+                        		<a href="chart.html" class="waves-effect waves-dark"style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>中国各省</a>
+                        	</li>
+                			<li>
+                        		<a href="hubei.html" class="waves-effect waves-dark"style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>湖北各市</a>
+                        	</li>
+                			<li>
+                        		<a href="countries_chart.html" class="waves-effect waves-dark"style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>世界各国</a>
+                        	</li>           			
+                		</ul>
+                	</li>
+                	<li>
+                		<a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-table"></i>数据概况<span class="fa arrow"></span></a>
+                		<ul class="nav nav-second-level">
+                			<li>
+                        		<a href="mytable.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-table"></i>中国数据</a>
+                        	</li>
+                			<li>
+                				<a href="countries_data.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-table"></i>海外数据</a>
+                			</li>         			
+                		</ul>
+                	</li>
+                	<li>
+                		<a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-desktop"></i>空间自相关分析<span class="fa arrow"></span></a>
+                		<ul class="nav nav-second-level">
+                			<li>
+                				<a href="autocorrelation_hb.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>湖北疫情分析</a>
+                			</li>
+                			<li>
+                				<a href="autocorrelation_usa.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-table"></i>美国疫情分析</a>
+                			</li>
+                		</ul>
+                	</li>
+                	<li>
+                		<a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-sitemap"></i>空间社会网络分析<span class="fa arrow"></span></a>
+                		<ul class="nav nav-second-level">
+                			<li>
+                				<a href="network.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-sitemap"></i>国际关系分析</a>
+                			</li>
+                			<li>
+                				<a href="wordcloud.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-edit"></i>词云展示</a>
+                			</li>
+                		</ul>
+                	</li>
+                	<li>
+                        <a href="simulation.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-fw fa-tags"></i>疫情模拟预测</a>
+                    </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+      
+	<div id="page-wrapper">
+		  <div class="header"> 
+            <h1 class="page-header">
+           全球疫情数据可视化
+           </h1>
+           <div class="divider" style=""></div>								
+		 </div>
+            <div id="page-inner">
+
+			<div class="dashboard-cards"> 
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+					
+						<div class="card horizontal cardIcon waves-effect waves-dark">
+						<div class="card-image red">
+						<i class="material-icons dp48">supervisor_account</i>
+						</div>
+						<div class="card-stacked red">
+						<div class="card-content">
+							<h3>累计确诊数</h3> 
+						</div>
+						<div class="card-content">
+							<h3 id="num01">84185</h3> 
+						</div>
+						</div>
+						</div>
+	 
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+					
+						<div class="card horizontal cardIcon waves-effect waves-dark">
+						<div class="card-image orange">
+						<i class="material-icons dp48">supervisor_account</i>
+						</div>
+						<div class="card-stacked orange">
+						<div class="card-content">
+						    <h3>现有确诊数</h3> 
+						</div>
+						<div class="card-content">
+							<h3 id="num02">1751</h3> 
+						</div>
+						</div>
+						</div> 
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+					
+							<div class="card horizontal cardIcon waves-effect waves-dark">
+						<div class="card-image blue">
+						<i class="material-icons dp48">supervisor_account</i>
+						</div>
+						<div class="card-stacked blue">
+						<div class="card-content">
+						    <h3>累计治愈数</h3> 
+							</div>
+							<div class="card-content">
+							<h3 id="num03">77792</h3> 
+						</div>
+						</div>
+						</div> 
+						 
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+					
+					<div class="card horizontal cardIcon waves-effect waves-dark">
+						<div class="card-image black">
+						<i class="material-icons dp48">supervisor_account</i>
+						</div>
+						<div class="card-stacked black">
+						<div class="card-content">
+						    <h3>累计死亡数</h3> 
+						</div>
+						<div class="card-content">
+							<h3 id="num04">4642</h3> 
+						</div>
+						</div>
+						</div> 
+						 
+                    </div>
+                </div>
+			   </div>
+				<!-- /. ROW  -->
+	<script type="text/javascript">
+		 $.get('https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=FAutoGlobalStatis', function (data) {
+	                var mydata = typeof data=='string'?JSON.parse(data):data;                
+	                var confirmedCount = mydata.data.FAutoGlobalStatis.confirm;
+	                var currentConfirmedCount = mydata.data.FAutoGlobalStatis.nowConfirm;      
+	                var curedCount = mydata.data.FAutoGlobalStatis.heal;
+	                var deadCount = mydata.data.FAutoGlobalStatis.dead;
+	                $("#num01").text(confirmedCount);
+	                $("#num02").text(currentConfirmedCount);
+	                $("#num03").text(curedCount);
+	                $("#num04").text(deadCount);
+	        });
+		
+	</script>
+    <div class="divider" style=""></div>	
+	<div id="main01" style="width: 1200px;height:650px;margin: 0 auto;"></div>
+    <script type="text/javascript">
+		var Confirms=[];
+		var date= [];
+		var countries=[ '阿尔巴尼亚','阿尔及利亚','阿富汗','阿根廷','阿联酋','阿曼','阿塞拜疆','埃及','埃塞俄比亚','爱尔兰','爱沙尼亚','安道尔','安哥拉','安提瓜和巴布达','奥地利','澳大利亚','巴巴多斯','巴布亚新几内亚','巴哈马','巴基斯坦','巴拉圭','巴勒斯坦','巴林','巴拿马','巴西','白俄罗斯','保加利亚','贝宁','比利时','冰岛','波黑','波兰','玻利维亚','伯利兹','博茨瓦纳','不丹','布基纳法索','布隆迪','赤道几内亚','丹麦','德国','东帝汶','多哥','多米尼加','多米尼克','俄罗斯','厄瓜多尔','厄立特里亚','法国','梵蒂冈','菲律宾','斐济','芬兰','佛得角','冈比亚','刚果','刚果民主共和国','哥伦比亚','哥斯达黎加','格林纳达','格鲁吉亚','古巴','圭亚那','哈萨克斯坦','海地','韩国','荷兰','黑山','洪都拉斯','吉布提','吉尔吉斯斯坦','几内亚','几内亚比绍','加拿大','加纳','加蓬','柬埔寨','捷克共和国','津巴布韦','喀麦隆','卡塔尔','科摩罗','科特迪瓦','科威特','克罗地亚','肯尼亚','拉脱维亚','老挝','黎巴嫩','立陶宛','利比里亚','利比亚','列支敦士登公国','卢森堡','卢旺达','罗马尼亚','马达加斯加','马尔代夫','马耳他','马拉维','马来西亚','马里','马其顿','毛里求斯','毛里塔尼亚','美国','蒙古','孟加拉','秘鲁','缅甸','摩尔多瓦','摩洛哥','摩纳哥','莫桑比克','墨西哥','纳米比亚','南非','尼泊尔','尼加拉瓜','尼日尔','尼日利亚','挪威','葡萄牙','日本','瑞典','瑞士','萨尔瓦多','塞尔维亚','塞拉利昂','塞内加尔','塞浦路斯','塞舌尔','沙特阿拉伯','圣基茨和尼维斯','圣卢西亚','圣马力诺','圣文森特和格林纳丁斯','斯里兰卡','斯洛伐克','斯洛文尼亚','斯威士兰','苏丹','苏里南','索马里','塔吉克斯坦','泰国','坦桑尼亚','特立尼达和多巴哥','突尼斯','土耳其','危地马拉','委内瑞拉','文莱','乌干达','乌克兰','乌拉圭','乌兹别克斯坦','西班牙','希腊','新加坡','新西兰','匈牙利','叙利亚','牙买加','亚美尼亚','也门','伊拉克','伊朗','以色列','意大利','印度','印度尼西亚','英国','约旦','越南','赞比亚','乍得','智利','中非','中国'
+];
+		    $.ajax({
+		        type:"GET",
+		        url: "data/data_world.csv",
+		        success: function(results) {
+		            //转变为字符串
+		            var rs = new String(results);         
+		            var n_date = 0;
+		            rs=rs.split("\n");
+		            for (var i = 0; i < rs.length; i++) {
+		                rs[i] = rs[i].split(",");
+		            } 
+
+		            //数组初始化
+		            var L = parseInt((rs.length-1)/180);  //181个国家和地区  减去钻石公主号
+		            for(var i = 0; i < L; i++) {
+		                        date[i] = '';
+		                        Confirms[i] = new Array();
+		                        for(var j = 0; j < 180; j++) {
+		                            Confirms[i][j] = 0; //0表示只有一个空的红圈
+		                    }
+		                } 
+
+
+		            //获取值   
+		            for (var i = 1; i < rs.length-1; i+=180) {
+		                date[n_date]=rs[i][1];
+		                for(var j = 0;j<180;j++){
+		                     Confirms[n_date][j]=rs[i+j][2]; 
+		                }
+
+		                //将字符数组转换为数字数组
+		                for(var k=0;k<L;k++){
+		                     Confirms[n_date]=Confirms[n_date].map(Number)
+		                }                  
+		                n_date++;
+		            }
+
+
+		            var days=date;
+		            var data=Confirms;  
+		            var myChart = echarts.init(document.getElementById('main01')); //?
+		            option = {
+		                baseOption: {
+		                    timeline: {
+		                        axisType: 'category',
+		                        // realtime: false,
+		                        // loop: false,
+		                        autoPlay: true,
+		                        playInterval: 2000,
+		                        symbolSize: 12,
+		                        left: '3%',
+		                        right: '10%',
+		                        bottom: '0%',
+		                        width: '95%',
+		                        // controlStyle: {
+		                        //     position: 'left'
+		                        // },
+		                        data: days,
+		                        tooltip: {
+		                            formatter: days
+		                        },
+		                    },
+
+		                    tooltip: {
+		                        show: true,
+		                        trigger: 'item'
+		                    },
+		                    visualMap: {
+		                        type: 'piecewise',
+		                        pieces: [{
+		                                min: 100001,
+		                                color: '#BB0000'
+		                            },
+		                            {
+		                                min: 50001,
+		                                max: 100000,
+		                                color: '#EE2C2C'
+		                            },
+		                               {
+		                                min: 10001,
+		                                max: 50000,
+		                                color: '#EE7600'
+		                            },
+		                            {
+		                                min: 5001,
+		                                max: 10000,
+		                                color: '#FF8C00'
+		                            },
+		                            {
+		                                min: 1001,
+		                                max: 5000,
+		                                color: '#FFD700'
+		                            },
+		                            {
+		                                min: 1,
+		                                max: 1000,
+		                                color: '#FFEC8B'
+		                            },
+		                            {
+		                                value: 0,
+		                                color: 'white'
+		                            }
+		                        ],
+		                        orient: 'vertical',
+		                        itemWidth: 20,
+		                        itemHeight: 10,
+		                        showLabel: true,
+		                        seriesIndex: [0],
+
+		                        textStyle: {
+		                            fontSize: 10,
+									color: '#7B93A7'
+									
+		                        },
+		                        bottom: '10%',
+		                        right: "1%",
+		                    },
+		                    grid: {  // 修改bar的位置
+		                        left: '5%',
+		                        top: '45%',
+		                        bottom: '10%',
+		                        width: '20%'
+		                    },
+		                    xAxis: {
+		                        min: 0,
+		                        max: 1000000,
+		                        show: false
+		                    },
+		                    yAxis: [{
+		                        inverse: true,
+		                        offset: '2',
+		                        'type': 'category',
+		                        data: '',
+		                        nameTextStyle: {
+		                            color: '#fff'
+		                        },
+		                        axisTick: {
+		                            show: false,
+		                        },
+		                        axisLabel: {
+		                            //rotate:45,
+		                            textStyle: {
+		                                fontSize: 10,
+		                                color: '#000000',
+		                            },
+		                            interval: 0
+		                        },
+		                        axisLine: {
+		                            show: false,
+		                            lineStyle: {
+		                                color: '#333'
+		                            },
+		                        },
+		                        splitLine: {
+		                            show: false,
+		                            lineStyle: {
+		                                color: '#333'
+		                            }
+		                        },
+		                    }],
+		                    geo: {  <!-- 地图的位置 -->
+		                        map: 'world',
+		                        right: '8%',
+		                        left: '12%',
+								top: '10%',
+								//bottom: '1%',
+		                        label: {
+		                            emphasis: {
+		                                show: false,
+		                            }
+		                        },
+		                        itemStyle: {
+		                            emphasis: {
+		                                areaColor: '#FFD700'
+		                            }
+		                        }
+		                    },
+		                    series: [{
+		                            name: '累计确诊数',
+		                            type: 'map',
+		                            map: 'world',
+		                            roam: false,
+		                            geoIndex: 0,
+									//right: '6%',
+									//left: '20%',
+		                            label: {
+		                                show: false,
+		                            },
+		                        },
+		                        {
+		                            'name': '',
+		                            'type': 'bar',
+		                            zlevel: 2,
+		                            barWidth: '40%',
+									//right: '6%',
+									//left: '20%',
+		                            label: {
+		                                normal: {
+		                                    show: true,
+		                                    fontSize: 14,
+		                                    position: 'right',
+		                                    formatter: '{c}'
+		                                }
+		                            },
+		                        }
+		                    ],
+
+		                },
+		                animationDurationUpdate: 3000,
+		                animationEasingUpdate: 'quinticInOut',
+		                options: []
+		            };
+
+		            for (var n = 0; n < data.length; n++) {
+		                var res = [];
+		                for (j = 0; j < countries.length; j++) {
+
+		                    res.push({
+		                        name: countries[j],
+		                        value: data[n][j]            
+		                    });
+		                }
+						// console.log(res.length);
+
+
+		                res.sort(function(a, b) {
+		                    return a.value - b.value;
+		                });
+		                var res1 = [];
+		                var res2 = [];
+		                for (t = 0; t < 10; t++) {
+		                    res1[t] = res[res.length - 1 - t].name;
+		                    res2[t] = res[res.length - 1 - t].value;
+		                }
+		                console.log(res2);
+		                console.log(res1);   
+		                // console.log(province);*/
+		                // console.log("----------------");
+		                option.options.push({
+		                    title: [{
+		                             text: days[n] + "日累计确诊地图  ",
+		                             textStyle: {
+		                                color: '#2D3E53',
+		                                fontSize: 28,
+		                                fontFamily:'sans-serif'
+		                            },
+		                            left: 20,
+		                            top: 20,
+		                        },
+		                        {
+		                            show: true,
+		                            text: '确诊人数前十的国家',
+		                            textStyle: {
+		                                color: '#2D3E53',
+		                                fontSize: 14
+		                            },
+		                            left: '5%',
+		                            top: '40%'
+		                        }
+		                    ],
+		                    yAxis: {
+		                        data: res1,
+		                    },
+		                    series: [{
+		                        type: 'map',
+		                        data: res,
+								
+		                    }, 
+		                    {
+		                        type: 'bar',
+		                        data: res2,
+								//fontsize: '14',
+								left: '1%',
+								
+		                        itemStyle: {
+		                            normal: {
+		                                color: function(params) {
+		                                    // build a color map as your need.
+		                                    var colorList = [{
+		                                            colorStops: [{
+		                                                offset: 0,
+		                                                color: '#FF0000' // 0% 处的颜色
+		                                            }, {
+		                                                offset: 1,
+		                                                color: '#990000' // 100% 处的颜色
+		                                            }]
+		                                        },
+		                                        {
+		                                            colorStops: [{
+		                                                offset: 0,
+		                                                color: '#FF8C00' // 0% 处的颜色
+		                                            }, {
+		                                                offset: 1,
+		                                                color: '#FF4500' // 100% 处的颜色
+		                                            }]
+		                                        }
+		                                    ];
+		                                    if (params.dataIndex < 3) {
+		                                        return colorList[0]
+		                                    } else {
+		                                        return colorList[1]
+		                                    }
+		                                },
+		                            }
+									//left: '1%'
+		                        },
+		                    }]
+		                });
+		            }
+		            myChart.setOption(option);
+		        }
+		    });
+    </script>
+    <div class="divider" style=""></div>	
+	<div id="main02" style="width: 1200px;height:650px;margin: 0 auto;"></div>
+    <script type="text/javascript">
+		var Confirms=[];
+		var date= [];
+		var countries=[ '阿尔巴尼亚','阿尔及利亚','阿富汗','阿根廷','阿联酋','阿曼','阿塞拜疆','埃及','埃塞俄比亚','爱尔兰','爱沙尼亚','安道尔','安哥拉','安提瓜和巴布达','奥地利','澳大利亚','巴巴多斯','巴布亚新几内亚','巴哈马','巴基斯坦','巴拉圭','巴勒斯坦','巴林','巴拿马','巴西','白俄罗斯','保加利亚','贝宁','比利时','冰岛','波黑','波兰','玻利维亚','伯利兹','博茨瓦纳','不丹','布基纳法索','布隆迪','赤道几内亚','丹麦','德国','东帝汶','多哥','多米尼加','多米尼克','俄罗斯','厄瓜多尔','厄立特里亚','法国','梵蒂冈','菲律宾','斐济','芬兰','佛得角','冈比亚','刚果','刚果民主共和国','哥伦比亚','哥斯达黎加','格林纳达','格鲁吉亚','古巴','圭亚那','哈萨克斯坦','海地','韩国','荷兰','黑山','洪都拉斯','吉布提','吉尔吉斯斯坦','几内亚','几内亚比绍','加拿大','加纳','加蓬','柬埔寨','捷克共和国','津巴布韦','喀麦隆','卡塔尔','科摩罗','科特迪瓦','科威特','克罗地亚','肯尼亚','拉脱维亚','老挝','黎巴嫩','立陶宛','利比里亚','利比亚','列支敦士登公国','卢森堡','卢旺达','罗马尼亚','马达加斯加','马尔代夫','马耳他','马拉维','马来西亚','马里','马其顿','毛里求斯','毛里塔尼亚','美国','蒙古','孟加拉','秘鲁','缅甸','摩尔多瓦','摩洛哥','摩纳哥','莫桑比克','墨西哥','纳米比亚','南非','尼泊尔','尼加拉瓜','尼日尔','尼日利亚','挪威','葡萄牙','日本','瑞典','瑞士','萨尔瓦多','塞尔维亚','塞拉利昂','塞内加尔','塞浦路斯','塞舌尔','沙特阿拉伯','圣基茨和尼维斯','圣卢西亚','圣马力诺','圣文森特和格林纳丁斯','斯里兰卡','斯洛伐克','斯洛文尼亚','斯威士兰','苏丹','苏里南','索马里','塔吉克斯坦','泰国','坦桑尼亚','特立尼达和多巴哥','突尼斯','土耳其','危地马拉','委内瑞拉','文莱','乌干达','乌克兰','乌拉圭','乌兹别克斯坦','西班牙','希腊','新加坡','新西兰','匈牙利','叙利亚','牙买加','亚美尼亚','也门','伊拉克','伊朗','以色列','意大利','印度','印度尼西亚','英国','约旦','越南','赞比亚','乍得','智利','中非','中国'
+];
+		    $.ajax({
+		        type:"GET",
+		        url: "data/data_world.csv",
+		        success: function(results) {
+		            //转变为字符串
+		            var rs = new String(results);         
+		            var n_date = 0;
+		            rs=rs.split("\n");
+		            for (var i = 0; i < rs.length; i++) {
+		                rs[i] = rs[i].split(",");
+		            } 
+
+		            //数组初始化
+		            var L = parseInt((rs.length-1)/180);  //181个国家和地区  减去钻石公主号
+		            for(var i = 0; i < L; i++) {
+		                        date[i] = '';
+		                        Confirms[i] = new Array();
+		                        for(var j = 0; j < 180; j++) {
+		                            Confirms[i][j] = 0; //0表示只有一个空的红圈
+		                    }
+		                } 
+
+
+		            //获取值   
+		            for (var i = 1; i < rs.length-1; i+=180) {
+		                date[n_date]=rs[i][1];
+		                for(var j = 0;j<180;j++){
+		                     Confirms[n_date][j]=rs[i+j][4]; 
+		                }
+
+		                //将字符数组转换为数字数组
+		                for(var k=0;k<L;k++){
+		                     Confirms[n_date]=Confirms[n_date].map(Number)
+		                }                  
+		                n_date++;
+		            }
+
+
+		            var days=date;
+		            var data=Confirms;  
+		            var myChart = echarts.init(document.getElementById('main02')); //?
+		            option = {
+		                baseOption: {
+		                    timeline: {
+		                        axisType: 'category',
+		                        // realtime: false,
+		                        // loop: false,
+		                        autoPlay: true,
+		                        playInterval: 2000,
+		                        symbolSize: 12,
+		                        left: '3%',
+		                        right: '10%',
+		                        bottom: '0%',
+		                        width: '95%',
+		                        // controlStyle: {
+		                        //     position: 'left'
+		                        // },
+		                        data: days,
+		                        tooltip: {
+		                            formatter: days
+		                        },
+		                    },
+
+		                    tooltip: {
+		                        show: true,
+		                        trigger: 'item'
+		                    },
+		                    visualMap: {
+		                        type: 'piecewise',
+		                        pieces: [{
+		                                min: 100001,
+		                                color: '#008B00'
+		                            },
+		                            {
+		                                min: 50001,
+		                                max: 100000,
+		                                color: '#00CD00'
+		                            },
+		                               {
+		                                min: 10001,
+		                                max: 50000,
+		                                color: '#00EE00'
+		                            },
+		                            {
+		                                min: 5001,
+		                                max: 10000,
+		                                color: '#00FF00'
+		                            },
+		                            {
+		                                min: 1001,
+		                                max: 5000,
+		                                color: '#00FF7F'
+		                            },
+		                            {
+		                                min: 1,
+		                                max: 1000,
+		                                color: '#97FFFF' //97FFFF
+		                            },
+		                            {
+		                                value: 0,
+		                                color: 'white'
+		                            }
+		                        ],
+		                        orient: 'vertical',
+		                        itemWidth: 20,
+		                        itemHeight: 10,
+		                        showLabel: true,
+		                        seriesIndex: [0],
+
+		                        textStyle: {
+		                            fontSize: 10,
+									color: '#7B93A7'
+									
+		                        },
+		                        bottom: '10%',
+		                        right: "1%",
+		                    },
+		                    grid: {  // 修改bar的位置
+		                        left: '5%',
+		                        top: '45%',
+		                        bottom: '10%',
+		                        width: '20%'
+		                    },
+		                    xAxis: {
+		                        min: 0,
+		                        max: 200000,
+		                        show: false
+		                    },
+		                    yAxis: [{
+		                        inverse: true,
+		                        offset: '2',
+		                        'type': 'category',
+		                        data: '',
+		                        nameTextStyle: {
+		                            color: '#fff'
+		                        },
+		                        axisTick: {
+		                            show: false,
+		                        },
+		                        axisLabel: {
+		                            //rotate:45,
+		                            textStyle: {
+		                                fontSize: 10,
+		                                color: '#000000',
+		                            },
+		                            interval: 0
+		                        },
+		                        axisLine: {
+		                            show: false,
+		                            lineStyle: {
+		                                color: '#333'
+		                            },
+		                        },
+		                        splitLine: {
+		                            show: false,
+		                            lineStyle: {
+		                                color: '#333'
+		                            }
+		                        },
+		                    }],
+		                    geo: {  <!-- 地图的位置 -->
+		                        map: 'world',
+		                        right: '8%',
+		                        left: '12%',
+								top: '10%',
+								//bottom: '1%',
+		                        label: {
+		                            emphasis: {
+		                                show: false,
+		                            }
+		                        },
+		                        itemStyle: {
+		                            emphasis: {
+		                                areaColor: '#FFD700' //移到上面改变的颜色
+		                            }
+		                        }
+		                    },
+		                    series: [{
+		                            name: '累计治愈数',
+		                            type: 'map',
+		                            map: 'world',
+		                            roam: false,
+		                            geoIndex: 0,
+									//right: '6%',
+									//left: '20%',
+		                            label: {
+		                                show: false,
+		                            },
+		                        },
+		                        {
+		                            'name': '',
+		                            'type': 'bar',
+		                            zlevel: 2,
+		                            barWidth: '40%',
+									//right: '6%',
+									//left: '20%',
+		                            label: {
+		                                normal: {
+		                                    show: true,
+		                                    fontSize: 14,
+		                                    position: 'right',
+		                                    formatter: '{c}'
+		                                }
+		                            },
+		                        }
+		                    ],
+
+		                },
+		                animationDurationUpdate: 3000,
+		                animationEasingUpdate: 'quinticInOut',
+		                options: []
+		            };
+
+		            for (var n = 0; n < data.length; n++) {
+		                var res = [];
+		                for (j = 0; j < countries.length; j++) {
+
+		                    res.push({
+		                        name: countries[j],
+		                        value: data[n][j]            
+		                    });
+		                }
+						// console.log(res.length);
+
+
+		                res.sort(function(a, b) {
+		                    return a.value - b.value;
+		                });
+		                var res1 = [];
+		                var res2 = [];
+		                for (t = 0; t < 10; t++) {
+		                    res1[t] = res[res.length - 1 - t].name;
+		                    res2[t] = res[res.length - 1 - t].value;
+		                }
+		                console.log(res2);
+		                console.log(res1);   
+		                // console.log(province);*/
+		                // console.log("----------------");
+		                option.options.push({
+		                    title: [{
+		                             text: days[n] + "日累计治愈地图  ",
+		                             textStyle: {
+		                                color: '#2D3E53',
+		                                fontSize: 28,
+		                                fontFamily:'sans-serif'
+		                            },
+		                            left: 20,
+		                            top: 20,
+		                        },
+		                        {
+		                            show: true,
+		                            text: '治愈人数前十的国家',
+		                            textStyle: {
+		                                color: '#2D3E53',
+		                                fontSize: 14
+		                            },
+		                            left: '5%',
+		                            top: '40%'
+		                        }
+		                    ],
+		                    yAxis: {
+		                        data: res1,
+		                    },
+		                    series: [{
+		                        type: 'map',
+		                        data: res,
+								
+		                    }, 
+		                    {
+		                        type: 'bar',
+		                        data: res2,
+								//fontsize: '14',
+								left: '1%',
+								
+		                        itemStyle: {
+		                            normal: {
+		                                color: function(params) {
+		                                    // build a color map as your need.
+		                                    var colorList = [{
+		                                            colorStops: [{
+		                                                offset: 0,
+		                                                color: '#00CD00' // 0% 处的颜色
+		                                            }, {
+		                                                offset: 1,
+		                                                color: '#008B00' // 100% 处的颜色
+		                                            }]
+		                                        },
+		                                        {
+		                                            colorStops: [{
+		                                                offset: 0,
+		                                                color: '#97FFFF' // 0% 处的颜色
+		                                            }, {
+		                                                offset: 1,
+		                                                color: '#00FF7F' // 100% 处的颜色
+		                                            }]
+		                                        }
+		                                    ];
+		                                    if (params.dataIndex < 3) {
+		                                        return colorList[0]
+		                                    } else {
+		                                        return colorList[1]
+		                                    }
+		                                },
+		                            }
+									//left: '1%'
+		                        },
+		                    }]
+		                });
+		            }
+		            myChart.setOption(option);
+		        }
+		    });
+    </script>
+    <div class="divider" style=""></div>	
+	<div id="main03" style="width: 1200px;height:650px;margin: 0 auto;"></div>
+    <script type="text/javascript">
+		var Confirms=[];
+		var date= [];
+		var countries=[ '阿尔巴尼亚','阿尔及利亚','阿富汗','阿根廷','阿联酋','阿曼','阿塞拜疆','埃及','埃塞俄比亚','爱尔兰','爱沙尼亚','安道尔','安哥拉','安提瓜和巴布达','奥地利','澳大利亚','巴巴多斯','巴布亚新几内亚','巴哈马','巴基斯坦','巴拉圭','巴勒斯坦','巴林','巴拿马','巴西','白俄罗斯','保加利亚','贝宁','比利时','冰岛','波黑','波兰','玻利维亚','伯利兹','博茨瓦纳','不丹','布基纳法索','布隆迪','赤道几内亚','丹麦','德国','东帝汶','多哥','多米尼加','多米尼克','俄罗斯','厄瓜多尔','厄立特里亚','法国','梵蒂冈','菲律宾','斐济','芬兰','佛得角','冈比亚','刚果','刚果民主共和国','哥伦比亚','哥斯达黎加','格林纳达','格鲁吉亚','古巴','圭亚那','哈萨克斯坦','海地','韩国','荷兰','黑山','洪都拉斯','吉布提','吉尔吉斯斯坦','几内亚','几内亚比绍','加拿大','加纳','加蓬','柬埔寨','捷克共和国','津巴布韦','喀麦隆','卡塔尔','科摩罗','科特迪瓦','科威特','克罗地亚','肯尼亚','拉脱维亚','老挝','黎巴嫩','立陶宛','利比里亚','利比亚','列支敦士登公国','卢森堡','卢旺达','罗马尼亚','马达加斯加','马尔代夫','马耳他','马拉维','马来西亚','马里','马其顿','毛里求斯','毛里塔尼亚','美国','蒙古','孟加拉','秘鲁','缅甸','摩尔多瓦','摩洛哥','摩纳哥','莫桑比克','墨西哥','纳米比亚','南非','尼泊尔','尼加拉瓜','尼日尔','尼日利亚','挪威','葡萄牙','日本','瑞典','瑞士','萨尔瓦多','塞尔维亚','塞拉利昂','塞内加尔','塞浦路斯','塞舌尔','沙特阿拉伯','圣基茨和尼维斯','圣卢西亚','圣马力诺','圣文森特和格林纳丁斯','斯里兰卡','斯洛伐克','斯洛文尼亚','斯威士兰','苏丹','苏里南','索马里','塔吉克斯坦','泰国','坦桑尼亚','特立尼达和多巴哥','突尼斯','土耳其','危地马拉','委内瑞拉','文莱','乌干达','乌克兰','乌拉圭','乌兹别克斯坦','西班牙','希腊','新加坡','新西兰','匈牙利','叙利亚','牙买加','亚美尼亚','也门','伊拉克','伊朗','以色列','意大利','印度','印度尼西亚','英国','约旦','越南','赞比亚','乍得','智利','中非','中国'
+];
+		    $.ajax({
+		        type:"GET",
+		        url: "data/data_world.csv",
+		        success: function(results) {
+		            //转变为字符串
+		            var rs = new String(results);         
+		            var n_date = 0;
+		            rs=rs.split("\n");
+		            for (var i = 0; i < rs.length; i++) {
+		                rs[i] = rs[i].split(",");
+		            } 
+
+		            //数组初始化
+		            var L = parseInt((rs.length-1)/180);  //181个国家和地区  减去钻石公主号
+		            for(var i = 0; i < L; i++) {
+		                        date[i] = '';
+		                        Confirms[i] = new Array();
+		                        for(var j = 0; j < 180; j++) {
+		                            Confirms[i][j] = 0; //0表示只有一个空的红圈
+		                    }
+		                } 
+
+
+		            //获取值   
+		            for (var i = 1; i < rs.length-1; i+=180) {
+		                date[n_date]=rs[i][1];
+		                for(var j = 0;j<180;j++){
+		                     Confirms[n_date][j]=rs[i+j][5]; 
+		                }
+
+		                //将字符数组转换为数字数组
+		                for(var k=0;k<L;k++){
+		                     Confirms[n_date]=Confirms[n_date].map(Number)
+		                }                  
+		                n_date++;
+		            }
+
+
+		            var days=date;
+		            var data=Confirms;  
+		            var myChart = echarts.init(document.getElementById('main03')); //?
+		            option = {
+		                baseOption: {
+		                    timeline: {
+		                        axisType: 'category',
+		                        // realtime: false,
+		                        // loop: false,
+		                        autoPlay: true,
+		                        playInterval: 2000,
+		                        symbolSize: 12,
+		                        left: '3%',
+		                        right: '10%',
+		                        bottom: '0%',
+		                        width: '95%',
+		                        // controlStyle: {
+		                        //     position: 'left'
+		                        // },
+		                        data: days,
+		                        tooltip: {
+		                            formatter: days
+		                        },
+		                    },
+
+		                    tooltip: {
+		                        show: true,
+		                        trigger: 'item'
+		                    },
+		                    visualMap: {
+		                        type: 'piecewise',
+		                        pieces: [{
+		                                min: 100001,
+		                                color: '#262626'
+		                            },
+		                            {
+		                                min: 50001,
+		                                max: 100000,
+		                                color: '#616161'
+		                            },
+		                               {
+		                                min: 10001,
+		                                max: 50000,
+		                                color: '#808080'
+		                            },
+		                            {
+		                                min: 5001,
+		                                max: 10000,
+		                                color: '#A9A9A9'
+		                            },
+		                            {
+		                                min: 1001,
+		                                max: 5000,
+		                                color: '#D3D3D3'
+		                            },
+		                            {
+		                                min: 1,
+		                                max: 1000,
+		                                color: '#F5F5F5' //97FFFF
+		                            },
+		                            {
+		                                value: 0,
+		                                color: 'white'
+		                            }
+		                        ],
+		                        orient: 'vertical',
+		                        itemWidth: 20,
+		                        itemHeight: 10,
+		                        showLabel: true,
+		                        seriesIndex: [0],
+
+		                        textStyle: {
+		                            fontSize: 10,
+									color: '#7B93A7'
+									
+		                        },
+		                        bottom: '10%',
+		                        right: "1%",
+		                    },
+		                    grid: {  // 修改bar的位置
+		                        left: '5%',
+		                        top: '45%',
+		                        bottom: '10%',
+		                        width: '20%'
+		                    },
+		                    xAxis: {
+		                        min: 0,
+		                        max: 80000,
+		                        show: false
+		                    },
+		                    yAxis: [{
+		                        inverse: true,
+		                        offset: '2',
+		                        'type': 'category',
+		                        data: '',
+		                        nameTextStyle: {
+		                            color: '#fff'
+		                        },
+		                        axisTick: {
+		                            show: false,
+		                        },
+		                        axisLabel: {
+		                            //rotate:45,
+		                            textStyle: {
+		                                fontSize: 10,
+		                                color: '#000000',
+		                            },
+		                            interval: 0
+		                        },
+		                        axisLine: {
+		                            show: false,
+		                            lineStyle: {
+		                                color: '#333'
+		                            },
+		                        },
+		                        splitLine: {
+		                            show: false,
+		                            lineStyle: {
+		                                color: '#333'
+		                            }
+		                        },
+		                    }],
+		                    geo: {  <!-- 地图的位置 -->
+		                        map: 'world',
+		                        right: '8%',
+		                        left: '12%',
+								top: '10%',
+								//bottom: '1%',
+		                        label: {
+		                            emphasis: {
+		                                show: false,
+		                            }
+		                        },
+		                        itemStyle: {
+		                            emphasis: {
+		                                areaColor: '#FFD700'
+		                            }
+		                        }
+		                    },
+		                    series: [{
+		                            name: '累计死亡数',
+		                            type: 'map',
+		                            map: 'world',
+		                            roam: false,
+		                            geoIndex: 0,
+									//right: '6%',
+									//left: '20%',
+		                            label: {
+		                                show: false,
+		                            },
+		                        },
+		                        {
+		                            'name': '',
+		                            'type': 'bar',
+		                            zlevel: 2,
+		                            barWidth: '40%',
+									//right: '6%',
+									//left: '20%',
+		                            label: {
+		                                normal: {
+		                                    show: true,
+		                                    fontSize: 14,
+		                                    position: 'right',
+		                                    formatter: '{c}'
+		                                }
+		                            },
+		                        }
+		                    ],
+
+		                },
+		                animationDurationUpdate: 3000,
+		                animationEasingUpdate: 'quinticInOut',
+		                options: []
+		            };
+
+		            for (var n = 0; n < data.length; n++) {
+		                var res = [];
+		                for (j = 0; j < countries.length; j++) {
+
+		                    res.push({
+		                        name: countries[j],
+		                        value: data[n][j]            
+		                    });
+		                }
+						// console.log(res.length);
+
+
+		                res.sort(function(a, b) {
+		                    return a.value - b.value;
+		                });
+		                var res1 = [];
+		                var res2 = [];
+		                for (t = 0; t < 10; t++) {
+		                    res1[t] = res[res.length - 1 - t].name;
+		                    res2[t] = res[res.length - 1 - t].value;
+		                }
+		                console.log(res2);
+		                console.log(res1);   
+		                // console.log(province);*/
+		                // console.log("----------------");
+		                option.options.push({
+		                    title: [{
+		                             text: days[n] + "日累计死亡地图  ",
+		                             textStyle: {
+		                                color: '#2D3E53',
+		                                fontSize: 28,
+		                                fontFamily:'sans-serif'
+		                            },
+		                            left: 20,
+		                            top: 20,
+		                        },
+		                        {
+		                            show: true,
+		                            text: '死亡人数前十的国家',
+		                            textStyle: {
+		                                color: '#2D3E53',
+		                                fontSize: 14
+		                            },
+		                            left: '5%',
+		                            top: '40%'
+		                        }
+		                    ],
+		                    yAxis: {
+		                        data: res1,
+		                    },
+		                    series: [{
+		                        type: 'map',
+		                        data: res,
+								
+		                    }, 
+		                    {
+		                        type: 'bar',
+		                        data: res2,
+								//fontsize: '14',
+								left: '1%',
+								
+		                        itemStyle: {
+		                            normal: {
+		                                color: function(params) {
+		                                    // build a color map as your need.
+		                                    var colorList = [{
+		                                            colorStops: [{
+		                                                offset: 0,
+		                                                color: '#616161' // 0% 处的颜色
+		                                            }, {
+		                                                offset: 1,
+		                                                color: '#262626' // 100% 处的颜色
+		                                            }]
+		                                        },
+		                                        {
+		                                            colorStops: [{
+		                                                offset: 0,
+		                                                color: '#808080' // 0% 处的颜色
+		                                            }, {
+		                                                offset: 1,
+		                                                color: '#A9A9A9' // 100% 处的颜色
+		                                            }]
+		                                        }
+		                                    ];
+		                                    if (params.dataIndex < 3) {
+		                                        return colorList[0]
+		                                    } else {
+		                                        return colorList[1]
+		                                    }
+		                                },
+		                            }
+									//left: '1%'
+		                        },
+		                    }]
+		                });
+		            }
+		            myChart.setOption(option);
+		        }
+		    });
+    </script>
+            <!-- /. PAGE INNER  -->
+    </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+	
+	<!-- Bootstrap Js -->
+    <script src="assets/js/bootstrap.min.js"></script>
+	
+	<script src="assets/materialize/js/materialize.min.js"></script>
+	
+    <!-- Metis Menu Js -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+    <!-- Morris Chart Js -->
+    <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="assets/js/morris/morris.js"></script>
+	
+	
+	<script src="assets/js/easypiechart.js"></script>
+	<script src="assets/js/easypiechart-data.js"></script>
+	
+	 <script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
+	
+    <!-- Custom Js -->
+    <script src="assets/js/custom-scripts.js"></script> 
+ 
+
+</body>
+
+</html>

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>疫情可视化</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection" />
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css"> 
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.loading.min.js"></script>
+    <script src="assets/js/echarts.min.js"></script>
+    <script src="assets/js/dataTool.min.js"></script> 
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand waves-effect waves-dark" href="index.html"><i class="large material-icons">track_changes</i> <strong>全民战疫</strong></a>
+                
+                <div id="sideNav" class="waves-effect waves-dark" href=""><i class="material-icons dp48">toc</i></div>
+            </div>
+        </nav>
+<nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>疫情地图<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="index.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>中国疫情地图</a>
+                            </li>
+                            <li>
+                                <a href="hubei_map.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>湖北疫情地图</a>
+                            </li>
+                            <li>
+                                <a href="world.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>世界疫情地图</a>
+                            </li>
+                            <li>
+                                <a href="US_map.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>美国疫情地图</a>
+                            </li>                       
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>趋势分析<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="chart.html" class="waves-effect waves-dark"style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>中国各省</a>
+                            </li>
+                            <li>
+                                <a href="hubei.html" class="waves-effect waves-dark"style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>湖北各市</a>
+                            </li>
+                            <li>
+                                <a href="countries_chart.html" class="waves-effect waves-dark"style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>世界各国</a>
+                            </li>                       
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-table"></i>数据概况<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="mytable.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-table"></i>中国数据</a>
+                            </li>
+                            <li>
+                                <a href="countries_data.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-table"></i>海外数据</a>
+                            </li>                   
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-desktop"></i>空间自相关分析<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="autocorrelation_hb.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>湖北疫情分析</a>
+                            </li>
+                            <li>
+                                <a href="autocorrelation_usa.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-table"></i>美国疫情分析</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-sitemap"></i>空间社会网络分析<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse in">
+                            <li>
+                                <a href="network.html" class="active-menu waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-sitemap"></i>国际关系分析</a>
+                            </li>
+                            <li>
+                                <a href="wordcloud.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-edit"></i>词云展示</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="simulation.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-fw fa-tags"></i>疫情模拟预测</a>
+                    </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+<!-- /. NAV SIDE  -->
+<div id="page-wrapper">
+    <div class="header"> 
+        <h1 class="page-header">
+           疫情期间国家关系可视化与分析
+       </h1>
+       <div class="divider" style=""></div>
+      <!--  <ol class="breadcrumb">
+      </ol> -->
+</div>
+ <div id="page-inner"> 
+ 	<div class="form-inline row" >
+ 	  <label class="form-inline"style="margin-left: 15px;color: black;font-size: 18px">国家交互网络 /  请选择您想要查询的日期</label>  
+      <select class="form-control" id="select" style="width: 120px;margin-left: 15px">
+      	        <option>0120</option>
+                <option>0130</option>
+      			<option>0210</option>
+      			<option>0220</option>
+      			<option>0229</option>
+      			<option>0310</option>
+      			<option>0320</option>
+      			<option>0330</option>
+      			<option>0410</option>
+      			<option>0420</option>
+      			<option>0430</option>
+      			<option>0510</option>
+      </select>
+ 	</div>
+		<div id="container" style="width:1200px;height: 800px;margin: 0 auto">
+		</div>
+  <label class="form-inline"style="margin-left: 15px;color: black;font-size: 18px;margin-left: 0px;">国家交互网络的时序变化分析</label> 
+ <div class="row">                       
+     <div class="col-md-6 col-sm-12 col-xs-12">                     
+        <div class="card">
+          <div class="card-header"></div>
+            <div class="card-body">
+               <div id="echarts3" style="width: 600px;height:450px;padding-top:20px;padding-left:10px;margin: 0 auto"></div>
+            </div> 
+       </div>           
+     </div>
+     <div class="col-md-6 col-sm-12 col-xs-12">                     
+        <div class="card">
+          <div class="card-header"></div>
+            <div class="card-body" style="align-self: center;">
+               <div id="echarts4" style="width: 600px;height:450px;padding-top:20px;padding-left:10px;margin: 0 auto"></div>
+            </div> 
+       </div>           
+     </div>
+  </div>
+	  <script type="text/javascript">
+				var date = '0120';
+				drawGragh(date);
+				$("#select").change(function(){
+			        val=$(this).val();
+			        drawGragh(val);
+			    });
+
+			    function drawGragh(date){
+			    	var dom = document.getElementById("container");
+				    var myChart = echarts.init(dom);
+				    var app = {};
+				    option = null;
+				    myChart.showLoading();
+				    $.get('data/gexf/' + date + '.gexf', function (xml) {
+				        myChart.hideLoading();
+
+				        var graph = echarts.dataTool.gexf.parse(xml);
+				        
+				        var n_class = 0;
+				        graph.nodes.forEach(function (node) {
+				            node.itemStyle = null;
+				            node.value = node.symbolSize;
+				            node.label = {
+				                normal: {
+				                    show: node.symbolSize > 15
+				                }
+				            };
+				            node.draggable = true;
+				            node.category = node.attributes.modularity_class;
+				            if(  node.category > n_class ) n_class = node.category;
+				        });
+
+				        var categories = [];
+				        for (var i = 0; i < n_class; i++) {
+				            categories[i] = {
+				                name: '社团' + (i+1)
+				            };
+				        }
+
+				        option = {
+				            tooltip: {
+							        show: true, // 默认显示
+							        showContent: true, // 是否显示提示框浮层
+							        trigger: 'item', // 触发类型，默认数据项触发
+							        triggerOn: 'mousemove', // 提示触发条件，mousemove鼠标移至触发，还有click点击触发
+							        alwaysShowContent: true, // 默认离开提示框区域隐藏，true为一直显示
+							        showDelay: 100, // 浮层显示的延迟，单位为 ms，默认没有延迟，也不建议设置。在 triggerOn 为 'mousemove' 时有效。
+							        hideDelay: 2000, // 浮层隐藏的延迟，单位为 ms，在 alwaysShowContent 为 true 的时候无效。
+							        enterable: false, // 鼠标是否可进入提示框浮层中，默认为false，如需详情内交互，如添加链接，按钮，可设置为 true。
+							        position: 'right', // 提示框浮层的位置，默认不设置时位置会跟随鼠标的位置。只在 trigger 为'item'的时候有效。
+							        confine: false, 
+							        transitionDuration: 0.2, // 提示框浮层的移动动画过渡时间，单位是秒，设置为 0 的时候会紧跟着鼠标移动。
+							    },
+				            legend: [{
+				                // selectedMode: 'single',
+				               
+				            }],
+				            animationDuration: 1500,
+				            animationEasingUpdate: 'quinticInOut',
+				            series : [
+				                {
+				                    name: '国家',
+				                    type: 'graph',
+				                    layout: 'none',
+				                    data: graph.nodes,
+				                    links: graph.links,
+				                    categories: categories,
+							        roam: true, 
+							        nodeScaleRatio: 0.6, // 鼠标漫游缩放时节点的相应缩放比例，当设为0时节点不随着鼠标的缩放而缩放
+							        focusNodeAdjacency: true, 
+							        edgeSymbol: ['none', 'none'], 
+							        edgeSymbolSize: 10,
+
+							        itemStyle: { // ========图形样式，有 normal 和 emphasis 两个状态。
+							            // normal 是图形在默认状态下的样式；
+							            // emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
+							            normal: { // 默认样式
+							                label: {
+							                    show: true
+							                },
+							                borderType: 'dashed', // 图形描边类型，默认为实线，支持 'solid'（实线）, 'dashed'(虚线), 'dotted'（点线）。
+							                borderColor: 'rgba(205, 149, 12, 0.4)', // 设置图形边框为淡金色,透明度为0.4
+							                borderWidth: 2, // 图形的描边线宽。为 0 时无描边。
+							                opacity: 1 // 图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。默认0.5
+
+							            },
+							            emphasis: { // 高亮状态
+
+							            }
+							        },
+							        lineStyle: { // ========关系边的公用线条样式。
+							            normal: {
+							                //width: '1', //线的粗细
+							                type: 'solid', // 线的类型 'solid'（实线）'dashed'（虚线）'dotted'（点线）
+							                curveness: 0.3, // 线条的曲线程度，从0到1
+							                opacity: 0.5 // 图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。默认0.5
+							            },
+							            emphasis: { // 高亮状态
+							            }
+							        },
+							        label: { // ========结点图形上的文本标签
+							            normal: {
+							                show: true, // 是否显示标签。
+							                position: 'inside',
+							                textStyle: { // 标签的字体样式
+							                    color: '#d3d7d4', // 字体颜色 #cde6c7 #d1c7b7 #d9d6c3 #d3d7d4
+							                    fontStyle: 'normal', // 文字字体的风格 'normal'标准 'italic'斜体 'oblique' 倾斜
+							                    fontWeight: 'bolder', // 'normal'标准，'bold'粗的，'bolder'更粗的，'lighter'更细的，或100 | 200 | 300 | 400...
+							                    fontFamily: 'sans-serif', // 文字的字体系列
+							                    fontSize: 12, // 字体大小
+							                }
+							            },
+							            emphasis: { // 高亮状态
+							            }
+							        },
+
+				                }
+				            ]
+				        };
+				        myChart.setOption(option);
+				    }, 'xml');;
+			    }    
+	 </script>
+
+     <script type="text/javascript">  
+        var val = '湖北';
+        DrawEcharts3(val);
+        DrawEcharts4(val);
+        $("#select").change(function(){
+        val=$(this).val();
+        DrawEcharts3(val);
+        DrawEcharts4(val);
+    });
+       
+      function DrawEcharts3(val){
+        // 基于准备好的dom，初始化echarts实例
+	        var n_days = ['1.20','1.30','2.10','2.20','2.29','3.10','3.20','3.30','4.10','4.20','4.30','5.10',]
+        var countries = ['USA','CHN','GBR','RUS','IND','\n','ISR','IRN','AUS','DEU','EUR'];
+            node_rank = [[1,1,1,1,1,1,1,1,1,1,1,1],
+						  [3,2,2,2,4,3,2,2,2,2,2,2],
+						  [2,3,3,3,9,4,3,3,3,3,3,3],
+						  [5,5,4,4,5,5,10,4,4,4,4,4],
+						  [37,34,36,25,26,38,24,24,24,26,33,5],
+						  [12,4,5,7,20,14,19,13,14,12,7,6],
+						  [4,13,13,11,7,8,5,12,13,11,11,7],
+						  [16,10,9,8,16,12,9,7,9,5,6,8],
+						  [8,12,16,6,17,11,12,11,5,6,5,9],
+						  [12,8,12,14,11,9,8,9,6,8,8,10]
+						]
+	        var myChart3 = echarts.init(document.getElementById('echarts3'));
+	        // 指定图表的配置项和数据
+	        var option = {
+                            tooltip: {
+                                trigger: 'axis',
+                                axisPointer: {
+                                    type: 'shadow',
+                                    label: {
+                                        show: true
+                                    }
+                                }
+                            },
+							/*title: {
+							    left:'center',
+								bottom: '93%',
+								text: '湖北疫情模拟'
+							},*/
+                            toolbox: {
+                                show: true,
+                                feature: {
+                                    restore: {show: true},
+                                    saveAsImage: {show: true}
+                                },
+                                right:'4%'
+                            },
+                            calculable: true,
+                            legend: {
+                            		data: countries
+                            },
+                            grid: {
+                                top: '12%',
+                                left: '5%',
+                                right: '10%',
+                                containLabel: true
+                            },
+                            xAxis: [
+                                {
+                                    type: 'category',
+                                    data: n_days,
+                                    axisLine:{ // 隐藏X轴
+					                show: false
+						            },
+						            axisTick:{ // 隐藏刻度线
+						                show: false
+						            },
+                                }
+                            ],
+                            yAxis: [
+                                {
+                                    type: 'value',
+                                    name: '排名',
+                                    inverse: true,
+                                    nameLocation:'center',
+                                    nameGap:30,
+                                },
+                                
+                            ],
+
+                            series: [
+                                {
+                                    name: 'USA',
+                                    type: 'line',
+                                    data: node_rank[0],
+                                },
+								 {
+                                    name: 'CHN',
+                                    type: 'line',
+                                    data: node_rank[1],
+                                },
+                                {
+                                    name: 'GBR',
+                                    type: 'line',
+                                    data: node_rank[2],
+                                },
+                                 {
+                                    name: 'RUS',
+                                    type: 'line',
+                                    data: node_rank[3],
+                                },
+                                 {
+                                    name: 'IND',
+                                    type: 'line',
+                                    data: node_rank[4],
+                                },
+                                 {
+                                    name: 'ISR',
+                                    type: 'line',
+                                    data: node_rank[5],
+                                },
+                                 {
+                                    name: 'IRN',
+                                    type: 'line',
+                                    data: node_rank[6],
+                                },
+                                 {
+                                    name: 'AUS',
+                                    type: 'line',
+                                    data: node_rank[7],
+                                },
+                                {
+                                    name: 'DEU',
+                                    type: 'line',
+                                    data: node_rank[8],
+                                },
+                                {
+                                    name: 'EUR',
+                                    type: 'line',
+                                    data: node_rank[9],
+                                },
+
+                            ]
+                        };
+
+                       myChart3.setOption(option);
+        }
+     
+      function DrawEcharts4(val){
+        // 基于准备好的dom，初始化echarts实例
+        var n_days = ['1.20','1.30','2.10','2.20','2.29','3.10','3.20','3.30','4.10','4.20','4.30','5.10',]
+        var countries = ['USA-CHN','USA-RUS','USA-GBR','USA-IRN','ISR-PSE','\n','CHN-AUS','USA-IRL','USA-DEU','USA-AUS','USA-AFG'];
+            node_rank = [[1,2,1,1,1,3,1,1,1,1,1,1,1],
+							[16,17,14,10,3,17,7,14,6,3,5,3,4,2],
+							[1,2,4,2,2,10,2,5,2,2,2,2,3],
+							[3,13,11,17,18,13,3,17,16,14,13,4],
+							[14,2,4,6,26,9,13,4,9,3,6,5],
+							[154,155,11,22,16,87,88,89,90,54,31,32,43,44,55,56,57,10,3,4,6],
+							[57,87,88,32,33,34,35,48,28,29,56,39,42,43,39,5,7],
+							[30,33,34,8,27,34,35,36,24,12,19,20,7,8],
+							[20,24,25,20,15,29,26,11,9,14,7,9,10,9],
+							[45,46,51,25,18,1,6,25,13,19,20,25,20,10,11],
+						]
+	        var myChart4 = echarts.init(document.getElementById('echarts4'));
+	        // 指定图表的配置项和数据
+	        var option = {
+                            tooltip: {
+                                trigger: 'axis',
+                                axisPointer: {
+                                    type: 'shadow',
+                                    label: {
+                                        show: true
+                                    }
+                                }
+                            },
+							/*title: {
+							    left:'center',
+								bottom: '93%',
+								text: '湖北疫情模拟'
+							},*/
+                            toolbox: {
+                                show: true,
+                                feature: {
+                                    restore: {show: true},
+                                    saveAsImage: {show: true}
+                                },
+                                right:'4%'
+                            },
+                            calculable: true,
+                            legend: {
+                            		data: countries
+                            },
+                            grid: {
+                                top: '12%',
+                                left: '5%',
+                                right: '10%',
+                                containLabel: true
+                            },
+                            xAxis: [
+                                {
+                                    type: 'category',
+                                    data: n_days,
+                                    axisLine:{ // 隐藏X轴
+					                show: false
+						            },
+						            axisTick:{ // 隐藏刻度线
+						                show: false
+						            },
+                                }
+                            ],
+                            yAxis: [
+                                {
+                                    type: 'value',
+                                    name: '排名',
+                                    inverse: true,
+                                    nameLocation:'center',
+                                    nameGap:30,
+                                 },
+                                
+                            ],
+
+                            series: [
+                                {
+                                    name: 'USA-CHN',
+                                    type: 'line',
+                                    data: node_rank[0],
+                                },
+								 {
+                                    name: 'USA-RUS',
+                                    type: 'line',
+                                    data: node_rank[1],
+                                },
+                                {
+                                    name: 'USA-GBR',
+                                    type: 'line',
+                                    data: node_rank[2],
+                                },
+                                 {
+                                    name: 'USA-IRN',
+                                    type: 'line',
+                                    data: node_rank[3],
+                                },
+                                 {
+                                    name: 'ISR-PSE',
+                                    type: 'line',
+                                    data: node_rank[4],
+                                },
+                                 {
+                                    name: 'CHN-AUS',
+                                    type: 'line',
+                                    data: node_rank[5],
+                                },
+                                 {
+                                    name: 'USA-IRL',
+                                    type: 'line',
+                                    data: node_rank[6],
+                                },
+                                 {
+                                    name: 'USA-DEU',
+                                    type: 'line',
+                                    data: node_rank[7],
+                                },
+                                {
+                                    name: 'USA-AUS',
+                                    type: 'line',
+                                    data: node_rank[8],
+                                },
+                                {
+                                    name: 'USA-AFG',
+                                    type: 'line',
+                                    data: node_rank[9],
+                                },
+
+                            ]
+                        };
+
+                       myChart4.setOption(option);
+     }
+    
+   </script>
+
+
+
+
+<footer></footer>
+</div>
+<!-- /. PAGE INNER  -->
+</div>
+<!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="assets/js/jquery-1.10.2.js"></script>
+
+<!-- Bootstrap Js -->
+<script src="assets/js/bootstrap.min.js"></script>
+
+<script src="assets/materialize/js/materialize.min.js"></script>
+
+<!-- Metis Menu Js -->
+<script src="assets/js/jquery.metisMenu.js"></script>
+<!-- Morris Chart Js -->
+<script src="assets/js/morris/raphael-2.1.0.min.js"></script>
+<script src="assets/js/morris/morris.js"></script>
+<script src="assets/js/easypiechart.js"></script>
+<script src="assets/js/easypiechart-data.js"></script>
+<script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
+
+<!-- Custom Js -->
+<script src="assets/js/custom-scripts.js"></script> 
+
+
+</body>
+
+</html>

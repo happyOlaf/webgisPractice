@@ -1,0 +1,544 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
+<title data-i18n="resources.title_mapVLayerHoneycomb"></title>
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="mapboxgl/include-web.js"></script>
+    <script type="text/javascript" include="mapv" src="mapboxgl/include-mapboxgl.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.7.0/echarts.min.js"></script>
+    <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+
+<link rel="stylesheet" type="text/css" href="css/switch-buttons.css">
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        #SelContainer{
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        #countrylist{
+            width: 200px;
+        }
+
+
+        .flex-center {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+        }
+
+        .flex-center.left {
+            left: 0px;
+        }
+
+        .flex-center.right {
+            right: 0px;
+        }
+
+        .sidebar-content {
+            position: absolute;
+            width: 95%;
+            height: 95%;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: gray;
+        }
+
+        .sidbear-toggle {
+            position: absolute;
+            width: 1em;
+            height: 1em;
+            overflow: visible;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .sidbear-toggle.left {
+            right: -1.5em;
+        }
+
+        .sidbear-toggle.right {
+            left: -1.5em;
+        }
+
+        .sidbear-toggle:hover {
+            color: #0aa1cf;
+            cursor: pointer;
+        }
+
+        .sidebar {
+            top:120px;
+            transition: transform 0.5s;
+            z-index: 1;
+            width: 360px;
+            height: 620px;
+
+        }
+        .rounded-rect {
+            border-radius: 10px;
+            box-shadow: 0 0 50px -25px black;
+            border: 1px solid;
+            background-color: rgba(0,0,0,0.7);
+        }
+        .left.collapsed {
+            transform: translateX(-355px);
+        }
+
+        .right.collapsed {
+            transform: translateX(355px);
+        }
+        #timecharts{
+            position:absolute;
+            width: 340px;
+            height: 50px;
+            margin-top: 60px;
+        }
+        #leftcharts1{
+            position: absolute;
+            margin-top: 10px;
+            width: 320px;
+            height: 200px;
+        }
+        #lefthead2{
+            position:absolute;
+            width:320px;
+            height:30px;
+            margin-top: 230px;
+            font-size: 20px;
+            color: #FFD700;
+            text-align: center;
+            font-weight: bold;
+        }
+        #leftcharts2{
+            position: absolute;
+            margin-top: 260px;
+            width: 340px;
+            height: 340px;
+        }
+
+        #righthead{
+            position:absolute;
+            width:320px;
+            height:30px;
+            margin-top: 10px;
+            font-size: 20px;
+            color:  #FFD700;
+            text-align: center;
+            font-weight: bold;
+        }
+        #Rightcharts1{
+            position:absolute;
+            width:340px;
+            height:520px;
+            margin-top: 50px;
+        }
+</style>
+
+</head>
+<body style=" margin: 0;overflow: hidden;background: #fff;width: 100%;height:100%">
+<div id="map"></div>
+<div id="SelContainer">
+    <div style="float: left;">
+          <select id="countrylist"class="form-control">
+          </select>
+    </div>
+    <div style="float: left;">
+        <label class="switch-btn circle-style">
+            <input class="checked-switch" type="checkbox" />
+            <span class="text-switch" data-yes="移入" data-no="移出"></span> 
+            <span class="toggle-btn"></span> 
+        </label>
+    </div>
+    <div id="left" class="sidebar flex-center left collapsed" style="">
+        <div class="sidebar-content rounded-rect flex-center">
+            <div id="leftArrow" class="sidbear-toggle rounded-rect left" onclick="toggleSidebar('left')">
+                &raquo;
+            </div>
+            <div id="leftcharts1">
+            </div>
+            <div id="lefthead2">1990 年 中国移民（移入）年龄分布</div>
+            <div id="leftcharts2">
+            </div>
+        </div>
+    </div>
+    <div id="right" class="sidebar flex-center right collapsed">
+        <div class="sidebar-content rounded-rect flex-center">
+            <div class="sidbear-toggle rounded-rect right"
+                onclick="toggleSidebar('right')">
+                &laquo;
+            </div>
+            <div id="righthead">1990 年 中国 有 185 个移民目的国</div>
+            <div id="Rightcharts1">
+            </div>
+        </div>
+    </div>
+<script src="js/worldjson.js"></script>
+<script type="text/javascript">
+    //加载底图
+    alert("执行了");
+    mapboxgl.accessToken = 'pk.eyJ1IjoidmFjdXRpY2UiLCJhIjoiY2p1cjRjdTRtMGQzcTQzbzh5b3N6MHZociJ9.F-S59qE0_6QW3XdgxZk14Q';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/dark-v9',
+        center: [112, 37.94],
+        zoom: 2,
+        attributionControl:false,
+    });
+    map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+
+    if (map.getLayer("geo_layer")) map.removeLayer("geo_layer");
+        alert("执行了");
+        console.log("hhh")
+        var color1 = 'rgba( 0,0,255,0.3)'
+        var color2 = 'rgba( 0,0,255,0.1)';
+        var geojsonOptions = {
+            layerID:'geo_layer',
+            gradient: {
+                0: color1,
+                1: color2
+            },
+            max: 354551,
+            draw: 'intensity'
+        };
+        
+        var geojsonDataSet = mapv.geojson.getDataSet(worldjsondata);
+        var data = geojsonDataSet.get({
+            filter: function (item) {
+            }
+        });
+        geojsonDataSet = new mapv.DataSet(data);
+        var mapVlayer = new mapboxgl.supermap.MapvLayer("", geojsonDataSet, geojsonOptions);
+        map.addLayer(mapVlayer);
+  //绘制路线图
+</script>
+<script type="text/javascript">
+    var countryCode = [
+                ["China",156,"CN",35.8617,104.1954,"中国"],
+                ["United States of America",840,"US",37.0902,-95.7129,"美国"],
+                ["Germany",276,"DE",51.1657,10.4515,"德国"],
+                ["France",250,"FR",46.2276,2.2137,"法国"],
+                ["United Kingdom of Great Britain and Northern Ireland",826,"GB",55.3781,-3.4360,"英国"],
+                ["Japan",392,"JP",36.2048,138.2529,"日本"],
+                ["Russian Federation",643,"RU",61.5240,105.3188,"俄罗斯"],
+                ["India",356,"IN",20.5937,78.9629,"印度"],
+                ["China, Hong Kong Special Administrative Region",344,"HK",22.3964,114.1095,"中国香港"],
+                ["Mexico",484,"MX",19.4326,-99.1332,"墨西哥"],
+                ["Brazil",76,"BR",-14.2350,-51.9253,"巴西"],
+                ["Afghanistan",4,"AF",33.9391,67.7100,"阿富汗"],
+                ["Albania",8,"AL",41.1533,20.1683,"阿尔巴尼亚"],
+                ["Algeria",12,"DZ",28.0339,1.6596,"阿尔及利亚"],
+                ["American Samoa",16,"AS",-14.2710,-170.1322,"美属萨摩亚群岛"],
+                ["Andorra",20,"AD",42.5063,1.5218,"安道尔"],
+                ["Angola",24,"AO",-11.2027,17.8739,"安哥拉"],
+                ["Anguilla",660,"AI",18.2206,-63.0686,"安圭拉"],
+                ["Antigua and Barbuda",28,"AG",17.0608,-61.7964,"安提瓜和巴布达岛"],
+                ["Argentina",32,"AR",-38.4161,-63.6167,"阿根廷"],
+                ["Armenia",51,"AM",40.0691,45.0382,"亚美尼亚"],
+                ["Aruba",533,"AW",12.5211,-69.9683,"阿鲁巴"],
+                ["Australia",36,"AU",-25.2744,133.7751,"澳大利亚"],
+                ["Austria",40,"AT",47.5162,14.5501,"奥地利"],
+                ["Azerbaijan",31,"AZ",40.1431,47.5769,"阿塞拜疆"],
+                ["Bahamas",44,"BS",25.0343,-77.3963,"巴哈马"],
+                ["Bahrain",48,"BH",26.0667,50.5577,"巴林"],
+                ["Bangladesh",50,"BD",23.6850,90.3563,"孟加拉国"],
+                ["Barbados",52,"BB",13.1939,-59.5432,"巴巴多斯"],
+                ["Belarus",112,"BY",53.7098,27.9534,"白俄罗斯"],
+                ["Belgium",56,"BE",50.5039,4.4699,"比利时"],
+                ["Belize",84,"BZ",17.1899,-88.4976,"伯利兹"],
+                ["Benin",204,"BJ",9.3077,2.3158,"贝宁"],
+                ["Bermuda",60,"BM",32.3078,-64.7505,"百慕大"],
+                ["Bhutan",64,"BT",27.5142,90.4336,"不丹"],
+                ["Bolivia (Plurinational State of)",68,"BO",-16.2902,-63.5887,"玻利维亚"],
+                ["Bonaire, Sint Eustatius and Saba",535,"BQ",12.2019,68.2624,"博内尔"],
+                ["Bosnia and Herzegovina",70,"BA",43.9159,17.6791,"波斯尼亚和黑塞哥维那"],
+                ["Botswana",72,"BW",-22.3285,24.6849,"博茨瓦纳"],
+                ["British Virgin Islands",92,"VG",18.4207,-64.6400,"英属维尔京群岛"],
+                ["Brunei Darussalam",96,"BN",4.5353,114.7277,"文莱达鲁萨兰国"],
+                ["Bulgaria",100,"BG",42.7339,25.4858,"保加利亚"],
+                ["Burkina Faso",854,"BF",12.2383,-1.5616,"布基纳法索"],
+                ["Burundi",108,"BI",-3.3731,29.9189,"布隆迪"],
+                ["Cabo Verde",132,"CV",16.5388,23.0418,"佛得角"],
+                ["Cambodia",116,"KH",12.5657,104.9910,"柬埔寨"],
+                ["Cameroon",120,"CM",7.3697,12.3547,"喀麦隆"],
+                ["Canada",124,"CA",56.1304,-106.3468,"加拿大"],
+                ["Cayman Islands",136,"KY",19.3133,-81.2546,"开曼群岛"],
+                ["Central African Republic",140,"CF",6.6111,20.9394,"中非共和国"],
+                ["Chad",148,"TD",15.4542,18.7322,"乍得"],
+                ["Channel Islands",830,"ZZ",49.2327,2.2052,"海峡群岛"],
+                ["Chile",152,"CL",-35.6751,-71.5430,"智利"],
+                ["China, Macao Special Administrative Region",446,"MO",22.1987,113.5439,"中国澳门"],
+                ["Colombia",170,"CO",4.5709,-74.2973,"哥伦比亚"],
+                ["Comoros",174,"KM",-11.6455,43.3333,"科摩罗"],
+                ["Congo",178,"CG",-4.0383,21.7587,"刚果"],
+                ["Cook Islands",184,"CK",-21.2367,-159.7777,"库克群岛"],
+                ["Costa Rica",188,"CR",9.9281,-84.0907,"哥斯达黎加"],
+                ["Cote d'Ivoire",384,"CI",7.5400,-5.5471,"科特迪瓦"],
+                ["Croatia",191,"HR",45.1000,15.2000,"克罗地亚"],
+                ["Cuba",192,"CU",21.5218,-77.7812,"古巴"],
+                ["Curacao",531,"CW",12.1696,-68.9900,"库拉索岛"],
+                ["Cyprus",196,"CY",35.1264,33.4299,"塞浦路斯"],
+                ["Czech Republic",203,"CZ",49.8175,15.4730,"捷克"],
+                ["Democratic People's Republic of Korea",408,"KP",40.3399,127.5101,"朝鲜"],
+                ["Democratic Republic of the Congo",180,"CD",-4.0383,21.7587,"民主刚果"],
+                ["Denmark",208,"DK",56.2639,9.5018,"丹麦"],
+                ["Djibouti",262,"DJ",11.8251,42.5903,"吉布提"],
+                ["Dominica",212,"DM",15.4150,-61.3710,"多米尼加"],
+                ["Dominican Republic",214,"DO",18.7357,-70.1627,"多明尼加共和国"],
+                ["Ecuador",218,"EC",-1.8312,-78.1834,"厄瓜多尔"],
+                ["Egypt",818,"EG",26.8206,30.8025,"埃及"],
+                ["El Salvador",222,"SV",13.7942,-88.8965,"萨尔瓦多"],
+                ["Equatorial Guinea",226,"GQ",1.6508,10.2679,"赤道几内亚"],
+                ["Eritrea",232,"ER",15.1794,39.7823,"厄立特里亚"],
+                ["Estonia",233,"EE",58.5953,25.0136,"爱沙尼亚"],
+                ["Ethiopia",231,"ET",9.1450,40.4897,"埃塞俄比亚"],
+                ["Faeroe Islands",234,"FO",61.8926,-6.9118,"法罗群岛"],
+                ["Falkland Islands (Malvinas)",238,"FK",-51.7963,-59.5236,"福克兰群岛"],
+                ["Fiji",242,"FJ",-17.7134,178.0650,"斐济"],
+                ["Finland",246,"FI",61.9241,25.7482,"芬兰"],
+                ["French Guiana",254,"GF",3.9339,53.1258,"法属圭亚那"],
+                ["French Polynesia",258,"PF",-17.6797,-149.4068,"法属玻里尼西亚"],
+                ["Gabon",266,"GA",-0.8037,11.6094,"加蓬"],
+                ["Gambia",270,"GM",13.4432,-15.3101,"冈比亚"],
+                ["Georgia",268,"GE",42.3154,43.3569,"格鲁吉亚"],
+                ["Ghana",288,"GH",7.9465,-1.0232,"加纳"],
+                ["Gibraltar",292,"GI",36.1408,-5.3536,"直布罗陀"],
+                ["Greece",300,"GR",39.0742,21.8243,"希腊"],
+                ["Greenland",304,"GL",71.7069,-42.6043,"格陵兰岛"],
+                ["Grenada",308,"GD",12.1165,-61.6790,"格林纳达"],
+                ["Guadeloupe",312,"GP",16.2650,61.5510,"瓜德罗普岛"],
+                ["Guam",316,"GU",13.4443,144.7937,"关岛"],
+                ["Guatemala",320,"GT",14.6349,-90.5069,"危地马拉"],
+                ["Guinea",324,"GN",9.9456,-9.6966,"几内亚"],
+                ["Guinea-Bissau",624,"GW",11.8037,-15.1804,"几内亚比绍"],
+                ["Guyana",328,"GY",4.8604,-58.9302,"圭亚那"],
+                ["Haiti",332,"HT",18.9712,-72.2852,"海地"],
+                ["Holy See",336,"VA",41.9029,12.4534,"梵蒂冈"],
+                ["Honduras",340,"HN",15.2000,-86.2419,"洪都拉斯"],
+                ["Hungary",348,"HU",47.1625,19.5033,"匈牙利"],
+                ["Iceland",352,"IS",64.9631,-19.0208,"冰岛"],
+                ["Indonesia",360,"ID",-0.7893,113.9213,"印度尼西亚"],
+                ["Iran (Islamic Republic of)",364,"IR",32.4279,53.6880,"伊朗"],
+                ["Iraq",368,"IQ",33.2232,43.6793,"伊拉克"],
+                ["Ireland",372,"IE",53.1424,-7.6921,"爱尔兰"],
+                ["Isle of Man",833,"IM",54.2361,-4.5481,"英属地曼岛"],
+                ["Israel",376,"IL",31.0461,34.8516,"以色列"],
+                ["Italy",380,"IT",41.8719,12.5674,"意大利"],
+                ["Jamaica",388,"JM",18.1096,-77.2975,"牙买加"],
+                ["Jordan",400,"JO",30.5852,36.2384,"约旦"],
+                ["Kazakhstan",398,"KZ",48.0196,66.9237,"哈萨克斯坦"],
+                ["Kenya",404,"KE",-0.0236,37.9062,"肯尼亚"],
+                ["Kiribati",296,"KI",-3.3704,168.7340,"基里巴斯"],
+                ["Kuwait",414,"KW",29.3759,47.9774,"科威特"],
+                ["Kyrgyzstan",417,"KG",41.2044,74.7661,"吉尔吉斯斯坦"],
+                ["Lao People's Democratic Republic",418,"LA",19.8563, 102.4955,"老挝"],
+                ["Latvia",428,"LV",56.8796,24.6032,"拉脱维亚"],
+                ["Lebanon",422,"LB",33.8547,35.8623,"黎巴嫩"],
+                ["Lesotho",426,"LS",-29.6100,28.2336,"莱索托"],
+                ["Liberia",430,"LR",6.4281,-9.4295,"利比里亚"],
+                ["Libya",434,"LY",26.3351,17.2283,"利比亚"],
+                ["Liechtenstein",438,"LI",47.1660, 9.5554,"列支敦斯登"],
+                ["Lithuania",440,"LT",55.1694,23.8813,"立陶宛"],
+                ["Luxembourg",442,"LU",49.6116,6.1319,"卢森堡"],
+                ["Madagascar",450,"MG",-18.7669,46.8691,"马达加斯加"],
+                ["Malawi",454,"MW",-13.2543,34.3015,"马拉维"],
+                ["Malaysia",458,"MY",4.2105,101.9758,"马来西亚"],
+                ["Maldives",462,"MV",3.2028,73.2207,"马尔代夫"],
+                ["Mali",466,"ML",17.5707,-3.9962,"马里"],
+                ["Malta",470,"MT",35.9375,14.3754,"马耳他"],
+                ["Marshall Islands",584,"MH",7.1315,171.1845,"马绍尔群岛"],
+                ["Martinique",474,"MQ",14.6415,61.0242,"马提尼克"],
+                ["Mauritania",478,"MR",21.0079,10.9408,"毛里塔尼亚"],
+                ["Mauritius",480,"MU",-20.3484,57.5522,"毛里求斯"],
+                ["Mayotte",175,"YT",-12.8275,45.1662,"马约特岛"],
+                ["Micronesia (Federated States of)",583,"FM",7.4256,150.5508,"密克罗尼西亚"],
+                ["Monaco",492,"MC",43.7384,7.4246,"摩纳哥"],
+                ["Mongolia",496,"MN",46.8625,103.8467,"蒙古"],
+                ["Montenegro",499,"ME",42.7087,19.3744,"黑山"],
+                ["Montserrat",500,"MS",16.7425,-62.1874,"蒙特色拉特岛"],
+                ["Morocco",504,"MA",31.7917,-7.0926,"摩洛哥"],
+                ["Mozambique",508,"MZ",-18.6657,35.5296,"莫桑比克"],
+                ["Myanmar",104,"MM",21.9162,95.9560,"缅甸"],
+                ["Namibia",516,"NA",-22.9576,18.4904,"纳米比亚"],
+                ["Nauru",520,"NR",-0.5228,166.9315,"瑙鲁"],
+                ["Nepal",524,"NP",28.3949,84.1240,"尼泊尔"],
+                ["Netherlands",528,"NL",52.1326,5.2913,"荷兰"],
+                ["New Caledonia",540,"NC",-20.9043,165.6180,"新喀里多尼亚"],
+                ["New Zealand",554,"NZ",-40.9006,174.8860,"新西兰"],
+                ["Nicaragua",558,"NI",12.8654,-85.2072,"尼加拉瓜"],
+                ["Niger",562,"NE",17.6078,8.0817,"尼日尔"],
+                ["Nigeria",566,"NG",9.0820,8.6753,"尼日利亚"],
+                ["Niue",570,"NU",-19.0544,-169.8672,"纽埃"],
+                ["Northern Mariana Islands",580,"MP",15.0979,145.6739,"北马里亚纳群岛"],
+                ["Norway",578,"NO",60.4720,8.4689,"挪威"],
+                ["Oman",512,"OM",21.4735,55.9754,"阿曼"],
+                ["Pakistan",586,"PK",30.3753,69.3451,"巴基斯坦"],
+                ["Palau",585,"PW",7.5150,134.5825,"帕劳"],
+                ["Panama",591,"PA",8.9824,-79.5199,"巴拿马"],
+                ["Papua New Guinea",598,"PG",-6.3150,143.9555,"巴布亚新几内亚"],
+                ["Paraguay",600,"PY",-23.4425,-58.4438,"巴拉圭"],
+                ["Peru",604,"PE",-9.1900,-75.0152,"秘鲁"],
+                ["Philippines",608,"PH",12.8797,121.7740,"菲律宾"],
+                ["Poland",616,"PL",51.9194,19.1451,"波兰"],
+                ["Portugal",620,"PT",39.3999,-8.2245,"葡萄牙"],
+                ["Puerto Rico",630,"PR",18.2208,-66.5901,"波多黎各"],
+                ["Qatar",634,"QA",25.3548,51.1839,"卡塔尔"],
+                ["Republic of Korea",410,"KR",35.9078,127.7669,"韩国"],
+                ["Republic of Moldova",498,"MD",47.4116,28.3699,"摩尔多瓦共和国"],
+                ["Réunion",638,"RE",21.1151,55.5364,"留尼汪"],
+                ["Romania",642,"RO",45.9432,24.9668,"罗马尼亚"],
+                ["Rwanda",646,"RW",-1.9403,29.8739,"卢旺达"],
+                ["Saint Helena",654,"SH",-15.9333,-5.7167,"圣赫勒拿"],
+                ["Saint Kitts and Nevis",659,"KN",17.3578,-62.7830,"圣基茨与尼维斯联邦"],
+                ["Saint Lucia",662,"LC",13.9094,-60.9789,"圣露西亚"],
+                ["Saint Pierre and Miquelon",666,"PM",46.7758,-56.1806,"圣皮埃尔和密克隆群岛"],
+                ["Saint Vincent and the Grenadines",670,"VC",12.9843,-61.2872,"圣文森特和格林纳丁斯"],
+                ["Samoa",882,"WS",-13.7590,-172.1046,"萨摩亚"],
+                ["San Marino",674,"SM",43.9356,12.4473,"圣马力诺"],
+                ["Sao Tome and Principe",678,"ST",0.1864,6.6131,"圣多美和普林西比"],
+                ["Saudi Arabia",682,"SA",23.8859,45.0792,"沙特阿拉伯"],
+                ["Senegal",686,"SN",14.4974,-14.4524,"塞内加尔"],
+                ["Serbia",688,"RS",44.0165,21.0059,"塞尔维亚"],
+                ["Seychelles",690,"SC",-4.6796,55.4920,"塞舌尔"],
+                ["Sierra Leone",694,"SL",8.4606,-11.7799,"塞拉利昂"],
+                ["Singapore",702,"SG",1.3521,103.8198,"新加坡"],
+                ["Sint Maarten (Dutch part)",534,"SX",18.0167,-63.0333,"荷属圣马丁"],
+                ["Slovakia",703,"SK",48.6690,19.6990,"斯洛伐克"],
+                ["Slovenia",705,"SI",46.1512,14.9955,"斯洛文尼亚"],
+                ["Solomon Islands",90,"SB",-9.6457,160.1562,"所罗门群岛"],
+                ["Somalia",706,"SO",5.1521,46.1996,"索马里"],
+                ["South Africa",710,"ZA",-30.5595,22.9375,"南非"],
+                ["South Sudan",728,"SS",6.8770,31.3070,"南苏丹"],
+                ["Spain",724,"ES",40.4637,-3.7492,"西班牙"],
+                ["Sri Lanka",144,"LK",7.8731,80.7718,"斯里兰卡"],
+                ["State of Palestine",275,"PS",31.9522,35.2332,"巴勒斯坦国"],
+                ["Sudan",729,"SD",12.8628,30.2176,"苏丹"],
+                ["Suriname",740,"SR",3.9193,-56.0278,"苏里南"],
+                ["Swaziland",748,"SZ",-26.5225,31.4659,"斯威士兰"],
+                ["Sweden",752,"SE",60.1282,18.6435,"瑞典"],
+                ["Switzerland",756,"CH",46.8182,8.2275,"瑞士"],
+                ["Syrian Arab Republic",760,"SY",34.8021,38.9968,"阿拉伯叙利亚共和国"],
+                ["Tajikistan",762,"TJ",38.8610,71.2761,"塔吉克斯坦"],
+                ["Thailand",764,"TH",15.8700,100.9925,"泰国"],
+                ["The former Yugoslav Republic of Macedonia",807,"MK",41.6086,21.7453,"马其顿前南斯拉夫共和国"],
+                ["Timor-Leste",626,"TL",-8.8742,125.7275,"东帝汶"],
+                ["Togo",768,"TG",8.6195,0.8248,"多哥"],
+                ["Tokelau",772,"TK",-9.2002,-171.8484,"托克劳群岛"],
+                ["Tonga",776,"TO",-21.1790,-175.1982,"汤加"],
+                ["Trinidad and Tobago",780,"TT",10.6918,-61.2225,"特立尼达和多巴哥"],
+                ["Tunisia",788,"TN",33.8869,9.5375,"突尼斯"],
+                ["Turkey",792,"TR",38.9637,35.2433,"土耳其"],
+                ["Turkmenistan",795,"TM",38.9697,59.5563,"土库曼斯坦"],
+                ["Turks and Caicos Islands",796,"TC",21.6940,-71.7979,"特克斯和凯科斯群岛"],
+                ["Tuvalu",798,"TV",-7.1095,177.6493,"图瓦卢"],
+                ["Uganda",800,"UG",1.3733,32.2903,"乌干达"],
+                ["Ukraine",804,"UA",48.3794,31.1656,"乌克兰"],
+                ["United Arab Emirates",784,"AE",23.4241,53.8478,"阿联酋"],
+                ["United Republic of Tanzania",834,"TZ",-6.3690,34.8888,"坦桑尼亚联合共和国"],
+                ["United States Virgin Islands",850,"VI",18.3358,-64.8963,"美属维尔京群岛"],
+                ["Uruguay",858,"UY",-32.5228,-55.7658,"乌拉圭"],
+                ["Uzbekistan",860,"UZ",41.3775,64.5853,"乌兹别克斯坦"],
+                ["Vanuatu",548,"VU",-15.3767,166.9592,"瓦努阿图"],
+                ["Venezuela (Bolivarian Republic of)",862,"VE",6.4238,-66.5897,"委内瑞拉"],
+                ["Viet Nam",704,"VN",14.0583,108.2772,"越南"],
+                ["Wallis and Futuna Islands",876,"WF",-14.2938,-178.1165,"瓦利斯群岛和富图纳群岛"],
+                ["Western Sahara",732,"EH",24.2155,-12.8858,"西撒哈拉"],
+                ["Yemen",887,"YE",15.5527,48.5164,"也门"],
+                ["Zambia",894,"ZM",-13.1339,27.8493,"赞比亚"],
+                ["Zimbabwe",716,"ZW",-19.0154,29.1549,"津巴布韦"]
+                ];
+    var collect=document.getElementById("countrylist")
+    var niw="";  
+     for(var i=0;i<countryCode.length;i++){  
+         niw+='<option>'+countryCode[i][5]+ '|' +countryCode[i][0]+ '</option>';  
+     }
+     countrylist.innerHTML=niw;
+
+     //飞到某个地点
+    $("#countrylist").change(function(){
+        val=$('option:selected', '#countrylist').index();
+        map.flyTo({
+            zoom:2,
+            center: [                  
+                countryCode[val][4],
+                countryCode[val][3],
+            ],
+            //essential: true // this animation is considered essential with respect to prefers-reduced-motion
+        });
+    });
+    //获得国家坐标
+    function getCountryCoods(cName){
+        for(var i = 0; i < countryCode.length; i++){
+            
+            if( cName == countryCode[i][0]){
+                var coods = {"lng":0,"lat":0};
+                coods.lng = countryCode[i][4];
+                coods.lat = countryCode[i][3];
+                return coods;
+            }
+        }
+    }
+</script>
+
+<script type="text/javascript">
+     var curCountry = "China";    //记录当前国家
+     var curyear = "1990";       //记录当前年份
+     var status = "out";        //记录当前移入移出状态  
+
+    $("#countrylist").change(function(){
+        val=$('option:selected', '#countrylist').index();
+        curCountry = countryCode[val][0];
+        map.flyTo({
+            zoom:2,
+            center: [                  
+                countryCode[val][4],
+                countryCode[val][3],
+            ],
+            //essential: true // this animation is considered essential with respect to prefers-reduced-motion
+        });
+    });
+      //两侧滑动框控制
+    function toggleSidebar(id) {
+        var elem = document.getElementById(id);
+        var classes = elem.className.split(' ');
+        var collapsed = classes.indexOf('collapsed') !== -1;
+
+        var padding = {};
+
+        if (collapsed) {
+            // Remove the 'collapsed' class from the class list of the element, this sets it back to the expanded state.
+            classes.splice(classes.indexOf('collapsed'), 1);
+            padding[id] = 300; // In px, matches the width of the sidebars set in .sidebar CSS class
+        } else {
+            padding[id] = 0;
+            // Add the 'collapsed' class to the class list of the element
+            classes.push('collapsed');
+        }
+
+        // Update the class list on the element
+        elem.className = classes.join(' ');
+    }
+</script>
+<script type="text/javascript">
+    
+
+</script>
+</body>
+</html>

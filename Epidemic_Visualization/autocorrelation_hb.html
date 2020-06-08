@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>疫情可视化</title> 
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection" />
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">
+    <script src="assets/js/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/jquery-3.4.1.js"></script>
+    <script src="assets/js/echarts.min.js"></script>
+    <script src="assets/js/china.js"></script>
+	<script src="assets/js/hubei.js"></script>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand waves-effect waves-dark" href="index.html"><i class="large material-icons">track_changes</i> <strong>全民战疫</strong></a>
+				
+		<div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
+            </div>
+        </nav>
+       <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                	<li>
+                		<a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>疫情地图<span class="fa arrow"></span></a>
+                		<ul class="nav nav-second-level">
+                			<li>
+                				<a href="index.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>中国疫情地图</a>
+                			</li>
+                			<li>
+                				<a href="hubei_map.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>湖北疫情地图</a>
+                			</li>
+                			<li>
+                				<a href="world.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>世界疫情地图</a>
+                			</li>
+                			<li>
+                				<a href="US_map.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>美国疫情地图</a>
+                			</li>             			
+                		</ul>
+                	</li>
+                	<li>
+                		<a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>趋势分析<span class="fa arrow"></span></a>
+                		<ul class="nav nav-second-level">
+                			<li>
+                        		<a href="chart.html" class="waves-effect waves-dark"style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>中国各省</a>
+                        	</li>
+                			<li>
+                        		<a href="hubei.html" class="waves-effect waves-dark"style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>湖北各市</a>
+                        	</li>
+                			<li>
+                        		<a href="countries_chart.html" class="waves-effect waves-dark"style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>世界各国</a>
+                        	</li>           			
+                		</ul>
+                	</li>
+                	<li>
+                		<a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-table"></i>数据概况<span class="fa arrow"></span></a>
+                		<ul class="nav nav-second-level">
+                			<li>
+                        		<a href="mytable.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-table"></i>中国数据</a>
+                        	</li>
+                			<li>
+                				<a href="countries_data.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-table"></i>海外数据</a>
+                			</li>         			
+                		</ul>
+                	</li>
+                	<li>
+                		<a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-desktop"></i>空间自相关分析<span class="fa arrow"></span></a>
+                		<ul class="nav nav-second-level collapse in">
+                			<li>
+                				<a href="autocorrelation_hb.html" class="active-menu waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>湖北疫情分析</a>
+                			</li>
+                			<li>
+                				<a href="autocorrelation_usa.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-table"></i>美国疫情分析</a>
+                			</li>
+                		</ul>
+                	</li>
+                	<li>
+                		<a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-sitemap"></i>空间社会网络分析<span class="fa arrow"></span></a>
+                		<ul class="nav nav-second-level">
+                			<li>
+                				<a href="network.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-sitemap"></i>国际关系分析</a>
+                			</li>
+                			<li>
+                				<a href="wordcloud.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-edit"></i>词云展示</a>
+                			</li>
+                		</ul>
+                	</li>
+                	<li>
+                        <a href="simulation.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-fw fa-tags"></i>疫情模拟预测</a>
+                    </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+      
+	<div id="page-wrapper">
+		  <div class="header"> 
+            <h1 class="page-header">
+           湖北省疫情空间自相关分析
+           </h1>
+           <div class="divider" style=""></div>								
+		 </div>
+            <div id="page-inner">
+
+			
+	<!-- </script> -->
+	<div class="row">
+		<div class="divider" style=""></div>
+		<div class="col-md-6 col-sm-12 col-xs-12"> 
+			<div  style="font-size:22px; padding-top:20px;text-align:center; margin: 0 auto">
+				<strong>发病率显著性地图</strong>
+			</div>
+			<div id="main01" style="width: 600px;height:450px;margin: 0 auto;"></div>
+		</div>
+		<div class="col-md-6 col-sm-12 col-xs-12">
+			<div  style="font-size:22px; padding-top:20px;text-align:center; margin: 0 auto">
+				<strong>发病率LISA聚类地图</strong>
+			</div>
+			<div id="main02" style="width: 600px;height:450px;margin: 0 auto;"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="divider" style=""></div>
+		<div class="col-md-6 col-sm-12 col-xs-12"> 
+			<div  style="font-size:22px; padding-top:20px;text-align:center; margin: 0 auto">
+				<strong>发病率箱线地图</strong>
+				<div>(Hinge=1.5)</div>
+			</div>
+			<div id="main03" style="width: 600px;height:450px;margin: 0 auto;"></div>
+		</div>
+		<div class="col-md-6 col-sm-12 col-xs-12">
+			<!-- <div  style="font-size:22px; padding-top:50px;text-align:center; margin: 0 auto"> -->
+				<!-- <strong>分析</strong> -->
+			<!-- </div> -->
+			<div id="main04" style="width: 600px;height:450px;margin: 0 auto;">
+				<div  style="font-size:18px; padding-top:40px;text-align:justify; margin: 0 90px">
+				&emsp;&emsp;选取湖北省3月3日疫情数据进行空间自相关分析，由于各县市的人口规模不同，只以绝对的确诊人数指标来评判不够科学，
+				故搜集湖北省统计局2019年发布的人口数据，按照确诊人数/户籍人口计算出截止至2020年3月3日湖北省各县市的患病率，对其进行空间自相关分析。
+				同时，由于武汉数据过于突出，为便于分析，对计算出的患病率进行了对数处理。
+				</div>
+				<div  style="font-size:18px; text-align:justify; margin: 0 90px">
+				&emsp;&emsp;计算得Moran指数为0.334，可见湖北省患病率存在较为明显的空间自相关，在999序列的随机置换检验下，p值为0.003，
+				可得<b>在99.7%置信度下空间自相关显著</b>，由从LISA显著性性地图可见武汉、黄冈等五区市的局部空间自相关显著度达到99%，
+				从LISA聚类地图可见<strong>武汉、孝感、黄冈等</strong>六区市为高-高聚集，<strong>宜昌、恩施州、神农架</strong>三区市为低-低聚集。
+				这主要是由于武汉及其周边地区时空邻近度高，故此区域疫情十分严重，而恩施、宜昌、神农架林区由于与武汉时空邻近度低，
+				且位于山区，人口密度低，疫情相对较轻。
+				
+				</div>
+			</div>
+		</div>
+	</div>
+			<script type="text/javascript">
+				var Confirms=[];
+				var date= [];
+				var province=["鄂州","恩施州","黄冈","黄石","荆门","荆州","潜江","神农架","十堰","随州","天门","武汉","仙桃","咸宁","襄阳","孝感","宜昌"];
+				
+				var myChart = echarts.init(document.getElementById('main01'));
+						   option = {
+								baseOption: {		                    
+
+									tooltip: {
+										show: true,
+										trigger: 'item'
+									},
+									visualMap: {
+										type: 'piecewise',
+										pieces: [
+											<!-- { -->
+												<!-- value: 0.0001, -->
+												<!-- label:'p=0.0001', -->
+												<!-- color: '#D2691E' -->
+											<!-- }, -->
+											{
+												value: 0.001,
+												label:'p=0.001',
+												color: '#F06428'
+											},
+											{
+												value: 0.01,
+												label:'p=0.01',
+												color: '#FFA500'
+											},
+											{
+												value: 0.05,
+												label:'p=0.05',
+												color: '#FAF078'//#FFEC8B
+											},
+											{
+												value: 1,
+												label:'不显著',
+												color: 'white'
+											}
+										],
+										orient: 'vertical',
+										itemWidth: 25,
+										itemHeight: 15,
+										showLabel: true,
+										seriesIndex: [0],
+
+										textStyle: {
+											color: '#7B93A7'
+										},
+										bottom: '10%',
+										left: "1%",
+									},
+									geo: {
+										map: '湖北',
+										right: '5%',
+										left: '20%',
+										label: {
+											emphasis: {
+												show: false, //不在图上显示地名
+											}
+										},
+										itemStyle: {
+											emphasis: {
+												areaColor: '#FF6347'
+											}
+										}
+									},
+									series: [{
+											name: '显著值',
+											type: 'map',
+											map: '湖北',
+											roam: false,
+											geoIndex: 0,
+											label: {
+												show: false,
+											},
+											
+											data:[
+											{name:'武汉', value:0.01},
+											{name:'黄冈', value:0.01},
+											{name:'黄石', value:0.01},
+											{name:'宜昌', value:0.01},
+											{name:'神农架', value:0.01},
+											{name:'鄂州', value:0.05},									
+											{name:'咸宁', value:0.05},
+											{name:'孝感', value:0.05},
+											{name:'恩施州', value:0.05},
+											{name:'荆州', value:1},	
+											{name:'十堰', value:1},
+											{name:'襄阳', value:1},
+											{name:'荆门', value:1},
+											{name:'随州', value:1},
+											{name:'潜江', value:1},
+											{name:'仙桃', value:1},
+											{name:'天门', value:1},
+											
+																		
+										]
+										
+									 },
+										
+										
+									],
+
+								}
+								
+							};
+							myChart.setOption(option);
+
+			</script>
+			
+			<script type="text/javascript">
+				var Confirms=[];
+				var date= [];
+				var province=["鄂州","恩施州","黄冈","黄石","荆门","荆州","潜江","神农架","十堰","随州","天门","武汉","仙桃","咸宁","襄阳","孝感","宜昌"];
+				
+				var myChart = echarts.init(document.getElementById('main02'));
+						   option = {
+								baseOption: {		                    
+
+									tooltip: {
+										show: true,
+										trigger: 'item'
+									},
+									visualMap: {
+										type: 'piecewise',
+										pieces: [
+											{
+												value: 0.0001,
+												label:'高-低聚集',
+												color: '#FFB6C1'
+											},
+											{
+												value: 0.001,
+												label:'低-高聚集',
+												color: '#6495ED'
+											},
+											{
+												value: 0.01,
+												label:'低-低聚集',
+												color: '#00008B'
+											},
+											{
+												value: 0.05,
+												label:'高-高聚集',
+												color: '#DC143C'//#FFEC8B
+											},
+											{
+												value: 1,
+												label:'不显著',
+												color: 'white'
+											}
+										],
+										orient: 'vertical',
+										itemWidth: 25,
+										itemHeight: 15,
+										showLabel: true,
+										seriesIndex: [0],
+
+										textStyle: {
+											color: '#7B93A7'
+										},
+										bottom: '10%',
+										left: "1%",
+									},
+									geo: {
+										map: '湖北',
+										right: '5%',
+										left: '20%',
+										label: {
+											emphasis: {
+												show: false, //不在图上显示地名
+											}
+										},
+										itemStyle: {
+											emphasis: {
+												areaColor: '#FF6347'
+											}
+										}
+									},
+									series: [{
+											name: 'LISA聚类',
+											type: 'map',
+											map: '湖北',
+											roam: false,
+											geoIndex: 0,
+											label: {
+												show: false,
+											},
+											
+											data:[
+											{name:'武汉', value:0.05},
+											{name:'黄冈', value:0.05},
+											{name:'黄石', value:0.05},
+											{name:'宜昌', value:0.01},
+											{name:'神农架', value:0.01},
+											{name:'鄂州', value:0.05},									
+											{name:'咸宁', value:0.001},
+											{name:'孝感', value:0.05},
+											{name:'恩施州', value:0.01},
+											{name:'荆州', value:1},	
+											{name:'十堰', value:1},
+											{name:'襄阳', value:1},
+											{name:'荆门', value:1},
+											{name:'随州', value:1},
+											{name:'潜江', value:1},
+											{name:'仙桃', value:1},
+											{name:'天门', value:1}
+																													
+										]
+										
+									 },
+																				
+									],
+
+								}
+							};
+							myChart.setOption(option);
+
+			</script>
+			<script type="text/javascript">
+				var Confirms=[];
+				var date= [];
+				var province=["鄂州","恩施州","黄冈","黄石","荆门","荆州","潜江","神农架","十堰","随州","天门","武汉","仙桃","咸宁","襄阳","孝感","宜昌"];
+				
+				var myChart = echarts.init(document.getElementById('main03'));
+						   option = {
+								baseOption: {		                    
+
+									tooltip: {
+										show: true,
+										trigger: 'item'
+									},
+									visualMap: {
+										type: 'piecewise',
+										pieces: [
+											{
+												value: 0,
+												label:'低异常值',
+												color: '#00008B'
+											},
+											{
+												value: 1,
+												label:'<25%',
+												color: '#6495ED'
+											},
+											{
+												value: 2,
+												label:'25%-50%',
+												color: '#87CEFA'
+											},
+											{
+												value: 3,
+												label:'50%-75%',
+												color: '#FFB6C1'
+											},
+											
+											{
+												value: 4,
+												label:'>75%',
+												color: '#F07893'//#FFEC8B
+											},
+											{
+												value: 5,
+												label:'高异常值',
+												color: '#DC143C'//#FFEC8B
+											}
+											
+										],
+										orient: 'vertical',
+										itemWidth: 25,
+										itemHeight: 15,
+										showLabel: true,
+										seriesIndex: [0],
+
+										textStyle: {
+											color: '#7B93A7'
+										},
+										bottom: '10%',
+										left: "1%",
+									},
+									geo: {
+										map: '湖北',
+										right: '5%',
+										left: '20%',
+										label: {
+											emphasis: {
+												show: false, //不在图上显示地名
+											}
+										},
+										itemStyle: {
+											emphasis: {
+												areaColor: '#FF6347'
+											}
+										}
+									},
+									series: [{
+											name: '箱线图分级',
+											type: 'map',
+											map: '湖北',
+											roam: false,
+											geoIndex: 0,
+											label: {
+												show: false,
+											},
+											
+											data:[
+											{name:'武汉', value:5},
+											{name:'黄冈', value:3},
+											{name:'黄石', value:3},
+											{name:'宜昌', value:2},
+											{name:'神农架', value:1},
+											{name:'鄂州', value:5},									
+											{name:'咸宁', value:2},
+											{name:'孝感', value:4},
+											{name:'恩施州', value:0},
+											{name:'荆州', value:2},	
+											{name:'十堰', value:1},
+											{name:'襄阳', value:2},
+											{name:'荆门', value:3},
+											{name:'随州', value:4},
+											{name:'潜江', value:1},
+											{name:'仙桃', value:3},
+											{name:'天门', value:3},
+																													
+										]
+										
+									 },
+																				
+									],
+
+								}
+							};
+							myChart.setOption(option);
+
+			</script>
+	
+   
+    <!-- </script> -->
+    
+            <!-- /. PAGE INNER  -->
+    </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+	
+	<!-- Bootstrap Js -->
+    <script src="assets/js/bootstrap.min.js"></script>
+	
+	<script src="assets/materialize/js/materialize.min.js"></script>
+	
+    <!-- Metis Menu Js -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+    <!-- Morris Chart Js -->
+    <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="assets/js/morris/morris.js"></script>
+	
+	
+	<script src="assets/js/easypiechart.js"></script>
+	<script src="assets/js/easypiechart-data.js"></script>
+	
+	 <script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
+	
+    <!-- Custom Js -->
+    <script src="assets/js/custom-scripts.js"></script> 
+ 
+
+</body>
+
+</html>
