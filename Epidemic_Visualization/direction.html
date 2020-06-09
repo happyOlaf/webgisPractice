@@ -1,0 +1,750 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>疫情可视化</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection" /> -->
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <!-- <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" /> -->
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' /> -->
+    <!-- <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">  -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.loading.min.js"></script>
+    <script src="assets/js/echarts.min.js"></script>
+	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-language/v0.10.0/mapbox-gl-language.js'></script>
+	<script src="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js"></script>
+	<link href="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css" rel="stylesheet" />
+    <!-- <script src="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js"></script> -->
+	<!-- <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css" rel="stylesheet" /> -->
+	<!-- <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-language/v0.10.0/mapbox-gl-language.js'></script> -->
+	<script src="assets/js/worldZHjson.js"></script>
+<style type="text/css">
+ 	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0px; bottom: 0; width: 100%; }
+	label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 0px;
+    font-weight: 400;
+}
+</style>
+
+</head>
+<body>
+    <div id="wrapper" style="">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand waves-effect waves-dark" href="index.html"><i class="large material-icons">track_changes</i> <strong>全民战疫</strong></a>
+                
+                <div id="sideNav" class="waves-effect waves-dark" href=""><i class="material-icons dp48">toc</i></div>
+            </div>
+        </nav>
+		<nav class="navbar-default navbar-side" role="navigation">
+		            <div class="sidebar-collapse">
+		                <ul class="nav" id="main-menu">
+		                	<li>
+		                		<a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>疫情地图<span class="fa arrow"></span></a>
+		                		<ul class="nav nav-second-level">
+		                			<li>
+		                				<a href="index.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>中国疫情地图</a>
+		                			</li>
+		                			<li>
+		                				<a href="hubei_map.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>湖北疫情地图</a>
+		                			</li>
+		                			<li>
+		                				<a href="world.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>世界疫情地图</a>
+		                			</li>
+		                			<li>
+		                				<a href="US_map.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-dashboard"></i>美国疫情地图</a>
+		                			</li>             			
+		                		</ul>
+		                	</li>
+		                	<li>
+		                		<a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>趋势分析<span class="fa arrow"></span></a>
+		                		<ul class="nav nav-second-level collapse in">
+		                			<li>
+		                        		<a href="chart.html" class="active-menu waves-effect waves-dark"style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>中国各省</a>
+		                        	</li>
+		                			<li>
+		                        		<a href="hubei.html" class="waves-effect waves-dark"style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>湖北各市</a>
+		                        	</li>
+		                			<li>
+		                        		<a href="countries_chart.html" class="waves-effect waves-dark"style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>世界各国</a>
+		                        	</li>           			
+		                		</ul>
+		                	</li>
+		                	<li>
+		                		<a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-table"></i>数据概况<span class="fa arrow"></span></a>
+		                		<ul class="nav nav-second-level">
+		                			<li>
+		                        		<a href="mytable.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-table"></i>中国数据</a>
+		                        	</li>
+		                			<li>
+		                				<a href="countries_data.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-table"></i>海外数据</a>
+		                			</li>         			
+		                		</ul>
+		                	</li>
+		                	<li>
+		                		<a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-desktop"></i>空间自相关分析<span class="fa arrow"></span></a>
+		                		<ul class="nav nav-second-level">
+		                			<li>
+		                				<a href="autocorrelation_hb.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>湖北疫情分析</a>
+		                			</li>
+		                			<li>
+		                				<a href="autocorrelation_usa.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-table"></i>美国疫情分析</a>
+		                			</li>
+		                		</ul>
+		                	</li>
+		                	<li>
+		                		<a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-sitemap"></i>空间社会网络分析<span class="fa arrow"></span></a>
+		                		<ul class="nav nav-second-level">
+		                			<li>
+		                				<a href="network.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-sitemap"></i>国际关系分析</a>
+		                			</li>
+		                			<li>
+		                				<a href="wordcloud.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-edit"></i>词云展示</a>
+		                			</li>
+		                		</ul>
+		                	</li>
+		                	<li>
+		                        <a href="simulation.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-fw fa-tags"></i>疫情模拟预测</a>
+		                    </li>
+		                        </ul>
+		                    </li>
+		                </ul>
+
+		            </div>
+		        </nav>
+<!-- /. NAV SIDE  -->
+<div id="page-wrapper" style="min-height: 680px;overflow: hidden;">
+    <div class="header"> 
+       <div class="divider" style=""></div>
+    </div>
+	<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js"></script>
+	<link
+	rel="stylesheet"
+	href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css"
+	type="text/css"
+	/>
+	<div id="map"></div>
+ 	
+	
+<script type="text/javascript">
+</script>
+<script src="http://api.map.baidu.com/api?v=1.2" type="text/javascript"></script>
+	<!-- var longitude = 0
+	var latitude = 0 -->
+    <!-- <script>
+        function getLocation(){
+            var options={
+                enableHighAccuracy:true,
+                maximumAge:1000
+            }
+            if(navigator.geolocation){
+                //浏览器支持geolocation
+                navigator.geolocation.getCurrentPosition(onSuccess,onError,options);
+            }else{
+                //浏览器不支持geolocation
+                alert('您的浏览器不支持地理位置定位');
+            }
+        }
+        //成功时
+        function onSuccess(position){
+            //返回用户位置
+            //经度
+            var longitude =position.coords.longitude;
+            //纬度
+            var latitude = position.coords.latitude;
+            //alert('经度'+longitude+'，纬度'+latitude);
+			
+
+            //根据经纬度获取地理位置，不太准确，获取城市区域还是可以的
+            var map = new BMap.Map("allmap");
+            var point = new BMap.Point(longitude,latitude);
+            var gc = new BMap.Geocoder();
+            gc.getLocation(point, function(rs){
+                var addComp = rs.addressComponents;
+				console.log(addComp);
+                //alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+				document.getElementById("loc").innerHTML = "您的位置：" + addComp.province + ", " + addComp.city + ", " + addComp.district;
+			});
+        }
+        //失败时
+        function onError(error){
+            switch(error.code){
+                case 1:
+                    alert("位置服务被拒绝");
+                    break;
+                case 2:
+                    alert("暂时获取不到位置信息");
+                    break;
+                case 3:
+                    alert("获取信息超时");
+                    break;
+                case 4:
+                    alert("未知错误");
+                    break;
+            }
+        }
+        window.onload=getLocation;
+
+    </script> -->
+<script type="text/javascript">
+	var lon;
+	var lat;
+	var map;
+		function getLocation(){
+            var options={
+                enableHighAccuracy:true,
+				timeout: 2000,
+                maximumAge:1000 //获取等待时间
+            }
+            if(navigator.geolocation){
+                //浏览器支持geolocation
+                navigator.geolocation.getCurrentPosition(onSuccess,onError,options);
+            }else{
+                //浏览器不支持geolocation
+                alert('您的浏览器不支持地理位置定位');
+            }
+        }
+        //成功时
+        function onSuccess(position){
+            //返回用户位置
+            //经度
+            var longitude = position.coords.longitude;
+            //纬度
+            var latitude = position.coords.latitude;
+            alert('经度'+longitude+'，纬度'+latitude);
+			lon = longitude;
+			lat = latitude;
+			var map = new mapboxgl.Map({
+				container: 'map',
+				style: 'mapbox://styles/mapbox/streets-v9',
+				//center: [116.39139,39.905],
+				
+				center: [lon, lat],
+				//console.log(longitude);
+				zoom: 10
+				});
+			//alert('经度'+longitude+'，纬度'+latitude);	
+			mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.0/mapbox-gl-rtl-text.js');
+			map.addControl(new MapboxLanguage({
+				defaultLanguage: 'zh'
+			})); 
+			map.addControl(
+				new MapboxDirections({
+				accessToken: mapboxgl.accessToken
+				}),
+				'top-left'
+				);
+			map.on('load', function() {
+				// Add a new source from our GeoJSON data and
+				// set the 'cluster' option to true. GL-JS will
+				// add the point_count property to your source data.
+				map.addSource('earthquakes', {
+					type: 'geojson',
+					// Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
+					// from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
+					data:'data/hospgcjjson.json',
+					
+					<!-- 'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson', -->
+					cluster: true,
+					clusterMaxZoom: 14, // Max zoom to cluster points on
+					clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+				
+				});
+				 
+				map.addLayer({
+					id: 'clusters',
+					type: 'circle',
+					source: 'earthquakes',
+					filter: ['has', 'point_count'],
+					paint: {
+					// Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+					// with three steps to implement three types of circles:
+					//   * Blue, 20px circles when point count is less than 100
+					//   * Yellow, 30px circles when point count is between 100 and 750
+					//   * Pink, 40px circles when point count is greater than or equal to 750
+					'circle-color': [
+						'step',
+						['get', 'point_count'],
+						'#51bbd6',
+						100,
+						'#f1f075',
+						750,
+						'#f28cb1'
+					],
+					'circle-radius': [
+						'step',
+						['get', 'point_count'],
+						25,
+						100,
+						35,
+						750,
+						45
+					]
+					}
+				});
+				 
+				map.addLayer({
+					id: 'cluster-count',
+					type: 'symbol',
+					source: 'earthquakes',
+					filter: ['has', 'point_count'],
+					layout: {
+					'text-field': '{point_count_abbreviated}',
+					'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+					'text-size': 12
+					}
+				});
+				map.loadImage(
+					'data/医院.png',
+					function(error, image) {
+					if (error) throw error;
+					map.addImage('cat', image);
+					
+				}
+				);
+					
+				map.addLayer({
+					id: 'unclustered-point',
+					type: 'symbol', //type: 'circle',
+					source: 'earthquakes',
+					filter: ['!', ['has', 'point_count']],
+					//filter: ["zoom", '12.5'],
+					minzoom: 8, 
+					layout: {
+						'icon-allow-overlap':true,
+						'icon-image':'cat',
+						'icon-size': 0.15
+					}
+					/*paint: {
+					'circle-color': '#11b4da',
+					'circle-radius': 8,
+					'circle-stroke-width': 1,
+					'circle-stroke-color': '#fff'
+					}*/
+					
+				});
+				var dataroot = "data/hospjsonloc.json";
+				/*$.getJSON(dataroot, function(data){
+					for (i = 0; i < data.features.length; i++) { 
+						coordinates = data.features[i].geometry.coordinates.slice();
+						//console.log(coordinates)
+						new mapboxgl.Marker()
+						.setLngLat(coordinates)
+											
+						//.setLngLat([116.39139,39.905])
+						//.setPopup(popup) // sets a popup on this marker
+						.addTo(map); 
+						//.setmaxzoom: 10;
+					}
+					
+				});*/
+
+				//var coordinates = e.features[0].geometry.coordinates.slice();
+				 
+					
+				
+				
+					
+					
+				
+				// inspect a cluster on click
+				map.on('click', 'clusters', function(e) {
+					var features = map.queryRenderedFeatures(e.point, {
+					layers: ['clusters']
+					});
+					var clusterId = features[0].properties.cluster_id;
+					
+					map.getSource('earthquakes').getClusterExpansionZoom(
+						clusterId,
+						function(err, zoom) {
+						if (err) return;
+						 
+						map.easeTo({
+						center: features[0].geometry.coordinates,
+						zoom: zoom
+						});
+						}
+					);
+				});
+				 
+					
+					// When a click event occurs on a feature in
+					// the unclustered-point layer, open a popup at
+					// the location of the feature, with
+					// description HTML from its properties.
+				map.on('click', 'unclustered-point', function(e) {
+					var coordinates = e.features[0].geometry.coordinates.slice();
+					var mylocation = e.features[0].properties.location;
+					var hospital = e.features[0].properties.hospital;
+					var lonti = coordinates[0];
+					var lati = coordinates[1];
+					//var mag = e.features[0].properties.mag;
+					var tsunami;
+					 
+					if (e.features[0].properties.tsunami === 1) {
+						tsunami = 'yes';
+						} else {
+						tsunami = 'no';
+					}
+					 
+					// Ensure that if the map is zoomed out such that
+					// multiple copies of the feature are visible, the
+					// popup appears over the copy being pointed to.
+					while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+					coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+					}
+					// create the marker
+					
+					
+					new mapboxgl.Popup()
+					.setLngLat(coordinates)
+					.setHTML(
+					'<br>' + mylocation + '<br>' + hospital
+					)
+					.addTo(map);
+				});
+					 
+				map.on('mouseenter', 'clusters', function() {
+					map.getCanvas().style.cursor = 'pointer';
+				});
+				map.on('mouseleave', 'clusters', function() {
+					map.getCanvas().style.cursor = '';
+				});
+			});
+			/*map = new mapboxgl.Map({
+			container: 'map',
+			style: 'mapbox://styles/mapbox/streets-v9',
+			<!-- center: [116.39139,39.905], -->
+			
+			center: [longitude, latitude],
+			//console.log(longitude);
+			zoom: 8
+			});*/
+			//console.log(longitude);
+            //根据经纬度获取地理位置，不太准确，获取城市区域还是可以的
+            var mapbaidu = new BMap.Map("allmap");
+            var point = new BMap.Point(longitude,latitude);
+            var gc = new BMap.Geocoder();
+            gc.getLocation(point, function(rs){
+                var addComp = rs.addressComponents;
+				console.log(addComp);
+                //alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+				document.getElementById("loc").innerHTML = "您的位置：" + addComp.province + ", " + addComp.city + ", " + addComp.district;
+			});
+        }
+		//console.log(longitude);
+        //失败时
+        function onError(error){
+            switch(error.code){
+                case 1:
+                    alert("位置服务被拒绝");
+                    break;
+                case 2:
+                    alert("暂时获取不到位置信息");
+                    break;
+                case 3:
+                    alert("获取信息超时");
+                    break;
+                case 4:
+                    alert("未知错误");
+                    break;
+            }
+			var map = new mapboxgl.Map({
+				container: 'map',
+				style: 'mapbox://styles/mapbox/streets-v9',
+				//center: [114.360734, 30.541093],    // 116.39139,39.905北京
+				center: [116.39139,39.905], 
+				//center: [lon, lat],
+				//console.log(longitude);
+				zoom: 11
+				});
+			//alert('经度'+longitude+'，纬度'+latitude);	
+			mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.0/mapbox-gl-rtl-text.js');
+			map.addControl(new MapboxLanguage({
+				defaultLanguage: 'zh'
+			})); 
+			map.addControl(
+				new MapboxDirections({
+				accessToken: mapboxgl.accessToken
+				}),
+				'top-left'
+				);
+			map.on('load', function() {
+				// Add a new source from our GeoJSON data and
+				// set the 'cluster' option to true. GL-JS will
+				// add the point_count property to your source data.
+				map.addSource('earthquakes', {
+				type: 'geojson',
+				// Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
+				// from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
+				data:
+				'data/hospgcjjson.json',
+				<!-- 'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson', -->
+				cluster: true,
+				clusterMaxZoom: 14, // Max zoom to cluster points on
+				clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+				});
+				 
+				map.addLayer({
+				id: 'clusters',
+				type: 'circle',
+				source: 'earthquakes',
+				filter: ['has', 'point_count'],
+				paint: {
+				// Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+				// with three steps to implement three types of circles:
+				//   * Blue, 20px circles when point count is less than 100
+				//   * Yellow, 30px circles when point count is between 100 and 750
+				//   * Pink, 40px circles when point count is greater than or equal to 750
+				'circle-color': [
+				'step',
+				['get', 'point_count'],
+				'#51bbd6',
+				100,
+				'#f1f075',
+				750,
+				'#f28cb1'
+				],
+				'circle-radius': [
+				'step',
+				['get', 'point_count'],
+				20,
+				100,
+				30,
+				750,
+				40
+				]
+				}
+				});
+				 
+				map.addLayer({
+					id: 'cluster-count',
+					type: 'symbol',
+					source: 'earthquakes',
+					filter: ['has', 'point_count'],
+					layout: {
+					'text-field': '{point_count_abbreviated}',
+					'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+					'text-size': 12
+					}
+				});
+				map.loadImage(
+					'data/医院.png',
+					function(error, image) {
+					if (error) throw error;
+					map.addImage('cat', image);
+					
+				}
+				);
+					
+				map.addLayer({
+					id: 'unclustered-point',
+					type: 'symbol', //type: 'circle',
+					source: 'earthquakes',
+					filter: ['!', ['has', 'point_count']],
+					//filter: ["zoom", '12.5'],
+					minzoom: 8, 
+					layout: {
+						'icon-allow-overlap':true,
+						'icon-image':'cat',
+						'icon-size': 0.15
+					}
+					
+				}); 
+				/*map.addLayer({
+				id: 'unclustered-point',
+				type: 'circle',
+				source: 'earthquakes',
+				filter: ['!', ['has', 'point_count']],
+				paint: {
+				'circle-color': '#11b4da',
+				'circle-radius': 10,
+				'circle-stroke-width': 1,
+				'circle-stroke-color': '#fff'
+				}
+				});*/
+				 
+				// inspect a cluster on click
+				map.on('click', 'clusters', function(e) {
+				var features = map.queryRenderedFeatures(e.point, {
+				layers: ['clusters']
+				});
+				var clusterId = features[0].properties.cluster_id;
+				map.getSource('earthquakes').getClusterExpansionZoom(
+				clusterId,
+				function(err, zoom) {
+				if (err) return;
+				 
+				map.easeTo({
+				center: features[0].geometry.coordinates,
+				zoom: zoom
+				});
+				}
+				);
+				});
+				 
+				// When a click event occurs on a feature in
+				// the unclustered-point layer, open a popup at
+				// the location of the feature, with
+				// description HTML from its properties.
+				map.on('click', 'unclustered-point', function(e) {
+					var coordinates = e.features[0].geometry.coordinates.slice();
+					//var mag = e.features[0].properties.mag;
+					var mylocation = e.features[0].properties.location;
+					var hospital = e.features[0].properties.hospital;
+					
+					 
+					if (e.features[0].properties.tsunami === 1) {
+					tsunami = 'yes';
+					} else {
+					tsunami = 'no';
+					}
+					 
+					// Ensure that if the map is zoomed out such that
+					// multiple copies of the feature are visible, the
+					// popup appears over the copy being pointed to.
+					while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+					coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+					}
+				 
+					new mapboxgl.Popup()
+					.setLngLat(coordinates)
+					.setHTML(
+					'<br>' + mylocation + '<br>' + hospital
+					)
+					.setMaxWidth("400px")
+					.addTo(map);
+					});
+					
+					// Create a popup, but don't add it to the map yet.
+					
+				
+				 
+				
+
+
+				
+					map.on('mouseenter', 'clusters', function() {
+						map.getCanvas().style.cursor = 'pointer';
+					});
+					map.on('mouseleave', 'clusters', function() {
+						map.getCanvas().style.cursor = '';
+					});
+				
+				});
+				
+				/*var popup = new mapboxgl.Popup({
+						closeButton: false,
+						closeOnClick: false
+					});
+				 
+				
+					// Change the cursor style as a UI indicator.
+				map.on('mouseenter', 'places', function(e) {
+					// Change the cursor style as a UI indicator.
+					map.getCanvas().style.cursor = 'pointer';
+					 
+					var coordinates = e.features[0].geometry.coordinates.slice();
+					var mylocation = e.features[0].properties.location;
+					var hospital = e.features[0].properties.hospital;
+					console.log(hospital)
+					// Ensure that if the map is zoomed out such that multiple
+					// copies of the feature are visible, the popup appears
+					// over the copy being pointed to.
+					while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+					coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+					}
+					 
+					// Populate the popup and set its coordinates
+					// based on the feature found.
+					popup
+					.setLngLat(coordinates)
+					.setHTML(
+					'<br>' + mylocation + '<br>' + hospital
+					)
+					.addTo(map);
+				});	
+				map.on('mouseleave', 'places', function() {
+					map.getCanvas().style.cursor = '';
+					popup.remove();
+				});*/
+			
+			
+        }
+		
+        window.onload=getLocation;
+	
+		mapboxgl.accessToken = 'pk.eyJ1Ijoic3VuaGhoIiwiYSI6ImNrOHYydDcxaDA2Y2QzZ3ByNHhxaHRwNnUifQ.EY5JFYPs7LPFTtv0kmBKvw';
+		
+		/*var map = new mapboxgl.Map({
+			container: 'map',
+			style: 'mapbox://styles/mapbox/streets-v9',
+			//center: [116.39139,39.905],
+			
+			center: [lon, lat],
+			//console.log(longitude);
+			zoom: 8
+			});
+		//alert('经度'+longitude+'，纬度'+latitude);	
+		mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.0/mapbox-gl-rtl-text.js');
+		map.addControl(new MapboxLanguage({
+			defaultLanguage: 'zh'
+		})); 
+		map.addControl(
+			new MapboxDirections({
+			accessToken: mapboxgl.accessToken
+			}),
+			'top-left'
+			);*/
+	
+</script>
+
+
+
+
+
+</div>
+<!-- /. PAGE INNER  -->
+</div>
+<!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="assets/js/jquery-1.10.2.js"></script>
+
+<!-- Bootstrap Js -->
+<script src="assets/js/bootstrap.min.js"></script>
+
+<script src="assets/materialize/js/materialize.min.js"></script>
+
+<!-- Metis Menu Js -->
+<script src="assets/js/jquery.metisMenu.js"></script>
+<!-- Morris Chart Js -->
+<script src="assets/js/morris/raphael-2.1.0.min.js"></script>
+
+<script src="assets/js/custom-scripts.js"></script> 
+
+
+</body>
+
+</html>
