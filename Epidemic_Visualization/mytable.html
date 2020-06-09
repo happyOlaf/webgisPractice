@@ -5,26 +5,45 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>疫情可视化</title>
-	<title>疫情可视化</title>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection" />
+  <title>疫情可视化</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection" />
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <!-- Morris Chart Styles-->
     <!-- <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" /> -->
-	
+  
     <!-- Custom Styles-->
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
     <script src="assets/js/jquery.loading.min.js"></script>
     <script src="assets/js/echarts.min.js"></script>
-	
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.metisMenu.js"></script> 
+    <link href="https://cdn.bootcss.com/bootstrap-table/1.14.2/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.14.2/bootstrap-table.min.js"></script>
+    <!--bootstrap-table-lanuage-->
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.14.2/bootstrap-table-locale-all.min.js"></script>
+    <!--bootstrap-table-export-->
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.14.2/extensions/export/bootstrap-table-export.min.js"></script>
+    <!--在客户端保存生成的导出文件-->
+    <script src="https://cdn.bootcss.com/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+    <!--以XLSX（Excel 2007+ XML格式）格式导出表（SheetJS）-->
+    <script src="https://cdn.bootcss.com/xlsx/0.14.2/xlsx.core.min.js"></script>
+    <!--以PNG格式导出表格-->
+    <!--对于IE支持包括 html2canvas 之前的 es6-promise-->
+    <script src="https://cdn.bootcss.com/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+    <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    <!--将表导出为PDF文件-->
+    <script src="https://unpkg.com/tableexport.jquery.plugin/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://unpkg.com/tableexport.jquery.plugin/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <!--无论期望的格式如何，最后都包含 tableexport.jquery.plugin（不是tableexport）-->
+    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
 
 </head>
 <body>
@@ -38,11 +57,11 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand waves-effect waves-dark" href="index.html"><i class="large material-icons">track_changes</i> <strong>全民战疫</strong></a>
-				
-		<div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
+        
+    <div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
             </div>
         </nav>
-	
+  
     <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
@@ -120,55 +139,55 @@
             </div>
 
         </nav>
-		<div id="page-wrapper">
-			<div class="header"> 
-				<h1 class="page-header">
-				   全国各省份数据概况
-			   </h1>
-			   <div class="divider" style=""></div>
-			  <!--  <ol class="breadcrumb">
-			  </ol> -->
-		    </div>
+    <div id="page-wrapper">
+      <div class="header"> 
+        <h1 class="page-header">
+           全国各省份数据概况
+         </h1>
+         <div class="divider" style=""></div>
+        <!--  <ol class="breadcrumb">
+        </ol> -->
+        </div>
 <div id="page-inner"> 
       <div class="form-inline row" >
- 	    <label class="form-inline"style="margin-left: 15px;color: black">请选择您想要查询的省份</label>  
+      <label class="form-inline"style="margin-left: 15px;color: black">请选择您想要查询的省份</label>  
         <select class="form-control" id="select" style="width: 120px;margin-left: 15px">
-      	        <option>湖北	</option>
-                <option>北京	</option>
-          			<option>天津	</option>
-          			<option>河北	</option>
-          			<option>山西	</option>
-          			<option>内蒙古</option>
-          			<option>辽宁	</option>
-          			<option>吉林	</option>
-          			<option>黑龙江</option>
-          			<option>安徽	</option>
-          			<option>福建	</option>
-          			<option>江西	</option>
-          			<option>山东	</option>
-          			<option>河南	</option>
-          			<option>湖南	</option>
-          			<option>广东	</option>
-          			<option>广西	</option>
-          			<option>海南	</option>
-          			<option>重庆	</option>
-          			<option>四川	</option>
-          			<option>贵州	</option>
-          			<option>云南	</option>
-          			<option>陕西	</option>
-          			<option>甘肃	</option>
-          			<option>青海	</option>
-          			<option>宁夏	</option>
-          			<option>江苏	</option>
-          			<option>新疆	</option>
-          			<option>上海	</option>
-          			<option>浙江	</option>
-          			<option>西藏	</option>
-          			<option>台湾</option>
-          			<option>香港	</option>
-      			    <option>澳门	</option>
+                <option>湖北  </option>
+                <option>北京  </option>
+                <option>天津  </option>
+                <option>河北  </option>
+                <option>山西  </option>
+                <option>内蒙古</option>
+                <option>辽宁  </option>
+                <option>吉林  </option>
+                <option>黑龙江</option>
+                <option>安徽  </option>
+                <option>福建  </option>
+                <option>江西  </option>
+                <option>山东  </option>
+                <option>河南  </option>
+                <option>湖南  </option>
+                <option>广东  </option>
+                <option>广西  </option>
+                <option>海南  </option>
+                <option>重庆  </option>
+                <option>四川  </option>
+                <option>贵州  </option>
+                <option>云南  </option>
+                <option>陕西  </option>
+                <option>甘肃  </option>
+                <option>青海  </option>
+                <option>宁夏  </option>
+                <option>江苏  </option>
+                <option>新疆  </option>
+                <option>上海  </option>
+                <option>浙江  </option>
+                <option>西藏  </option>
+                <option>台湾</option>
+                <option>香港  </option>
+                <option>澳门  </option>
       </select>
- 	  </div>   
+    </div>   
       <div class="row">
             <div class="col-md-12">
              <div class="card">
@@ -220,36 +239,27 @@
          </div>
       </div>
 
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/materialize/js/materialize.min.js"></script>
-    <script src="assets/js/jquery.metisMenu.js"></script>
-	<script src="assets/js/easypiechart.js"></script>
-	<script src="assets/js/easypiechart-data.js"></script>
-	 <script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>	
-	<script src="assets/js/dataTables/bootstrap-table.js"></script>
-	<script src="assets/js/dataTables/bootstrap-table-zh-CN.js"></script>
-	<link rel="stylesheet" href="assets/js/dataTables/bootstrap-table.css">   
-	<script type="text/javascript">
-		var val = '湖北';
-		GetTable(val);
-		$("#select").change(function(){
+  <script type="text/javascript">
+
+    var val = '湖北';
+    GetTable(val);
+    $("#select").change(function(){
           $('#tb').bootstrapTable('destroy');
           val=$(this).val();
           GetTable(val);
 
         });
-		function GetTable(val) {
+    function GetTable(val) {
 
-			$.ajax({
-				type: "post",
-				dataType: "json",
-				url: "https://api.inews.qq.com/newsqa/v1/query/pubished/daily/list?province=" + val,
-				success: function (json) {
+      $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "https://api.inews.qq.com/newsqa/v1/query/pubished/daily/list?province=" + val,
+        success: function (json) {
                     console.log(json);
                     var datas = json.data;
 
-                    $('#tb').bootstrapTable({
+                    $('#tb').bootstrapTable({                         
                             method: 'get',
                             cache: false,
                             pagination: true,
@@ -257,7 +267,15 @@
                             pageNumber:1,
                             pageList: [10,15,20,50,'所有'],  
                             sidePagination:'client',
-                            showExport: false,
+                            locale:'zh-cn',
+                            toolbar: "#toolbar",//显示工具栏
+                            showToggle: true,//工具栏上显示列表模式切换
+                            showExport: true,//工具栏上显示导出按钮
+                            exportDataType: "all",//显示导出范围
+                            exportTypes: ['json', 'xml', 'png', 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],//导出格式
+                            exportOptions: {//导出设置
+                                fileName: 'Tablexxx',//下载文件名称
+                            },
                             columns: 
                             [
                                 {field:"date",title:"时间",align:"center",valign:"middle",sortable: true,},
@@ -271,13 +289,13 @@
                             ],
                             data:datas,
                         }); 
-				},	
-				error: function (XMLResponse) {
-					alert(" 错误信息：" + XMLResponse.responseText);
-				}
-			});
-		}
-	</script>
+        },  
+        error: function (XMLResponse) {
+          alert(" 错误信息：" + XMLResponse.responseText);
+        }
+      });
+    }
+  </script>
     <script type="text/javascript">
             var val2 = '武汉';
             GetTable2(val2);
@@ -303,7 +321,15 @@
                                 pageNumber:1,
                                 pageList: [10,15,20,50,'所有'],  
                                 sidePagination:'client',
-                                showExport: false,
+                                locale:'zh-cn',
+                                toolbar: "#toolbar",//显示工具栏
+                                showToggle: true,//工具栏上显示列表模式切换
+                                showExport: true,//工具栏上显示导出按钮
+                                exportDataType: "all",//显示导出范围
+                                exportTypes: ['csv','excel','xlsx','txt','json','xml','png','sql','doc'],//导出格式
+                                exportOptions: {//导出设置
+                                    fileName: 'Tablexxx',//下载文件名称
+                                },
                                 columns: 
                                 [
                                     {field:"date",title:"时间",align:"center",valign:"middle",sortable: true,},
@@ -322,8 +348,8 @@
                 });
             }
     </script>
-	
-	
+  
+  
     <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script> 
  
