@@ -193,7 +193,7 @@
 				            node.category = node.attributes.modularity_class;
 				            if(  node.category > n_class ) n_class = node.category;
 				        });
-
+                        console.log(node)
 				        var categories = [];
 				        for (var i = 0; i < n_class; i++) {
 				            categories[i] = {

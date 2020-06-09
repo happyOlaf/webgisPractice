@@ -24,10 +24,10 @@
 .pop_win {
     display: none;
     position: absolute;
-    top: 10%;
+    top: 2%;
     left: 23%;
     width: 55%;
-    height: 75%;
+    height: 63%;
     padding: 10px;
     border: 2px solid rebeccapurple;
     background-color: white;
