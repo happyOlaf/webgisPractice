@@ -2,8 +2,8 @@
 "type": "FeatureCollection",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "id": "ak16994521", "location": "安徽省,合肥市,包河区","hospital": "安徽省立医院感染病院", "mag": 2.3, "time": 1507425650893, "felt": null, "tsunami": 0 },      "geometry": { "type": "Point", "coordinates": [117.2735925,31.84322459,0.0 ] } },
-{ "type": "Feature", "properties": { "id": "ak16994521", "location": "安徽省,合肥市,巢湖市","hospital": "安徽医科大学附属巢湖医院", "mag": 2.3, "time": 1507425650893, "felt": null, "tsunami": 0 },      "geometry": { "type": "Point", "coordinates": [117.87261409999998,31.62318729,0.0 ] } },
+{ "type": "Feature", "properties": { "id": "ak16994521", "location": "安徽省,合肥市,包河区","hospital": "安徽省立医院感染病院", "mag": 10, "time": 1507425650893, "felt": null, "tsunami": 0 },      "geometry": { "type": "Point", "coordinates": [117.2735925,31.84322459,0.0 ] } },
+{ "type": "Feature", "properties": { "id": "ak16994521", "location": "安徽省,合肥市,巢湖市","hospital": "安徽医科大学附属巢湖医院", "mag": 3, "time": 1507425650893, "felt": null, "tsunami": 0 },      "geometry": { "type": "Point", "coordinates": [117.87261409999998,31.62318729,0.0 ] } },
 { "type": "Feature", "properties": { "id": "ak16994521", "location": "安徽省,合肥市,瑶海区","hospital": "合肥市第二人民医院", "mag": 2.3, "time": 1507425650893, "felt": null, "tsunami": 0 },      "geometry": { "type": "Point", "coordinates": [117.31839709999998,31.85662234,0.0 ] } },
 { "type": "Feature", "properties": { "id": "ak16994521", "location": "安徽省,合肥市,肥西县","hospital": "肥西县人民医院", "mag": 2.3, "time": 1507425650893, "felt": null, "tsunami": 0 },      "geometry": { "type": "Point", "coordinates": [117.1713627,31.746172700000002,0.0 ] } },
 { "type": "Feature", "properties": { "id": "ak16994521", "location": "安徽省,合肥市,肥东县","hospital": "肥东县人民医院", "mag": 2.3, "time": 1507425650893, "felt": null, "tsunami": 0 },      "geometry": { "type": "Point", "coordinates": [117.47271459999999,31.84662468,0.0 ] } },
