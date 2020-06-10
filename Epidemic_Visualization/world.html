@@ -226,10 +226,32 @@
 ];
 		    $.ajax({
 		        type:"GET",
-		        url: "data/data_world.csv",
+		        //url: "data/data_world.csv",
+		        url: "http://localhost:8081/COVID-19/World/all",
+            	dataType: "json",  
 		        success: function(results) {
+		        	var k=1;
+            		date[k-1]=1.28;
+            		Confirms[k-1] = new Array();
+            		for(var j = 0; j < 180; j++) {
+                    	Confirms[k-1][j] = 0; //0表示只有一个空的红圈
+               		}
+               		var l=0;
+            		$.each(results,function(i,n){
+            			if (n.date!=date[k-1]){
+            				date[k]=n.date;
+            				Confirms[k] = new Array();
+            				for(var j = 0; j < 180; j++) {
+                             	   Confirms[k][j] = 0; //0表示只有一个空的红圈
+               				}
+               				k++;
+            			}
+            			if(l==180) l=0;
+                    	Confirms[k-1][l]=n.confirm; 
+                    	l++;
+            		});
 		            //转变为字符串
-		            var rs = new String(results);         
+		            /*var rs = new String(results);         
 		            var n_date = 0;
 		            rs=rs.split("\n");
 		            for (var i = 0; i < rs.length; i++) {
@@ -259,7 +281,7 @@
 		                     Confirms[n_date]=Confirms[n_date].map(Number)
 		                }                  
 		                n_date++;
-		            }
+		            }*/
 
 
 		            var days=date;
@@ -546,10 +568,32 @@
 ];
 		    $.ajax({
 		        type:"GET",
-		        url: "data/data_world.csv",
+		        //url: "data/data_world.csv",
+		        url: "http://localhost:8081/COVID-19/World/all",
+            	dataType: "json",  
 		        success: function(results) {
+		        	var k=1;
+            		date[k-1]=1.28;
+            		Confirms[k-1] = new Array();
+            		for(var j = 0; j < 180; j++) {
+                    	Confirms[k-1][j] = 0; //0表示只有一个空的红圈
+               		}
+               		var l=0;
+            		$.each(results,function(i,n){
+            			if (n.date!=date[k-1]){
+            				date[k]=n.date;
+            				Confirms[k] = new Array();
+            				for(var j = 0; j < 180; j++) {
+                	                Confirms[k][j] = 0; //0表示只有一个空的红圈
+               				}
+               				k++;
+            			}
+            			if(l==180) l=0;
+                	    Confirms[k-1][l]=n.heal; 
+                	    l++;
+            		});
 		            //转变为字符串
-		            var rs = new String(results);         
+		            /*var rs = new String(results);         
 		            var n_date = 0;
 		            rs=rs.split("\n");
 		            for (var i = 0; i < rs.length; i++) {
@@ -579,7 +623,7 @@
 		                     Confirms[n_date]=Confirms[n_date].map(Number)
 		                }                  
 		                n_date++;
-		            }
+		            }*/
 
 
 		            var days=date;
@@ -866,10 +910,32 @@
 ];
 		    $.ajax({
 		        type:"GET",
-		        url: "data/data_world.csv",
+		        //url: "data/data_world.csv",
+		        url: "http://localhost:8081/COVID-19/World/all",
+           		dataType: "json", 
 		        success: function(results) {
+		        	var k=1;
+            		date[k-1]=1.28;
+            		Confirms[k-1] = new Array();
+            		for(var j = 0; j < 180; j++) {
+                	    Confirms[k-1][j] = 0; //0表示只有一个空的红圈
+               		}
+               		var l=0;
+            		$.each(results,function(i,n){
+            			if (n.date!=date[k-1]){
+            				date[k]=n.date;
+            				Confirms[k] = new Array();
+            				for(var j = 0; j < 180; j++) {
+                	                Confirms[k][j] = 0; //0表示只有一个空的红圈
+               				}
+               				k++;
+            			}
+            			if(l==180) l=0;
+                 	   Confirms[k-1][l]=n.dead; 
+                	    l++;
+            		});
 		            //转变为字符串
-		            var rs = new String(results);         
+		            /*var rs = new String(results);         
 		            var n_date = 0;
 		            rs=rs.split("\n");
 		            for (var i = 0; i < rs.length; i++) {
@@ -899,7 +965,7 @@
 		                     Confirms[n_date]=Confirms[n_date].map(Number)
 		                }                  
 		                n_date++;
-		            }
+		            }*/
 
 
 		            var days=date;

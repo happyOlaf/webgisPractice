@@ -217,9 +217,31 @@
 
 		    $.ajax({
 		        type:"GET",
-		        url: "data/data_hubei_date.csv",
+		        //url: "data/data_hubei_date.csv",
+		        url: "http://localhost:8081/COVID-19/Hubei/all",
+            	dataType: "json", 
 		        success: function(results) {
-		            //转变为字符串
+		        	var k=1;
+            		date[k-1]=1.21;
+            		Confirms[k-1] = new Array();
+            		for(var j = 0; j < 17; j++) {
+                    	Confirms[k-1][j] = 0; //0表示只有一个空的红圈
+               		}
+               		var l=0;
+            		$.each(results,function(i,n){
+            			if (n.date!=date[k-1]){
+            				date[k]=n.date;
+            				Confirms[k] = new Array();
+            				for(var j = 0; j < 17; j++) {
+                             	   Confirms[k][j] = 0; //0表示只有一个空的红圈
+               				}
+               				k++;
+            			}
+            			if(l==17) l=0;
+                    	Confirms[k-1][l]=n.confirm; 
+                    	l++;
+            		});
+		            /*//转变为字符串
 		            var rs = new String(results);         
 		            var n_date = 0;
 		            rs=rs.split("\n");
@@ -250,7 +272,7 @@
 		                     Confirms[n_date]=Confirms[n_date].map(Number)
 		                }                  
 		                n_date++;
-		            }
+		            }*/
 
 
 		            var days=date;
@@ -522,9 +544,31 @@
 		var province=["鄂州","恩施州","黄冈","黄石","荆门","荆州","潜江","神农架","十堰","随州","天门","武汉","仙桃","咸宁","襄阳","孝感","宜昌"];
 		    $.ajax({
 		        type:"GET",		        		        
-		        url: "data/data_hubei_date.csv",
+		        //url: "data/data_hubei_date.csv",
+		        url: "http://localhost:8081/COVID-19/Hubei/all",
+            	dataType: "json",  
 		        success: function(results) {
-		            //转变为字符串
+		        	var k=1;
+            		date[k-1]=1.21;
+            		Confirms[k-1] = new Array();
+            		for(var j = 0; j < 17; j++) {
+                    	Confirms[k-1][j] = 0; //0表示只有一个空的红圈
+               		}
+               		var l=0;
+            		$.each(results,function(i,n){
+            			if (n.date!=date[k-1]){
+            				date[k]=n.date;
+            				Confirms[k] = new Array();
+            				for(var j = 0; j < 17; j++) {
+                	                Confirms[k][j] = 0; //0表示只有一个空的红圈
+               				}
+               				k++;
+            			}
+            			if(l==17) l=0;
+                	    Confirms[k-1][l]=n.heal; 
+                	    l++;
+            		});
+		            /*//转变为字符串
 		            var rs = new String(results);         
 		            var n_date = 0;
 		            rs=rs.split("\n");
@@ -553,7 +597,7 @@
 		                     Confirms[n_date]=Confirms[n_date].map(Number)
 		                }                  
 		                n_date++;
-		            }
+		            }*/
 
 
 		            var days=date;
@@ -824,9 +868,31 @@
 
 		    $.ajax({
 		        type:"GET",
-		        url: "data/data_hubei_date.csv",
+		        //url: "data/data_hubei_date.csv",
+		        url: "http://localhost:8081/COVID-19/Hubei/all",
+           		dataType: "json", 
 		        success: function(results) {
-		            //转变为字符串
+		        	var k=1;
+            		date[k-1]=1.21;
+            		Confirms[k-1] = new Array();
+            		for(var j = 0; j < 17; j++) {
+                	    Confirms[k-1][j] = 0; //0表示只有一个空的红圈
+               		}
+               		var l=0;
+            		$.each(results,function(i,n){
+            			if (n.date!=date[k-1]){
+            				date[k]=n.date;
+            				Confirms[k] = new Array();
+            				for(var j = 0; j < 17; j++) {
+                	                Confirms[k][j] = 0; //0表示只有一个空的红圈
+               				}
+               				k++;
+            			}
+            			if(l==17) l=0;
+                 	   Confirms[k-1][l]=n.dead; 
+                	    l++;
+            		});
+		            /*//转变为字符串
 		            var rs = new String(results);         
 		            var n_date = 0;
 		            rs=rs.split("\n");
@@ -855,7 +921,7 @@
 		                     Confirms[n_date]=Confirms[n_date].map(Number)
 		                }                  
 		                n_date++;
-		            }
+		            }*/
 
 
 		            var days=date;
