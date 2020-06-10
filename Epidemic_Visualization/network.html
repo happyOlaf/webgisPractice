@@ -168,18 +168,15 @@
 			        val=$(this).val();
 			        drawGragh(val);
 			    });
-
 			    function drawGragh(date){
 			    	var dom = document.getElementById("container");
 				    var myChart = echarts.init(dom);
 				    var app = {};
 				    option = null;
 				    myChart.showLoading();
-				    $.get('data/gexf/' + date + '.gexf', function (xml) {
+				    $.get('http://localhost:8081/Gexf/'+ date, function (xml) {
 				        myChart.hideLoading();
-
 				        var graph = echarts.dataTool.gexf.parse(xml);
-				        
 				        var n_class = 0;
 				        graph.nodes.forEach(function (node) {
 				            node.itemStyle = null;
@@ -190,10 +187,11 @@
 				                }
 				            };
 				            node.draggable = true;
+
 				            node.category = node.attributes.modularity_class;
 				            if(  node.category > n_class ) n_class = node.category;
 				        });
-                        console.log(node)
+                        
 				        var categories = [];
 				        for (var i = 0; i < n_class; i++) {
 				            categories[i] = {
