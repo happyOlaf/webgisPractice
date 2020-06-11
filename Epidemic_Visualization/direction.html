@@ -77,9 +77,9 @@
 		                	</li>
 		                	<li>
 		                		<a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>趋势分析<span class="fa arrow"></span></a>
-		                		<ul class="nav nav-second-level collapse in">
+		                		<ul class="nav nav-second-level">
 		                			<li>
-		                        		<a href="chart.html" class="active-menu waves-effect waves-dark"style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>中国各省</a>
+		                        		<a href="chart.html" class=" waves-effect waves-dark"style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>中国各省</a>
 		                        	</li>
 		                			<li>
 		                        		<a href="hubei.html" class="waves-effect waves-dark"style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-bar-chart-o"></i>湖北各市</a>
@@ -100,6 +100,9 @@
 		                			</li>         			
 		                		</ul>
 		                	</li>
+							<li>
+								<a href="direction.html" class="active-menu waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-fw fa-plus-square"></i>医院分布</a>
+							</li>
 		                	<li>
 		                		<a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-desktop"></i>空间自相关分析<span class="fa arrow"></span></a>
 		                		<ul class="nav nav-second-level">
@@ -135,6 +138,7 @@
 <div id="page-wrapper" style="min-height: 680px;overflow: hidden;">
     <div class="header"> 
        <div class="divider" style=""></div>
+	   
     </div>
 	<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js"></script>
 	<link
@@ -148,63 +152,7 @@
 <script type="text/javascript">
 </script>
 <script src="http://api.map.baidu.com/api?v=1.2" type="text/javascript"></script>
-	<!-- var longitude = 0
-	var latitude = 0 -->
-    <!-- <script>
-        function getLocation(){
-            var options={
-                enableHighAccuracy:true,
-                maximumAge:1000
-            }
-            if(navigator.geolocation){
-                //浏览器支持geolocation
-                navigator.geolocation.getCurrentPosition(onSuccess,onError,options);
-            }else{
-                //浏览器不支持geolocation
-                alert('您的浏览器不支持地理位置定位');
-            }
-        }
-        //成功时
-        function onSuccess(position){
-            //返回用户位置
-            //经度
-            var longitude =position.coords.longitude;
-            //纬度
-            var latitude = position.coords.latitude;
-            //alert('经度'+longitude+'，纬度'+latitude);
-			
-
-            //根据经纬度获取地理位置，不太准确，获取城市区域还是可以的
-            var map = new BMap.Map("allmap");
-            var point = new BMap.Point(longitude,latitude);
-            var gc = new BMap.Geocoder();
-            gc.getLocation(point, function(rs){
-                var addComp = rs.addressComponents;
-				console.log(addComp);
-                //alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
-				document.getElementById("loc").innerHTML = "您的位置：" + addComp.province + ", " + addComp.city + ", " + addComp.district;
-			});
-        }
-        //失败时
-        function onError(error){
-            switch(error.code){
-                case 1:
-                    alert("位置服务被拒绝");
-                    break;
-                case 2:
-                    alert("暂时获取不到位置信息");
-                    break;
-                case 3:
-                    alert("获取信息超时");
-                    break;
-                case 4:
-                    alert("未知错误");
-                    break;
-            }
-        }
-        window.onload=getLocation;
-
-    </script> -->
+	
 <script type="text/javascript">
 	var lon;
 	var lat;
@@ -241,7 +189,14 @@
 				center: [lon, lat],
 				//console.log(longitude);
 				zoom: 10
-				});
+			});
+			new mapboxgl.Marker()
+				.setLngLat([lon, lat])
+									
+				//.setLngLat([116.39139,39.905])
+				//.setPopup(popup) // sets a popup on this marker
+				.addTo(map); 
+				
 			//alert('经度'+longitude+'，纬度'+latitude);	
 			mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.0/mapbox-gl-rtl-text.js');
 			map.addControl(new MapboxLanguage({
@@ -253,6 +208,30 @@
 				}),
 				'top-left'
 				);
+			var mystr = '';
+			$.ajax({  
+				//请求方式  
+				type:"GET",
+				//离开ajax后变量能输出，true清空
+				async:false,  
+				//文件位置  
+				url:"http://localhost:8081/Json/hospgcjjson",
+				//返回数据格式为json,也可以是其他格式如  
+				//dataType: "str",  
+				//请求成功后要执行的函数，拼接html  
+				success: function(data){
+					//返回数据格式为json值为Int调用方法
+					mystr = JSON.parse(data);
+					//返回值为List调用方法,List(MissingProvince,Number)
+					// $.each(data,function(i,n){
+					//     dateProvince[i]=n.province;
+					//     dateDate[i]=n.date;
+					//     ....
+					// }); 
+				} 
+			});
+			
+			
 			map.on('load', function() {
 				// Add a new source from our GeoJSON data and
 				// set the 'cluster' option to true. GL-JS will
@@ -261,8 +240,8 @@
 					type: 'geojson',
 					// Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
 					// from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
-					data:'data/hospgcjjson.json',
-					
+					//data:'data/hospgcjjson.json',
+					data: mystr,
 					<!-- 'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson', -->
 					cluster: true,
 					clusterMaxZoom: 14, // Max zoom to cluster points on
@@ -314,6 +293,7 @@
 					}
 				});
 				map.loadImage(
+				
 					'data/医院.png',
 					function(error, image) {
 					if (error) throw error;
@@ -357,13 +337,7 @@
 					}
 					
 				});*/
-
-				//var coordinates = e.features[0].geometry.coordinates.slice();
-				 
-					
 				
-				
-					
 					
 				
 				// inspect a cluster on click
@@ -444,12 +418,12 @@
             var mapbaidu = new BMap.Map("allmap");
             var point = new BMap.Point(longitude,latitude);
             var gc = new BMap.Geocoder();
-            gc.getLocation(point, function(rs){
+            /*gc.getLocation(point, function(rs){
                 var addComp = rs.addressComponents;
 				console.log(addComp);
                 //alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
 				document.getElementById("loc").innerHTML = "您的位置：" + addComp.province + ", " + addComp.city + ", " + addComp.district;
-			});
+			});*/
         }
 		//console.log(longitude);
         //失败时
@@ -488,6 +462,31 @@
 				}),
 				'top-left'
 				);
+			var mystr = '';
+			$.ajax({  
+				//请求方式  
+				type:"GET",
+				//离开ajax后变量能输出，true清空
+				async:false,  
+				//文件位置  
+				url:"http://localhost:8081/Json/hospgcjjson",
+				//返回数据格式为json,也可以是其他格式如  
+				//dataType: "str",  
+				//请求成功后要执行的函数，拼接html  
+				success: function(data){
+					//返回数据格式为json值为Int调用方法
+					mystr = JSON.parse(data);
+					//返回值为List调用方法,List(MissingProvince,Number)
+					// $.each(data,function(i,n){
+					//     dateProvince[i]=n.province;
+					//     dateDate[i]=n.date;
+					//     ....
+					// }); 
+				} 
+			});
+			//mystr = 'http://localhost:8081/Json/hospgcjjson'
+			console.log(mystr); 
+			//var mydata = JSON.parse(mystr)
 			map.on('load', function() {
 				// Add a new source from our GeoJSON data and
 				// set the 'cluster' option to true. GL-JS will
@@ -496,8 +495,8 @@
 				type: 'geojson',
 				// Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
 				// from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
-				data:
-				'data/hospgcjjson.json',
+				//data:'data/hospgcjjson.json',
+				data: mystr,
 				<!-- 'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson', -->
 				cluster: true,
 				clusterMaxZoom: 14, // Max zoom to cluster points on
@@ -547,8 +546,10 @@
 					'text-size': 12
 					}
 				});
+				
 				map.loadImage(
-					'data/医院.png',
+					'http://localhost:8081/download/医院.png',
+					//'data/医院.png',
 					function(error, image) {
 					if (error) throw error;
 					map.addImage('cat', image);
