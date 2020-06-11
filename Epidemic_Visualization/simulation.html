@@ -81,6 +81,9 @@
                             </li>                   
                         </ul>
                     </li>
+					<li>
+						<a href="direction.html" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-fw fa-plus-square"></i>医院分布</a>
+					</li>
                     <li>
                         <a href="#" class="waves-effect waves-dark" style="font-size: 18px;margin-top: 6px;margin-bottom: 6px"><i class="fa fa-desktop"></i>空间自相关分析<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -205,10 +208,17 @@
 		var day3 = [];
 		$.ajax({
 		        type:"GET",
-		        url: "data/seir.csv",
+		        //url: "data/seir.csv",
+				url: 'http://localhost:8081/Predict/seir',
 		        success: function(results) {
+					$.each(results,function(i,n){
+							sus[i] = n.susceptible;
+							exp[i] = n.exposed;
+							inf[i] = n.infected;
+							rec[i] = n.recovered;
+					}); 
 		            //转变为字符串
-		            var rs = new String(results);         
+		            /*var rs = new String(results);         
 		            var n_date = 0;
 		            rs=rs.split("\n");
 		            for (var i = 0; i < rs.length; i++) {
@@ -241,6 +251,9 @@
 					
 					
 					for(var i = 0; i < rs.length ; i++) {
+						day3[i] = i + 1 ;
+					}*/
+					for(var i = 0; i < results.length ; i++) {
 						day3[i] = i + 1 ;
 					}
 					//console.log(day3);
@@ -369,10 +382,18 @@
 			var day2 = [];
 			$.ajax({
 					type:"GET",
-					url: "data/myseir.csv",
+					//url: "data/myseir.csv",
+					url: 'http://localhost:8081/Predict/myseir',
 					success: function(results) {
+						$.each(results,function(i,n){
+							m_tot[i] = n.total;
+							m_sus[i] = n.susceptible;
+							m_exp[i] = n.exposed;
+							m_inf[i] = n.infected;
+							m_rec[i] = n.recovered;
+						}); 
 						//转变为字符串
-						var rs = new String(results);         
+						/*var rs = new String(results);         
 						var n_date = 0;
 						rs=rs.split("\n");
 						for (var i = 0; i < rs.length; i++) {
@@ -408,8 +429,10 @@
 						for(var i = 0; i < rs.length ; i++) {
 							day2[i] = i + 1 ;
 						}
-						console.log(day2);
-						
+						console.log(day2);*/
+						for(var i = 0; i < results.length ; i++) {
+							day2[i] = i + 1 ;
+						}
 						var myChart2 = echarts.init(document.getElementById('echarts2'));
 						var option = {
 							tooltip: {
@@ -539,10 +562,17 @@
 			var day = [];
 			$.ajax({
 					type:"GET",
-					url: "data/compare.csv",
+					//url: "data/compare.csv",
+					url: 'http://localhost:8081/Predict/compare',
 					success: function(results) {
+						$.each(results, function(i,n){
+							real_ch[i]=n.real_ch;
+							real_hb[i]=n.real_hb;
+							seir_ch[i]=n.simulation_ch;
+							seir_hb[i]=n.simulation_hb;
+						}); 
 						//转变为字符串
-						var rs = new String(results);         
+						/*var rs = new String(results);         
 						var n_date = 0;
 						rs=rs.split("\n");
 						for (var i = 0; i < rs.length; i++) {
@@ -574,6 +604,9 @@
 						//console.log(seir_hb);
 						//console.log(seir_ch);
 						for(var i = 0; i < rs.length ; i++) {
+							day[i] = i + 1 ;
+						}*/
+						for(var i = 0; i < results.length ; i++) {
 							day[i] = i + 1 ;
 						}
 						//console.log(day);
@@ -689,10 +722,16 @@
 			var day = [];
 			$.ajax({
 					type:"GET",
-					url: "data/compare.csv",
+					//url: "data/compare.csv",
+					url: 'http://localhost:8081/Predict/compare',
 					success: function(results) {
+						$.each(results,function(i,n){
+							seir_ch[i]=n.simulation_ch;
+							real_ch[i]=n.real_ch;
+							
+						}); 
 						//转变为字符串
-						var rs = new String(results);         
+						/*var rs = new String(results);         
 						var n_date = 0;
 						rs=rs.split("\n");
 						for (var i = 0; i < rs.length; i++) {
@@ -721,6 +760,9 @@
 						//console.log(seir_hb);
 						//console.log(seir_ch);
 						for(var i = 0; i < rs.length ; i++) {
+							day[i] = i + 1 ;
+						}*/
+						for(var i = 0; i < results.length ; i++) {
 							day[i] = i + 1 ;
 						}
 						var myChart4 = echarts.init(document.getElementById('echarts4'));
