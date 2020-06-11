@@ -208,6 +208,7 @@
 				}),
 				'top-left'
 				);
+			//调用数据库	
 			var mystr = '';
 			$.ajax({  
 				//请求方式  
@@ -292,7 +293,7 @@
 					'text-size': 12
 					}
 				});
-				map.loadImage(
+				/*map.loadImage(
 				
 					'data/医院.png',
 					function(error, image) {
@@ -300,8 +301,17 @@
 					map.addImage('cat', image);
 					
 				}
-				);
+				);*/
+				//调用数据库
+				map.loadImage(
+					'http://localhost:8081/download/医院.png',
+					//'data/医院.png',
+					function(error, image) {
+					if (error) throw error;
+					map.addImage('cat', image);
 					
+				}
+				);	
 				map.addLayer({
 					id: 'unclustered-point',
 					type: 'symbol', //type: 'circle',
@@ -462,6 +472,7 @@
 				}),
 				'top-left'
 				);
+			//调用数据库
 			var mystr = '';
 			$.ajax({  
 				//请求方式  
