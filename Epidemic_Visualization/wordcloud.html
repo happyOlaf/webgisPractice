@@ -143,16 +143,15 @@
                 <option>4.24-5.13</option>
 
           </select>
-        </div>
+    </div>
         <div id="container0" style= "width: 1200px;height: 550px;margin: 0 auto" ></div>
         <script type="text/javascript">
         function checkit0(){
             var optionclass = document.getElementById("select0");
             var index = optionclass.selectedIndex;//选中索引
             var dom = document.getElementById("container0");
-        var mychart0 = echarts.init(dom);
+        	var mychart0 = echarts.init(dom);
         if(index == 0){
-
         option = {
             tooltip: {
                 show: true
@@ -167,7 +166,6 @@
                     enable: true,
                     minSize: 14
                 },
-
                 textStyle:{
                     normal: {
                     color: function(){
@@ -1323,14 +1321,14 @@
           </select>
         </div>
         <div id="chinamap" style="width: 900px;height:675px;margin: 0 auto;"></div>
-    <div id="light" class="pop_win">
-        <div style="height: 25px;">
-            <a href = "javascript:void(0)" onclick = "closeWin();" style="float: right; ">[x]</a>
-        </div>       
-         <div id="wcloud" style="height: 500px;margin-top:20;"></div>
-    </div>
-    <div id="fade" class="black_overlay"></div>
-        
+	    <div id="light" class="pop_win">
+	        <div style="height: 25px;">
+	            <a href = "javascript:void(0)" onclick = "closeWin();" style="float: right; ">[x]</a>
+	        </div>       
+	         <div id="wcloud" style="height: 500px;margin-top:20;"></div>
+	    </div>
+	    <div id="fade" class="black_overlay"></div>
+	        
        <script type="text/javascript">
                 function checkit(){
                     var optionclass = document.getElementById("select");
